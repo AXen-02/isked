@@ -23,31 +23,31 @@ export const metadata: Metadata = {
   authors: [
     {
       name: "axen",
-      url: "https://imapp-web.vercel.app",
+      url: "https://imapp-web.vercel.app", // change this into my portfolio site
     },
   ],
   creator: "axen",
-  openGraph: {
-    type: "website",
-    locale: "en_US",
-    url: siteConfig.url,
-    title: siteConfig.name,
-    description: siteConfig.description,
-    siteName: siteConfig.name,
-    images: [
-      {
-        url: siteConfig.ogImage,
-        width: 1200,
-        height: 630,
-        alt: siteConfig.name,
-      },
-    ],
-  },
-  icons: {
-    icon: "/app/favicon.ico",
-    shortcut: "/app/favicon-16x16.png",
-    apple: "/app/apple-touch-icon.png",
-  },
+  // openGraph: {
+  //   type: "website",
+  //   locale: "en_US",
+  //   url: siteConfig.url,
+  //   title: siteConfig.name,
+  //   description: siteConfig.description,
+  //   siteName: siteConfig.name,
+  //   images: [
+  //     {
+  //       url: siteConfig.ogImage,
+  //       width: 1200,
+  //       height: 630,
+  //       alt: siteConfig.name,
+  //     },
+  //   ],
+  // },
+  // icons: {
+  //   icon: "/app/favicon.ico",
+  //   shortcut: "/app/favicon-16x16.png",
+  //   apple: "/app/apple-touch-icon.png",
+  // },
   // manifest: `${siteConfig.url}/site.webmanifest`,
 };
 
@@ -65,12 +65,7 @@ export default function RootLayout({
           inter.className
         )}
       >
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="system"
-          enableSystem
-          disableTransitionOnChange
-        >
+        <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           <div className="relative flex min-h-screen flex-col">
             <div className="flex-1">
               <SiteHeader />
