@@ -126,11 +126,11 @@ module.exports = {
           zIndex: "1",
         },
         ".c-button--gooey": {
-          color: "#06c8d9",
+          color: "hsl(var(--primary))",
           textTransform: "uppercase",
           letterSpacing: "2px",
           borderWidth: "4px",
-          borderColor: "#06c8d9",
+          borderColor: "hsl(var(--primary))",
           borderRadius: "0",
           position: "relative",
           transition: "all 700ms ease",
@@ -147,7 +147,7 @@ module.exports = {
           zIndex: "-1",
         },
         ".c-button--gooey .c-button__blobs div": {
-          backgroundColor: "#06c8d9",
+          backgroundColor: "hsl(var(--primary))",
           width: "34%",
           height: "100%",
           borderRadius: "100%",
@@ -167,7 +167,7 @@ module.exports = {
           transitionDelay: "25ms",
         },
         ".c-button--gooey:hover": {
-          color: "#fff",
+          color: "hsl(var(--primary-foreground))",
         },
         ".c-button--gooey:hover .c-button__blobs div": {
           transform: "scale(1.4) translateY(0) translateZ(0)",
