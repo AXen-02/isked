@@ -105,9 +105,74 @@ module.exports = {
         "accordion-up": "accordion-up 0.2s ease-out",
         shadow: "shadow 0.5s linear infinite",
         jump: "jump 0.5s linear infinite",
-        rotBGimg: "rotBGimg 3s linear infinite",
+        rotBGimg: "rotBGimg 5s linear infinite",
       },
     },
   },
-  plugins: [require("tailwindcss-animate")],
+  plugins: [
+    require("tailwindcss-animate"),
+    function ({ addComponents }) {
+      addComponents({
+        ".c-button": {
+          color: "#000",
+          fontWeight: "700",
+          fontSize: "16px",
+          textDecoration: "none",
+          padding: "0.9em 1.6em",
+          cursor: "pointer",
+          display: "inline-block",
+          verticalAlign: "middle",
+          position: "relative",
+          zIndex: "1",
+        },
+        ".c-button--gooey": {
+          color: "#06c8d9",
+          textTransform: "uppercase",
+          letterSpacing: "2px",
+          borderWidth: "4px",
+          borderColor: "#06c8d9",
+          borderRadius: "0",
+          position: "relative",
+          transition: "all 700ms ease",
+        },
+        ".c-button--gooey .c-button__blobs": {
+          height: "100%",
+          filter: "url(#goo)",
+          overflow: "hidden",
+          position: "absolute",
+          top: "0",
+          left: "0",
+          bottom: "-3px",
+          right: "-1px",
+          zIndex: "-1",
+        },
+        ".c-button--gooey .c-button__blobs div": {
+          backgroundColor: "#06c8d9",
+          width: "34%",
+          height: "100%",
+          borderRadius: "100%",
+          position: "absolute",
+          transform: "scale(1.4) translateY(125%) translateZ(0)",
+          transition: "all 700ms ease",
+        },
+        ".c-button--gooey .c-button__blobs div:nth-child(1)": {
+          left: "-5%",
+        },
+        ".c-button--gooey .c-button__blobs div:nth-child(2)": {
+          left: "30%",
+          transitionDelay: "60ms",
+        },
+        ".c-button--gooey .c-button__blobs div:nth-child(3)": {
+          left: "66%",
+          transitionDelay: "25ms",
+        },
+        ".c-button--gooey:hover": {
+          color: "#fff",
+        },
+        ".c-button--gooey:hover .c-button__blobs div": {
+          transform: "scale(1.4) translateY(0) translateZ(0)",
+        },
+      });
+    },
+  ],
 };
