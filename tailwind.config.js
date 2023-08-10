@@ -111,8 +111,40 @@ module.exports = {
   },
   plugins: [
     require("tailwindcss-animate"),
+    function ({ addUtilities }) {
+      const keyframes = {
+        "@keyframes pulse00": {
+          "0%": {
+            WebkitTransform: "scale(1)",
+            transform: "scale(1)",
+          },
+          "50%": {
+            WebkitTransform: "scale(0.01)",
+            transform: "scale(0.01)",
+          },
+          "100%": {
+            WebkitTransform: "scale(1)",
+            transform: "scale(1)",
+          },
+        },
+        "@keyframes fade00": {
+          "0%": {
+            background: "#252525",
+          },
+          "50%": {
+            background: "hsl(var(--primary))",
+          },
+          "100%": {
+            background: "hsl(var(--muted))",
+          },
+        },
+      };
+
+      addUtilities(keyframes, ["responsive", "hover"]);
+    },
     function ({ addComponents }) {
       addComponents({
+        // GOOEY BUTTON
         ".c-button": {
           color: "#000",
           fontWeight: "700",
@@ -172,6 +204,7 @@ module.exports = {
         ".c-button--gooey:hover .c-button__blobs div": {
           transform: "scale(1.4) translateY(0) translateZ(0)",
         },
+        // LOGO BUTTON
         ".l-button": {
           margin: "0",
           height: "auto",
@@ -208,6 +241,278 @@ module.exports = {
         ".l-button:hover .hover-text": {
           width: "100%",
           filter: "drop-shadow(0 0 23px var(--animation-color))",
+        },
+        // HEXA LOADER
+        ".socket": {
+          width: "200px",
+          height: "200px",
+          position: "absolute",
+          left: "50vw",
+          transform: "translateX(-50%)",
+          top: "50vh",
+          transform: "translateY(-50%)",
+        },
+        ".hex-brick": {
+          background: "hsl(var(--primary))",
+          width: "30px",
+          height: "17px",
+          position: "absolute",
+          top: "5px",
+          animation: "fade00 2s infinite",
+        },
+        ".h2": {
+          transform: "rotate(60deg)",
+        },
+        ".h3": {
+          transform: "rotate(-60deg)",
+        },
+        ".gel": {
+          height: "30px",
+          width: "30px",
+          transition: "all .3s",
+          WebkitTransition: "all .3s",
+          position: "absolute",
+          top: "50%",
+          left: "50%",
+          transform: "translate(-50%, -50%)",
+        },
+        ".center-gel": {
+          marginLeft: "-15px",
+          marginTop: "-15px",
+          animation: "pulse00 2s infinite",
+        },
+        ".c1": {
+          marginLeft: "-47px",
+          marginTop: "-15px",
+        },
+        ".c2": {
+          marginLeft: "-31px",
+          marginTop: "-43px",
+        },
+        ".c3": {
+          marginLeft: "1px",
+          marginTop: "-43px",
+        },
+        ".c4": {
+          marginLeft: "17px",
+          marginTop: "-15px",
+        },
+        ".c5": {
+          marginLeft: "-31px",
+          marginTop: "13px",
+        },
+        ".c6": {
+          marginLeft: "1px",
+          marginTop: "13px",
+        },
+        ".c7": {
+          marginLeft: "-63px",
+          marginTop: "-43px",
+        },
+        ".c8": {
+          marginLeft: "33px",
+          marginTop: "-43px",
+        },
+        ".c9": {
+          marginLeft: "-15px",
+          marginTop: "41px",
+        },
+        ".c10": {
+          marginLeft: "-63px",
+          marginTop: "13px",
+        },
+        ".c11": {
+          marginLeft: "33px",
+          marginTop: "13px",
+        },
+        ".c12": {
+          marginLeft: "-15px",
+          marginTop: "-71px",
+        },
+
+        ".c13": {
+          marginLeft: "-47px",
+          marginTop: "-71px",
+        },
+
+        ".c14": {
+          marginLeft: " 17px",
+          marginTop: "-71px",
+        },
+
+        ".c15": {
+          marginLeft: "-47px",
+          marginTop: "41px",
+        },
+
+        ".c16": {
+          marginLeft: " 17px",
+          marginTop: "41px",
+        },
+
+        ".c17": {
+          marginLeft: "-79px",
+          marginTop: "-15px",
+        },
+
+        ".c18": {
+          marginLeft: " 49px",
+          marginTop: "-15px",
+        },
+
+        ".c19": {
+          marginLeft: "-63px",
+          marginTop: "-99px",
+        },
+
+        ".c20": {
+          marginLeft: " 33px",
+          marginTop: "-99px",
+        },
+
+        ".c21": {
+          marginLeft: "1px",
+          marginTop: "-99px",
+        },
+
+        ".c22": {
+          marginLeft: "-31px",
+          marginTop: "-99px",
+        },
+
+        ".c23": {
+          marginLeft: "-63px",
+          marginTop: "69px",
+        },
+
+        ".c24": {
+          marginLeft: " 33px",
+          marginTop: "69px",
+        },
+
+        ".c25": {
+          marginLeft: "1px",
+          marginTop: "69px",
+        },
+
+        ".c26": {
+          marginLeft: "-31px",
+          marginTop: "69px",
+        },
+
+        ".c27": {
+          marginLeft: "-79px",
+          marginTop: "-15px",
+        },
+
+        ".c28": {
+          marginLeft: "-95px",
+          marginTop: "-43px",
+        },
+
+        ".c29": {
+          marginLeft: "-95px",
+          marginTop: "13px",
+        },
+
+        ".c30": {
+          marginLeft: " 49px",
+          marginTop: "41px",
+        },
+
+        ".c31": {
+          marginLeft: "-79px",
+          marginTop: "-71px",
+        },
+
+        ".c32": {
+          marginLeft: "-111px",
+          marginTop: "-15px",
+        },
+
+        ".c33": {
+          marginLeft: " 65px",
+          marginTop: "-43px",
+        },
+
+        ".c34": {
+          marginLeft: " 65px",
+          marginTop: "13px",
+        },
+
+        ".c35": {
+          marginLeft: "-79px",
+          marginTop: "41px",
+        },
+
+        ".c36": {
+          marginLeft: " 49px",
+          marginTop: "-71px",
+        },
+
+        ".c37": {
+          marginLeft: " 81px",
+          marginTop: "-15px",
+        },
+        ".r1": {
+          animationName: "pulse00",
+          animationDuration: "2s",
+          animationIterationCount: "infinite",
+          animationDelay: ".2s",
+          WebkitAnimationName: "pulse00",
+          WebkitAnimationDuration: "2s",
+          WebkitAnimationIterationCount: "infinite",
+          WebkitAnimationDelay: ".2s",
+        },
+        ".r2": {
+          animationName: "pulse00",
+          animationDuration: "2s",
+          animationIterationCount: "infinite",
+          animationDelay: ".4s",
+          WebkitAnimationName: "pulse00",
+          WebkitAnimationDuration: "2s",
+          WebkitAnimationIterationCount: "infinite",
+          WebkitAnimationDelay: ".4s",
+        },
+        ".r3": {
+          animationName: "pulse00",
+          animationDuration: "2s",
+          animationIterationCount: "infinite",
+          animationDelay: ".6s",
+          WebkitAnimationName: "pulse00",
+          WebkitAnimationDuration: "2s",
+          WebkitAnimationIterationCount: "infinite",
+          WebkitAnimationDelay: ".6s",
+        },
+        ".r1 > .hex-brick": {
+          animationName: "fade00",
+          animationDuration: "2s",
+          animationIterationCount: "infinite",
+          animationDelay: ".2s",
+          WebkitAnimationName: "fade00",
+          WebkitAnimationDuration: "2s",
+          WebkitAnimationIterationCount: "infinite",
+          WebkitAnimationDelay: ".2s",
+        },
+        ".r2 > .hex-brick": {
+          animationName: "fade00",
+          animationDuration: "2s",
+          animationIterationCount: "infinite",
+          animationDelay: ".4s",
+          WebkitAnimationName: "fade00",
+          WebkitAnimationDuration: "2s",
+          WebkitAnimationIterationCount: "infinite",
+          WebkitAnimationDelay: ".4s",
+        },
+        ".r3 > .hex-brick": {
+          animationName: "fade00",
+          animationDuration: "2s",
+          animationIterationCount: "infinite",
+          animationDelay: ".6s",
+          WebkitAnimationName: "fade00",
+          WebkitAnimationDuration: "2s",
+          WebkitAnimationIterationCount: "infinite",
+          WebkitAnimationDelay: ".6s",
         },
       });
     },
