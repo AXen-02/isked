@@ -6,7 +6,7 @@ const GooeyButton: FC<GooeyButtonProps> = ({}) => {
   return (
     <>
       <button className="c-button c-button--gooey relative">
-        GETTING STARTED
+        LOG IN
         <div className="c-button__blobs absolute inset-0">
           <div className="bg-blue-500 w-1/3 h-full rounded-full absolute left-0 transform scale-140 -translate-y-125 translate-z-0 transition duration-700 ease"></div>
           <div className="bg-blue-500 w-1/3 h-full rounded-full absolute left-1/3 transform scale-140 -translate-y-125 translate-z-0 transition duration-700 ease delay-60"></div>
