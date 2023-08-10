@@ -10,7 +10,7 @@ const RotGBCard: FC<RotGBCardProps> = ({}) => {
         Card content here
       </div>
       <div className="absolute w-[10vw] h-[200vh] animate-rotBGimg">
-        <div className="bg-gradient-to-b from-primary to-secondary opacity-50 w-full h-full"></div>
+        <div className="bg-gradient-to-b from-primary-foreground to-primary w-full h-full"></div>
       </div>
       <div className="absolute inset-5 bg-card rounded-lg"></div>
     </div>

@@ -7,9 +7,9 @@ interface pageProps {}
 
 const page: FC<pageProps> = ({}) => {
   return (
-    <div className="flex justify-center items-center m-20">
+    <div className="flex flex-col justify-center items-center mx-20 my-2 space-y-10">
       {/* Schedule <Loader /> */}
-      {/* <RotGBCard /> */}
+      <RotGBCard />
       <GooeyButton />
     </div>
   );
