@@ -15,6 +15,10 @@ module.exports = {
         "2xl": "1400px",
       },
     },
+    rotate: {
+      "-60": "-60deg",
+      60: "60deg",
+    },
     extend: {
       colors: {
         border: "hsl(var(--border))",
@@ -99,21 +103,7 @@ module.exports = {
             transform: "rotate(360deg)",
           },
         },
-      },
-      animation: {
-        "accordion-down": "accordion-down 0.2s ease-out",
-        "accordion-up": "accordion-up 0.2s ease-out",
-        shadow: "shadow 0.5s linear infinite",
-        jump: "jump 0.5s linear infinite",
-        rotBGimg: "rotBGimg 5s linear infinite",
-      },
-    },
-  },
-  plugins: [
-    require("tailwindcss-animate"),
-    function ({ addUtilities }) {
-      const keyframes = {
-        "@keyframes pulse00": {
+        pulse00: {
           "0%": {
             WebkitTransform: "scale(1)",
             transform: "scale(1)",
@@ -127,7 +117,7 @@ module.exports = {
             transform: "scale(1)",
           },
         },
-        "@keyframes fade00": {
+        fade00: {
           "0%": {
             background: "#252525",
           },
@@ -138,10 +128,20 @@ module.exports = {
             background: "hsl(var(--muted))",
           },
         },
-      };
-
-      addUtilities(keyframes, ["responsive", "hover"]);
+      },
+      animation: {
+        "accordion-down": "accordion-down 0.2s ease-out",
+        "accordion-up": "accordion-up 0.2s ease-out",
+        shadow: "shadow 0.5s linear infinite",
+        jump: "jump 0.5s linear infinite",
+        rotBGimg: "rotBGimg 5s linear infinite",
+        pulse00: "pulse00 2s infinite",
+        fade00: "fade00 2s infinite",
+      },
     },
+  },
+  plugins: [
+    require("tailwindcss-animate"),
     function ({ addComponents }) {
       addComponents({
         // GOOEY BUTTON

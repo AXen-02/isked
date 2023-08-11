@@ -4,6 +4,7 @@ import { FC } from "react";
 import GooeyButton from "@/components/uiverse/buttons/GooeyButton";
 import LogoNameButton from "@/components/uiverse/buttons/LogoNameButton";
 import HexaLoader from "@/components/uiverse/loaders/HexaLoader";
+import HexaLoaderLight from "@/components/uiverse/loaders/HexaLoaderLight";
 
 interface pageProps {}
 
@@ -14,7 +15,7 @@ const page: FC<pageProps> = ({}) => {
       {/* <RotGBCard /> */}
       {/* <LogoNameButton title="isked" /> */}
       {/* <GooeyButton /> */}
-      <HexaLoader />
+      <HexaLoaderLight />
     </div>
   );
 };
