@@ -4,7 +4,7 @@ import AlertDemo from "@/components/AlertDemo";
 export default function Home() {
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <AlertDemo title="Heya!" description="Welcome to Isked." />
+      home <AlertDemo title="Heya!" description="Welcome to Isked." />
     </main>
   );
 }
