@@ -7,32 +7,35 @@ interface DocsConfig {
 
 export const docsConfig: DocsConfig = {
   mainNav: [
-    // for admin / scheduler
     {
-      title: "Schedules",
-      href: "/schedules",
+      title: "Documentation",
+      href: "/docs",
     },
     {
-      title: "Resources",
-      href: "/resources",
+      title: "Components",
+      href: "/docs/components/accordion",
     },
     {
-      title: "Reports",
-      href: "/reports",
-    },
-    // for students and teachers
-    {
-      title: "My Schedule",
-      href: "/myschedule", // change to [...slug]
+      title: "Themes",
+      href: "/themes",
     },
     {
-      title: "My Course",
-      href: "/mycourse", // change to [...slug]
+      title: "Examples",
+      href: "/examples",
     },
-    // To all
     {
-      title: "Settings",
-      href: "/settings",
+      title: "Figma",
+      href: "/docs/figma",
+    },
+    {
+      title: "GitHub",
+      href: "https://github.com/shadcn/ui",
+      external: true,
+    },
+    {
+      title: "Twitter",
+      href: "https://twitter.com/shadcn",
+      external: true,
     },
   ],
   sidebarNav: [
