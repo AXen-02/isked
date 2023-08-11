@@ -4,198 +4,203 @@ import { cn } from "@/lib/utils";
 interface HexaLoaderLightProps {}
 
 const HexaLoaderLight: FC<HexaLoaderLightProps> = ({}) => {
-  const socket =
-    "w-[200px] h-[200px] absolute left-1/2 -ml-[100px] top-1/2 -mt-[100px]";
-  const hexBrick = "bg-violet-800 w-[30px] h-[17px] absolute animate-fade00 ";
+  const socket = "w-[200px] h-[200px] relative -ml-[100px] -mt-[100px]";
+  const hexBrick = "bg-primary w-[30px] h-[17px] absolute animate-fade00 ";
   const h1Class = "transform rotate-0",
     h2Class = "transform rotate-60",
     h3Class = "transform -rotate-60";
+  const gelClass =
+    "h-[30px] w-[30px] animate-fade00 transition-all duration-3000 absolute top-1/2 left-1/2";
+  const centerGelClass = "-ml-[15px] -mt-[15px] animate-pulse00";
+  const r1Class = "animate-pulse00 transition-all delay-200",
+    r2Class = "animate-pulse00 transition-all delay-400",
+    r3Class = "animate-pulse00 transition-all delay-600";
 
   return (
     <div className={cn(socket, " ")}>
-      <div className="gel center-gel">
+      <div className={`${gelClass} ${centerGelClass}`}>
         <div className={`${hexBrick} ${h1Class}`}></div>
         <div className={`${hexBrick} ${h2Class}`}></div>
         <div className={`${hexBrick} ${h3Class}`}></div>
       </div>
-      <div className="gel c1 r1">
+      <div className={`${gelClass} c1 ${r1Class}`}>
         <div className={`${hexBrick} ${h1Class}`}></div>
         <div className={`${hexBrick} ${h2Class}`}></div>
         <div className={`${hexBrick} ${h3Class}`}></div>
       </div>
-      <div className="gel c2 r1">
+      <div className={`${gelClass} c2 ${r1Class}`}>
         <div className={`${hexBrick} ${h1Class}`}></div>
         <div className={`${hexBrick} ${h2Class}`}></div>
         <div className={`${hexBrick} ${h3Class}`}></div>
       </div>
-      <div className="gel c3 r1">
+      <div className={`${gelClass} c3 ${r1Class}`}>
         <div className={`${hexBrick} ${h1Class}`}></div>
         <div className={`${hexBrick} ${h2Class}`}></div>
         <div className={`${hexBrick} ${h3Class}`}></div>
       </div>
-      <div className="gel c4 r1">
+      <div className={`${gelClass} c4 ${r1Class}`}>
         <div className={`${hexBrick} ${h1Class}`}></div>
         <div className={`${hexBrick} ${h2Class}`}></div>
         <div className={`${hexBrick} ${h3Class}`}></div>
       </div>
-      <div className="gel c5 r1">
+      <div className={`${gelClass} c5 ${r1Class}`}>
         <div className={`${hexBrick} ${h1Class}`}></div>
         <div className={`${hexBrick} ${h2Class}`}></div>
         <div className={`${hexBrick} ${h3Class}`}></div>
       </div>
-      <div className="gel c6 r1">
-        <div className={`${hexBrick} ${h1Class}`}></div>
-        <div className={`${hexBrick} ${h2Class}`}></div>
-        <div className={`${hexBrick} ${h3Class}`}></div>
-      </div>
-
-      <div className="gel c7 r2">
+      <div className={`${gelClass} c6 ${r1Class}`}>
         <div className={`${hexBrick} ${h1Class}`}></div>
         <div className={`${hexBrick} ${h2Class}`}></div>
         <div className={`${hexBrick} ${h3Class}`}></div>
       </div>
 
-      <div className="gel c8 r2">
+      <div className={`${gelClass} c7 ${r2Class}`}>
         <div className={`${hexBrick} ${h1Class}`}></div>
         <div className={`${hexBrick} ${h2Class}`}></div>
         <div className={`${hexBrick} ${h3Class}`}></div>
       </div>
-      <div className="gel c9 r2">
+
+      <div className={`${gelClass} c8 ${r2Class}`}>
         <div className={`${hexBrick} ${h1Class}`}></div>
         <div className={`${hexBrick} ${h2Class}`}></div>
         <div className={`${hexBrick} ${h3Class}`}></div>
       </div>
-      <div className="gel c10 r2">
+      <div className={`${gelClass} c9 ${r2Class}`}>
         <div className={`${hexBrick} ${h1Class}`}></div>
         <div className={`${hexBrick} ${h2Class}`}></div>
         <div className={`${hexBrick} ${h3Class}`}></div>
       </div>
-      <div className="gel c11 r2">
+      <div className={`${gelClass} c10 ${r2Class}`}>
         <div className={`${hexBrick} ${h1Class}`}></div>
         <div className={`${hexBrick} ${h2Class}`}></div>
         <div className={`${hexBrick} ${h3Class}`}></div>
       </div>
-      <div className="gel c12 r2">
+      <div className={`${gelClass} c11 ${r2Class}`}>
         <div className={`${hexBrick} ${h1Class}`}></div>
         <div className={`${hexBrick} ${h2Class}`}></div>
         <div className={`${hexBrick} ${h3Class}`}></div>
       </div>
-      <div className="gel c13 r2">
+      <div className={`${gelClass} c12 ${r2Class}`}>
         <div className={`${hexBrick} ${h1Class}`}></div>
         <div className={`${hexBrick} ${h2Class}`}></div>
         <div className={`${hexBrick} ${h3Class}`}></div>
       </div>
-      <div className="gel c14 r2">
+      <div className={`${gelClass} c13 ${r2Class}`}>
         <div className={`${hexBrick} ${h1Class}`}></div>
         <div className={`${hexBrick} ${h2Class}`}></div>
         <div className={`${hexBrick} ${h3Class}`}></div>
       </div>
-      <div className="gel c15 r2">
+      <div className={`${gelClass} c14 ${r2Class}`}>
         <div className={`${hexBrick} ${h1Class}`}></div>
         <div className={`${hexBrick} ${h2Class}`}></div>
         <div className={`${hexBrick} ${h3Class}`}></div>
       </div>
-      <div className="gel c16 r2">
+      <div className={`${gelClass} c15 ${r2Class}`}>
         <div className={`${hexBrick} ${h1Class}`}></div>
         <div className={`${hexBrick} ${h2Class}`}></div>
         <div className={`${hexBrick} ${h3Class}`}></div>
       </div>
-      <div className="gel c17 r2">
+      <div className={`${gelClass} c16 ${r2Class}`}>
         <div className={`${hexBrick} ${h1Class}`}></div>
         <div className={`${hexBrick} ${h2Class}`}></div>
         <div className={`${hexBrick} ${h3Class}`}></div>
       </div>
-      <div className="gel c18 r2">
+      <div className={`${gelClass} c17 ${r2Class}`}>
         <div className={`${hexBrick} ${h1Class}`}></div>
         <div className={`${hexBrick} ${h2Class}`}></div>
         <div className={`${hexBrick} ${h3Class}`}></div>
       </div>
-      <div className="gel c19 r3">
+      <div className={`${gelClass} c18 ${r2Class}`}>
         <div className={`${hexBrick} ${h1Class}`}></div>
         <div className={`${hexBrick} ${h2Class}`}></div>
         <div className={`${hexBrick} ${h3Class}`}></div>
       </div>
-      <div className="gel c20 r3">
+      <div className={`${gelClass} c19 ${r3Class}`}>
         <div className={`${hexBrick} ${h1Class}`}></div>
         <div className={`${hexBrick} ${h2Class}`}></div>
         <div className={`${hexBrick} ${h3Class}`}></div>
       </div>
-      <div className="gel c21 r3">
+      <div className={`${gelClass} c20 ${r3Class}`}>
         <div className={`${hexBrick} ${h1Class}`}></div>
         <div className={`${hexBrick} ${h2Class}`}></div>
         <div className={`${hexBrick} ${h3Class}`}></div>
       </div>
-      <div className="gel c22 r3">
+      <div className={`${gelClass} c21 ${r3Class}`}>
         <div className={`${hexBrick} ${h1Class}`}></div>
         <div className={`${hexBrick} ${h2Class}`}></div>
         <div className={`${hexBrick} ${h3Class}`}></div>
       </div>
-      <div className="gel c23 r3">
+      <div className={`${gelClass} c22 ${r3Class}`}>
         <div className={`${hexBrick} ${h1Class}`}></div>
         <div className={`${hexBrick} ${h2Class}`}></div>
         <div className={`${hexBrick} ${h3Class}`}></div>
       </div>
-      <div className="gel c24 r3">
+      <div className={`${gelClass} c23 ${r3Class}`}>
         <div className={`${hexBrick} ${h1Class}`}></div>
         <div className={`${hexBrick} ${h2Class}`}></div>
         <div className={`${hexBrick} ${h3Class}`}></div>
       </div>
-      <div className="gel c25 r3">
+      <div className={`${gelClass} c24 ${r3Class}`}>
         <div className={`${hexBrick} ${h1Class}`}></div>
         <div className={`${hexBrick} ${h2Class}`}></div>
         <div className={`${hexBrick} ${h3Class}`}></div>
       </div>
-      <div className="gel c26 r3">
+      <div className={`${gelClass} c25 ${r3Class}`}>
         <div className={`${hexBrick} ${h1Class}`}></div>
         <div className={`${hexBrick} ${h2Class}`}></div>
         <div className={`${hexBrick} ${h3Class}`}></div>
       </div>
-      <div className="gel c28 r3">
+      <div className={`${gelClass} c26 ${r3Class}`}>
         <div className={`${hexBrick} ${h1Class}`}></div>
         <div className={`${hexBrick} ${h2Class}`}></div>
         <div className={`${hexBrick} ${h3Class}`}></div>
       </div>
-      <div className="gel c29 r3">
+      <div className={`${gelClass} c28 ${r3Class}`}>
         <div className={`${hexBrick} ${h1Class}`}></div>
         <div className={`${hexBrick} ${h2Class}`}></div>
         <div className={`${hexBrick} ${h3Class}`}></div>
       </div>
-      <div className="gel c30 r3">
+      <div className={`${gelClass} c29 ${r3Class}`}>
         <div className={`${hexBrick} ${h1Class}`}></div>
         <div className={`${hexBrick} ${h2Class}`}></div>
         <div className={`${hexBrick} ${h3Class}`}></div>
       </div>
-      <div className="gel c31 r3">
+      <div className={`${gelClass} c30 ${r3Class}`}>
         <div className={`${hexBrick} ${h1Class}`}></div>
         <div className={`${hexBrick} ${h2Class}`}></div>
         <div className={`${hexBrick} ${h3Class}`}></div>
       </div>
-      <div className="gel c32 r3">
+      <div className={`${gelClass} c31 ${r3Class}`}>
         <div className={`${hexBrick} ${h1Class}`}></div>
         <div className={`${hexBrick} ${h2Class}`}></div>
         <div className={`${hexBrick} ${h3Class}`}></div>
       </div>
-      <div className="gel c33 r3">
+      <div className={`${gelClass} c32 ${r3Class}`}>
         <div className={`${hexBrick} ${h1Class}`}></div>
         <div className={`${hexBrick} ${h2Class}`}></div>
         <div className={`${hexBrick} ${h3Class}`}></div>
       </div>
-      <div className="gel c34 r3">
+      <div className={`${gelClass} c33 ${r3Class}`}>
         <div className={`${hexBrick} ${h1Class}`}></div>
         <div className={`${hexBrick} ${h2Class}`}></div>
         <div className={`${hexBrick} ${h3Class}`}></div>
       </div>
-      <div className="gel c35 r3">
+      <div className={`${gelClass} c34 ${r3Class}`}>
         <div className={`${hexBrick} ${h1Class}`}></div>
         <div className={`${hexBrick} ${h2Class}`}></div>
         <div className={`${hexBrick} ${h3Class}`}></div>
       </div>
-      <div className="gel c36 r3">
+      <div className={`${gelClass} c35 ${r3Class}`}>
         <div className={`${hexBrick} ${h1Class}`}></div>
         <div className={`${hexBrick} ${h2Class}`}></div>
         <div className={`${hexBrick} ${h3Class}`}></div>
       </div>
-      <div className="gel c37 r3">
+      <div className={`${gelClass} c36 ${r3Class}`}>
+        <div className={`${hexBrick} ${h1Class}`}></div>
+        <div className={`${hexBrick} ${h2Class}`}></div>
+        <div className={`${hexBrick} ${h3Class}`}></div>
+      </div>
+      <div className={`${gelClass} c37 ${r3Class}`}>
         <div className={`${hexBrick} ${h1Class}`}></div>
         <div className={`${hexBrick} ${h2Class}`}></div>
         <div className={`${hexBrick} ${h3Class}`}></div>

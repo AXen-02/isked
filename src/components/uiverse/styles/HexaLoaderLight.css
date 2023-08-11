@@ -30,8 +30,8 @@
   .h3 {
     transform: rotate(-60deg);
     -webkit-transform: rotate(-60deg);
-  } */
-  
+  } 
+    
   .gel {
     height: 30px;
     width: 30px;
@@ -51,7 +51,7 @@
     -webkit-animation-name: pulse00;
     -webkit-animation-duration: 2s;
     -webkit-animation-iteration-count: infinite;
-  }
+  } */
   
   .c1 {
     margin-left: -47px;

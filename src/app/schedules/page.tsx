@@ -16,6 +16,11 @@ const page: FC<pageProps> = ({}) => {
       {/* <LogoNameButton title="isked" /> */}
       {/* <GooeyButton /> */}
       <HexaLoaderLight />
+      <HexaLoaderLight />
+      <HexaLoaderLight />
+      <HexaLoaderLight />
+      <HexaLoaderLight />
+      <HexaLoaderLight />
     </div>
   );
 };

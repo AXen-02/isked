@@ -20,6 +20,12 @@ module.exports = {
       60: "60deg",
     },
     extend: {
+      transitionDelay: {
+        2000: "2000ms",
+        300: "300ms",
+        400: "400ms",
+        600: "600ms",
+      },
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
@@ -136,6 +142,9 @@ module.exports = {
         jump: "jump 0.5s linear infinite",
         rotBGimg: "rotBGimg 5s linear infinite",
         pulse00: "pulse00 2s infinite",
+        pulse002: "pulse00 delay-200 2s infinite",
+        pulse004: "pulse00 delay-400 2s infinite",
+        pulse006: "pulse00 delay-600 2s infinite",
         fade00: "fade00 2s infinite",
       },
     },
