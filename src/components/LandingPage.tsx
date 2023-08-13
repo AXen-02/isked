@@ -2,6 +2,8 @@
 
 import React from "react";
 import { motion } from "framer-motion";
+import BouncingSpinner from "@/app/authentication/components/bouncing-spinner";
+import SquareSpinner from "@/app/authentication/components/square-spinner";
 
 const LandingPage: React.FC = () => {
   const containerVariants = {
@@ -20,6 +22,7 @@ const LandingPage: React.FC = () => {
       initial="hidden"
       animate="visible"
       exit="exit"
+      className="pb-52"
       variants={containerVariants}
     >
       <motion.h1 variants={itemVariants}>Welcome to My Landing Page</motion.h1>
@@ -32,6 +35,8 @@ const LandingPage: React.FC = () => {
         src="/landing-image.jpg"
         alt="Landing Image"
       />
+      {/* <BouncingSpinner /> */}
+      <SquareSpinner />
     </motion.div>
   );
 };

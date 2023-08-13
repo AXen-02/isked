@@ -6,6 +6,8 @@ import Link from "next/link";
 import { Icons } from "@/components/icons";
 import { cn } from "@/lib/utils";
 import { buttonVariants } from "@/components/ui/button";
+import BouncingSpinner from "./components/bouncing-spinner";
+import SquareSpinner from "./components/square-spinner";
 
 export const metadata: Metadata = {
   title: "Authentication",
@@ -36,7 +38,8 @@ const AuthenticationPage: FC<AuthenticationPageProps> = ({}) => {
             isked
           </div>
           {/* TODO: Insert animation here */}
-
+          {/* <BouncingSpinner /> */}
+          <SquareSpinner />
           <div className="relative z-20 mt-auto">
             <blockquote className="space-y-2">
               <p className="text-lg">
