@@ -51,41 +51,67 @@ const AuthenticationPage: FC<AuthenticationPageProps> = ({}) => {
               <TabsTrigger value="signup">Sign up</TabsTrigger>
             </TabsList>
             <TabsContent value="signin">
-              Make changes to your account here.
-            </TabsContent>
-            <TabsContent value="signup">Change your password here.</TabsContent>
-          </Tabs>
-          <div className="mx-auto flex w-full flex-col justify-center space-y-6 sm:w-[350px]">
-            {/* TAB */}
-            <>
-              <div className="flex flex-col space-y-2">
-                <h1 className="text-4xl font-semibold tracking-tight">
-                  Join isked.
-                </h1>
+              {/* TODO: Tab 1 */}
+              <>
+                <div className="flex flex-col space-y-2">
+                  <h1 className="text-4xl font-semibold tracking-tight">
+                    Sign in to isked.
+                  </h1>
+                  <p className="text-sm text-justify text-muted-foreground">
+                    We suggest using the email address you use at school.
+                  </p>
+                </div>
+                <UserAuthForm />
                 <p className="text-sm text-justify text-muted-foreground">
-                  We suggest using the email address you use at school.
+                  By clicking continue, you agree to our{" "}
+                  <Link
+                    href="/terms"
+                    className="underline underline-offset-4 hover:text-primary"
+                  >
+                    Terms of Service
+                  </Link>{" "}
+                  and{" "}
+                  <Link
+                    href="/privacy"
+                    className="underline underline-offset-4 hover:text-primary"
+                  >
+                    Privacy Policy
+                  </Link>
+                  .
                 </p>
-              </div>
-              <UserAuthForm />
-              <p className="text-sm text-justify text-muted-foreground">
-                By clicking continue, you agree to our{" "}
-                <Link
-                  href="/terms"
-                  className="underline underline-offset-4 hover:text-primary"
-                >
-                  Terms of Service
-                </Link>{" "}
-                and{" "}
-                <Link
-                  href="/privacy"
-                  className="underline underline-offset-4 hover:text-primary"
-                >
-                  Privacy Policy
-                </Link>
-                .
-              </p>
-            </>
-          </div>
+              </>
+            </TabsContent>
+            <TabsContent value="signup">
+              <>
+                <div className="flex flex-col space-y-2">
+                  <h1 className="text-4xl font-semibold tracking-tight">
+                    Join isked.
+                  </h1>
+                  <p className="text-sm text-justify text-muted-foreground">
+                    We suggest using the email address you use at school.
+                  </p>
+                </div>
+                <UserAuthForm />
+                <p className="text-sm text-justify text-muted-foreground">
+                  By clicking continue, you agree to our{" "}
+                  <Link
+                    href="/terms"
+                    className="underline underline-offset-4 hover:text-primary"
+                  >
+                    Terms of Service
+                  </Link>{" "}
+                  and{" "}
+                  <Link
+                    href="/privacy"
+                    className="underline underline-offset-4 hover:text-primary"
+                  >
+                    Privacy Policy
+                  </Link>
+                  .
+                </p>
+              </>
+            </TabsContent>
+          </Tabs>
         </div>
       </div>
     </>
