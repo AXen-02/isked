@@ -27,12 +27,16 @@ const AuthenticationPage: FC<AuthenticationPageProps> = ({}) => {
         >
           Login
         </Link>
-        <div className="relative hidden h-full flex-col bg-muted p-10 text-white dark:border-r lg:flex">
-          <div className="absolute inset-0 bg-slate-900" />
+        <div className="relative hidden h-full flex-col p-10 text-primary-foreground lg:flex">
+          <div className="absolute inset-0 bg-primary">
+            {/* <Icons.bgauth /> */}
+          </div>
           <div className="relative z-20 flex items-center text-2xl font-medium">
             <Icons.logo className="mr-2 h-6 w-6" />
             isked
           </div>
+          {/* TODO: Insert animation here */}
+
           <div className="relative z-20 mt-auto">
             <blockquote className="space-y-2">
               <p className="text-lg">
@@ -47,7 +51,7 @@ const AuthenticationPage: FC<AuthenticationPageProps> = ({}) => {
         <div className="lg:p-8">
           <div className="mx-auto flex w-full flex-col justify-center space-y-6 sm:w-[350px]">
             <div className="flex flex-col space-y-2">
-              <h1 className="text-4xl font-semibold tracking-tight">
+              <h1 className="text-4xl lg:text-2xl font-semibold tracking-tight">
                 Join isked.
               </h1>
               <p className="text-sm text-justify text-muted-foreground">
