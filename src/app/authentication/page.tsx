@@ -1,12 +1,11 @@
 import { FC } from "react";
 
-import { UserAuthForm } from "./components/user-auth-form";
+import { Icons } from "@/components/icons";
+import { buttonVariants } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
 import { Metadata } from "next";
 import Link from "next/link";
-import { Icons } from "@/components/icons";
-import { cn } from "@/lib/utils";
-import { buttonVariants } from "@/components/ui/button";
-import BouncingSpinner from "./components/bouncing-spinner";
+import { UserAuthForm } from "./components/user-auth-form";
 import SquareSpinner from "./components/square-spinner";
 
 export const metadata: Metadata = {
@@ -29,17 +28,18 @@ const AuthenticationPage: FC<AuthenticationPageProps> = ({}) => {
         >
           Login
         </Link>
-        <div className="relative hidden h-full flex-col p-10 text-primary-foreground lg:flex">
-          <div className="absolute inset-0 bg-primary">
-            {/* <Icons.bgauth /> */}
+        <div className="relative border hidden h-full flex-col text-slate-800 p-10 lg:flex">
+          <div className="absolute inset-0">
+            <div className="bg-white w-full h-full">
+              <Icons.bgauth1 />
+            </div>
           </div>
           <div className="relative z-20 flex items-center text-2xl font-medium">
             <Icons.logo className="mr-2 h-6 w-6" />
             isked
           </div>
           {/* TODO: Insert animation here */}
-          {/* <BouncingSpinner /> */}
-          <SquareSpinner />
+          {/* <SquareSpinner /> */}
           <div className="relative z-20 mt-auto">
             <blockquote className="space-y-2">
               <p className="text-lg">

@@ -67,9 +67,10 @@ export default function RootLayout({
       >
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           <div className="relative flex min-h-screen flex-col">
-            <div className="flex-1">
-              <SiteHeader />
-              <div className="max-h-[85vh] m-6 overflow-hidden rounded-[0.5rem] border bg-background shadow">
+            <SiteHeader />
+
+            <div className="flex justify-center">
+              <div className="max-h-[900px] max-w-full xl:max-w-screen-xl m-6 overflow-hidden rounded-[0.5rem] border bg-background shadow">
                 {children}
               </div>
               {/* <SiteFooter />*/}
