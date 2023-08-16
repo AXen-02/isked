@@ -7,10 +7,35 @@ import { Label } from "@/components/ui/label";
 import { cn } from "@/lib/utils";
 import React from "react";
 
+import { FC, useState } from "react";
+import { signIn } from "next-auth/react";
+import { useToast } from "@/hooks/use-toast";
+
 interface UserAuthFormProps extends React.HTMLAttributes<HTMLDivElement> {}
 
 export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
   const [isLoading, setIsLoading] = React.useState<boolean>(false);
+  const { toast } = useToast();
+
+  const loginWithGoogle = async () => {
+    setIsLoading(true);
+
+    try {
+      throw new Error(); // TEST:
+
+      await signIn("google");
+    } catch (error) {
+      // toast notification
+      toast({
+        title: "There was a problem.",
+        description: " There was an error logging in with Google.",
+        variant: "destructive",
+        duration: 4000,
+      });
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
   async function onSubmit(event: React.SyntheticEvent) {
     event.preventDefault();
@@ -58,7 +83,13 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
         </div>
       </div>
       <div className="grid grid-cols-2 gap-6">
-        <Button variant="outline" type="button" disabled={isLoading}>
+        {/* TODO: add google auth */}
+        <Button
+          variant="outline"
+          type="button"
+          disabled={isLoading}
+          onClick={loginWithGoogle}
+        >
           {isLoading ? (
             <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />
           ) : (
