@@ -21,8 +21,7 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
     setIsLoading(true);
 
     try {
-      throw new Error(); // TEST:
-
+      // throw new Error(); // TEST:
       await signIn("google");
     } catch (error) {
       // toast notification

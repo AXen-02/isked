@@ -5,8 +5,11 @@ import { MainNav } from "@/components/MainNav";
 import { MobileNav } from "@/components/MobileNav";
 import { ModeToggle } from "@/components/ModeToggle";
 import { buttonVariants } from "@/components/ui/button";
+import { getAuthSession } from "@/lib/auth";
 
-export function SiteHeader() {
+export async function SiteHeader() {
+  const session = await getAuthSession();
+
   return (
     <header className="supports-backdrop-blur:bg-background/60 sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur">
       <div className="container flex h-14 items-center">
@@ -33,13 +36,14 @@ export function SiteHeader() {
             </Link> */}
             <ModeToggle />
             {/* TODO: INSERT ACCOUNT AVATAR OR LOGIN BUTTON HERE */}
-            {/* {session?.user ? (
-                <UserAccountNav user={session.user} />
-                ) : ( */}
-            <Link href="/sign-in" className={buttonVariants()}>
-              Login
-            </Link>
-            {/* )} */}
+            {session?.user ? (
+              // <UserAccountNav user={session.user} />
+              <p>{session.user.name}</p>
+            ) : (
+              <Link href="/sign-in" className={buttonVariants()}>
+                Login
+              </Link>
+            )}
           </nav>
         </div>
       </div>
