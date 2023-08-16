@@ -2,10 +2,10 @@ import { siteConfig } from "@/config/site";
 import "./globals.css";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import { ThemeProvider } from "@/components/providers";
-import { TailwindIndicator } from "@/components/tailwind-indicator";
+import { ThemeProvider } from "@/components/Providers";
+import { TailwindIndicator } from "@/components/TailwindIndicator";
 import { cn } from "@/lib/utils";
-import { SiteHeader } from "@/components/site-header";
+import { SiteHeader } from "@/components/SiteHeader";
 
 const inter = Inter({ subsets: ["latin"] });
 

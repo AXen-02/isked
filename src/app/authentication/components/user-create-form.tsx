@@ -1,4 +1,4 @@
-import { Icons } from "@/components/icons";
+import { Icons } from "@/components/Icons";
 import { Button } from "@/components/ui/button";
 import {
   Card,

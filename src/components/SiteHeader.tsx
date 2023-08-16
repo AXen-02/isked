@@ -1,14 +1,10 @@
 import Link from "next/link";
 
-import { siteConfig } from "@/config/site";
-import { cn } from "@/lib/utils";
-import { CommandMenu } from "@/components/command-menu";
-import { Icons } from "@/components/icons";
-import { MainNav } from "@/components/main-nav";
-import { MobileNav } from "@/components/mobile-nav";
-import { ModeToggle } from "@/components/mode-toggle";
+import { CommandMenu } from "@/components/CommandMenu";
+import { MainNav } from "@/components/MainNav";
+import { MobileNav } from "@/components/MobileNav";
+import { ModeToggle } from "@/components/ModeToggle";
 import { buttonVariants } from "@/components/ui/button";
-import { BellIcon } from "@radix-ui/react-icons";
 
 export function SiteHeader() {
   return (
@@ -21,7 +17,8 @@ export function SiteHeader() {
             <CommandMenu />
           </div>
           <nav className="flex items-center">
-            <Link href="/" target="_blank" rel="noreferrer">
+            {/* TODO: NotificationBell */}
+            {/* <Link href="/" target="_blank" rel="noreferrer">
               <div
                 className={cn(
                   buttonVariants({
@@ -33,7 +30,7 @@ export function SiteHeader() {
                 <BellIcon className="h-4 w-4 fill-current" />
                 <span className="sr-only">Notifications</span>
               </div>
-            </Link>
+            </Link> */}
             <ModeToggle />
             {/* TODO: INSERT ACCOUNT AVATAR OR LOGIN BUTTON HERE */}
             {/* {session?.user ? (

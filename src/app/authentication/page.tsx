@@ -1,6 +1,6 @@
 import { FC } from "react";
 
-import { Icons } from "@/components/icons";
+import { Icons } from "@/components/Icons";
 import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { Metadata } from "next";
