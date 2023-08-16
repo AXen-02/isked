@@ -36,7 +36,7 @@ const LandingPage: React.FC = () => {
         alt="Landing Image"
       />
       {/* <BouncingSpinner /> */}
-      <SquareSpinner />
+      {/* <SquareSpinner /> */}
     </motion.div>
   );
 };

@@ -7,6 +7,7 @@ interface DocsConfig {
 
 export const docsConfig: DocsConfig = {
   mainNav: [
+    // TODO: Make this flexible, for admin. scheduler, instructor and user
     // for admin / scheduler
     {
       title: "Schedules",
@@ -19,15 +20,6 @@ export const docsConfig: DocsConfig = {
     {
       title: "Reports",
       href: "/reports",
-    },
-    // for students and teachers
-    {
-      title: "My Schedule",
-      href: "/myschedule", // change to [...slug]
-    },
-    {
-      title: "My Course",
-      href: "/mycourse", // change to [...slug]
     },
     // To all
     {

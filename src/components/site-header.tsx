@@ -40,7 +40,7 @@ export function SiteHeader() {
                 <UserAccountNav user={session.user} />
                 ) : ( */}
             <Link href="/sign-in" className={buttonVariants()}>
-              Sign in
+              Login
             </Link>
             {/* )} */}
           </nav>
