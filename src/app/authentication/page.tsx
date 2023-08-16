@@ -6,7 +6,6 @@ import { cn } from "@/lib/utils";
 import { Metadata } from "next";
 import Link from "next/link";
 import { UserAuthForm } from "./components/user-auth-form";
-import SquareSpinner from "./components/square-spinner";
 
 export const metadata: Metadata = {
   title: "Authentication",

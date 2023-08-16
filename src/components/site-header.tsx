@@ -36,6 +36,13 @@ export function SiteHeader() {
             </Link>
             <ModeToggle />
             {/* TODO: INSERT ACCOUNT AVATAR OR LOGIN BUTTON HERE */}
+            {/* {session?.user ? (
+                <UserAccountNav user={session.user} />
+                ) : ( */}
+            <Link href="/sign-in" className={buttonVariants()}>
+              Sign in
+            </Link>
+            {/* )} */}
           </nav>
         </div>
       </div>
