@@ -6,6 +6,7 @@ import { MobileNav } from "@/components/MobileNav";
 import { ModeToggle } from "@/components/ModeToggle";
 import { buttonVariants } from "@/components/ui/button";
 import { getAuthSession } from "@/lib/auth";
+import UserAccountNav from "./UserAccountNav";
 
 export async function SiteHeader() {
   const session = await getAuthSession();
@@ -37,8 +38,7 @@ export async function SiteHeader() {
             <ModeToggle />
             {/* TODO: INSERT ACCOUNT AVATAR OR LOGIN BUTTON HERE */}
             {session?.user ? (
-              // <UserAccountNav user={session.user} />
-              <p>{session.user.name}</p>
+              <UserAccountNav user={session.user} />
             ) : (
               <Link href="/sign-in" className={buttonVariants()}>
                 Login
