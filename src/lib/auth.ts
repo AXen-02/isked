@@ -2,6 +2,7 @@ import { NextAuthOptions, getServerSession } from "next-auth";
 import {PrismaAdapter} from '@next-auth/prisma-adapter'
 import { db } from "./db";
 import GoogleProvider from "next-auth/providers/google"
+import GitHubProvider from "next-auth/providers/github";
 import {nanoid} from 'nanoid'
 
 export const authOptions: NextAuthOptions = {
@@ -12,9 +13,14 @@ export const authOptions: NextAuthOptions = {
     pages:{
         signIn: '/sign-in'
     },
-    providers: [GoogleProvider({
+    providers: [
+        GoogleProvider({
         clientId: process.env.GOOGLE_CLIENT_ID!,
         clientSecret: process.env.GOOGLE_CLIENT_SECRET!
+    }),
+        GitHubProvider({
+        clientId: process.env.GITHUB_CLIENT_ID!,
+        clientSecret: process.env.GITHUB_CLIENT_SECRET!
     })],
     callbacks: {
         async session({token, session}) {

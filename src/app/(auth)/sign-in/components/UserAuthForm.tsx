@@ -36,6 +36,25 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
     }
   };
 
+  const loginWithGithub = async () => {
+    setIsLoading(true);
+
+    try {
+      // throw new Error(); // TEST:
+      await signIn("github");
+    } catch (error) {
+      // toast notification
+      toast({
+        title: "There was a problem.",
+        description: " There was an error logging in with Github.",
+        variant: "destructive",
+        duration: 4000,
+      });
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
   async function onSubmit(event: React.SyntheticEvent) {
     event.preventDefault();
     setIsLoading(true);
@@ -96,7 +115,12 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
           )}{" "}
           Gmail
         </Button>
-        <Button variant="outline" type="button" disabled={isLoading}>
+        <Button
+          variant="outline"
+          type="button"
+          disabled={isLoading}
+          onClick={loginWithGithub}
+        >
           {isLoading ? (
             <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />
           ) : (
