@@ -81,42 +81,42 @@ export const authOptions: NextAuthOptions = {
             }
         },
         // TODO:
-    async signIn({ user, account, email }) {
-        // TODO: For Testing purposes only
-        console.log('// ------ Params passed when signed in ------ //');
-        console.log(`user: ${JSON.stringify(user, null, 4)}`);
-        console.log(`account: ${JSON.stringify(account, null, 4)}`);
-        console.log(`email: ${JSON.stringify(email, null, 4)}`);
-        console.log('// ------------------------------------------ //');
+    // async signIn({ user, account, email }) {
+    //     // TODO: For Testing purposes only
+    //     console.log('// ------ Params passed when signed in ------ //');
+    //     console.log(`user: ${JSON.stringify(user, null, 4)}`);
+    //     console.log(`account: ${JSON.stringify(account, null, 4)}`);
+    //     console.log(`email: ${JSON.stringify(email, null, 4)}`);
+    //     console.log('// ------------------------------------------ //');
         
 
-        await db.$connect()
+    //     await db.$connect()
 
-        const userExists = await db.user.findFirst({
-            where: {
-                email: user.email, //the user object has an email property, which contains the email the user entered.
-            }
-        })
+    //     const userExists = await db.user.findFirst({
+    //         where: {
+    //             email: user.email, //the user object has an email property, which contains the email the user entered.
+    //         }
+    //     })
 
-        if (userExists) {
-            console.log(`Found ${email}`);
+    //     if (userExists) {
+    //         console.log(`Found ${email}`);
 
-            const dbUser = await db.user.findFirst({
-                where: {
-                    email: user.email,
-                }
-            })
+    //         const dbUser = await db.user.findFirst({
+    //             where: {
+    //                 email: user.email,
+    //             }
+    //         })
 
-            console.log( `${JSON.stringify(dbUser, null, 4)}`);
+    //         console.log( `${JSON.stringify(dbUser, null, 4)}`);
             
-            // TODO: Put notification, the email entered is already used in <insert provider here>.
-            return "/sign-in";   //if the email exists in the User collection, email them a magic login link
-        } else {
-            console.log('Not found');
+    //         // TODO: Put notification, the email entered is already used in <insert provider here>.
+    //         return "/sign-in";   //if the email exists in the User collection, email them a magic login link
+    //     } else {
+    //         console.log('Not found');
 
-            return '/'
-        }
-    },
+    //         return '/'
+    //     }
+    // },
         redirect () {
             return '/'
         }
