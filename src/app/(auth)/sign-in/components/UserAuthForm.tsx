@@ -8,6 +8,7 @@ import { cn } from "@/lib/utils";
 import React from "react";
 
 import { FC, useState } from "react";
+import { createTransport } from "nodemailer";
 import { signIn } from "next-auth/react";
 import { useToast } from "@/hooks/use-toast";
 
@@ -15,6 +16,7 @@ interface UserAuthFormProps extends React.HTMLAttributes<HTMLDivElement> {}
 
 export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
   const [isLoading, setIsLoading] = React.useState<boolean>(false);
+  const [emailTyped, setEmailTyped] = useState("");
   const { toast } = useToast();
 
   const loginWithGoogle = async () => {
@@ -55,13 +57,35 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
     }
   };
 
+  const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setEmailTyped(e.target.value);
+    // console.log(e.target.value);
+  };
+
   async function onSubmit(event: React.SyntheticEvent) {
     event.preventDefault();
     setIsLoading(true);
 
-    setTimeout(() => {
+    try {
+      // throw new Error(); // TEST:
+      // console.log(emailTyped);
+
+      await signIn("email", { email: emailTyped });
+    } catch (error) {
+      // toast notification
+      toast({
+        title: "There was a problem.",
+        description: " There was an error logging in with your email address.",
+        variant: "destructive",
+        duration: 4000,
+      });
+    } finally {
       setIsLoading(false);
-    }, 3000);
+    }
+
+    // setTimeout(() => {
+    //   setIsLoading(false);
+    // }, 3000);
   }
 
   return (
@@ -79,6 +103,8 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
               autoCapitalize="none"
               autoComplete="email"
               autoCorrect="off"
+              onChange={handleEmailChange}
+              value={emailTyped}
               disabled={isLoading}
             />
           </div>
