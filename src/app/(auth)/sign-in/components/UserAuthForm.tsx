@@ -48,7 +48,6 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
         title: "There was a problem.",
         description: " There was an error logging in with Github.",
         variant: "destructive",
-        duration: 4000,
       });
     } finally {
       setIsLoading(false);
