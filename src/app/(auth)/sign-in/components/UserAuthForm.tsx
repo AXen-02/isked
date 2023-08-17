@@ -59,6 +59,13 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
     event.preventDefault();
     setIsLoading(true);
 
+    toast({
+      title: "Feature TBD",
+      description:
+        "Email authentication has not been implemented yet. Instead, you can use Gmail or GitHub.",
+      duration: 15000,
+    });
+
     setTimeout(() => {
       setIsLoading(false);
     }, 3000);
