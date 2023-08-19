@@ -74,12 +74,51 @@ export function UserRegForm({ className, ...props }: UserRegFormProps) {
 
   return (
     <div className={cn("grid gap-6", className)} {...props}>
+      <div className="grid grid-cols-2 gap-6">
+        {/* TODO: add google auth */}
+        <Button
+          variant="outline"
+          type="button"
+          disabled={isLoading}
+          onClick={loginWithGoogle}
+        >
+          {isLoading ? (
+            <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />
+          ) : (
+            <Icons.google className="mr-2 h-4 w-4" />
+          )}{" "}
+          Gmail
+        </Button>
+        <Button
+          variant="outline"
+          type="button"
+          disabled={isLoading}
+          onClick={loginWithGithub}
+        >
+          {isLoading ? (
+            <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />
+          ) : (
+            <Icons.gitHub className="mr-2 h-4 w-4" />
+          )}{" "}
+          Github
+        </Button>
+      </div>
+
+      <div className="relative">
+        <div className="absolute inset-0 flex items-center">
+          <span className="w-full border-t" />
+        </div>
+        <div className="relative flex justify-center text-xs uppercase">
+          <span className="bg-background px-2 text-muted-foreground">
+            Or continue with
+          </span>
+        </div>
+      </div>
+
       <form onSubmit={onSubmit}>
         <div className="grid gap-2">
           <div className="grid gap-1">
-            <Label className="sr-only" htmlFor="email">
-              Email address
-            </Label>
+            <Label htmlFor="email">Email address</Label>
             <Input
               id="email"
               placeholder="name@school-email.com"
@@ -118,45 +157,6 @@ export function UserRegForm({ className, ...props }: UserRegFormProps) {
           </Button>
         </div>
       </form>
-      <div className="relative">
-        <div className="absolute inset-0 flex items-center">
-          <span className="w-full border-t" />
-        </div>
-        <div className="relative flex justify-center text-xs uppercase">
-          <span className="bg-background px-2 text-muted-foreground">
-            Or continue with
-          </span>
-        </div>
-      </div>
-      <div className="grid grid-cols-2 gap-6">
-        {/* TODO: add google auth */}
-        <Button
-          variant="outline"
-          type="button"
-          disabled={isLoading}
-          onClick={loginWithGoogle}
-        >
-          {isLoading ? (
-            <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />
-          ) : (
-            <Icons.google className="mr-2 h-4 w-4" />
-          )}{" "}
-          Gmail
-        </Button>
-        <Button
-          variant="outline"
-          type="button"
-          disabled={isLoading}
-          onClick={loginWithGithub}
-        >
-          {isLoading ? (
-            <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />
-          ) : (
-            <Icons.gitHub className="mr-2 h-4 w-4" />
-          )}{" "}
-          Github
-        </Button>
-      </div>
     </div>
   );
 }

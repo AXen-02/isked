@@ -71,6 +71,7 @@ const page: FC<pageProps> = ({}) => {
                 Sign in
               </Link>{" "}
             </p>
+
             {/* <p className="text-sm text-justify text-muted-foreground">
               By clicking continue, you agree to our{" "}
               <Link
