@@ -1,16 +1,14 @@
 import { Icons } from "@/components/Icons";
-import { buttonVariants } from "@/components/ui/button";
-import { cn } from "@/lib/utils";
 import { Metadata } from "next";
 import Link from "next/link";
 import { FC } from "react";
-import { UserAuthForm } from "./components/UserAuthForm";
+import { UserRegForm } from "./components/UserRegForm";
 
 interface pageProps {}
 
 export const metadata: Metadata = {
-  title: "Sign in",
-  description: "Isked signin page",
+  title: "Sign up",
+  description: "Isked signup page",
 };
 
 const page: FC<pageProps> = ({}) => {
@@ -20,7 +18,7 @@ const page: FC<pageProps> = ({}) => {
         {/* TODO: To be removed */}
         {/*
          <Link
-          href="/sign-up"
+          href="/register"
           className={cn(
             buttonVariants({ variant: "ghost" }),
             "absolute right-4 top-4 md:right-8 md:top-8"
@@ -55,22 +53,22 @@ const page: FC<pageProps> = ({}) => {
           <div className="mx-auto flex w-full flex-col justify-center space-y-6 sm:w-[350px]">
             <div className="flex flex-col space-y-2">
               <h1 className="text-2xl lg:text-2xl text-center font-semibold tracking-tight">
-                Sign in to your account.
+                Create your account.
               </h1>
               <p className="text-sm text-center text-muted-foreground">
                 We suggest using your school email.
               </p>
             </div>
 
-            <UserAuthForm />
+            <UserRegForm />
 
             <p className="text-sm text-center text-muted-foreground">
-              Don't have an account?{" "}
+              Already using isked?{" "}
               <Link
-                href="/sign-up"
+                href="/sign-in"
                 className="underline underline-offset-4 hover:text-primary"
               >
-                Sign up
+                Sign in
               </Link>{" "}
             </p>
             {/* <p className="text-sm text-justify text-muted-foreground">

@@ -12,9 +12,9 @@ import { signIn } from "next-auth/react";
 import { useToast } from "@/hooks/use-toast";
 import Link from "next/link";
 
-interface UserAuthFormProps extends React.HTMLAttributes<HTMLDivElement> {}
+interface UserRegFormProps extends React.HTMLAttributes<HTMLDivElement> {}
 
-export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
+export function UserRegForm({ className, ...props }: UserRegFormProps) {
   const [isLoading, setIsLoading] = React.useState<boolean>(false);
   const { toast } = useToast();
 
@@ -114,7 +114,7 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
             {isLoading && (
               <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />
             )}
-            Sign In With Email
+            Next
           </Button>
         </div>
       </form>
