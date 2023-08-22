@@ -76,7 +76,7 @@ export default function RootLayout({
             <div className="flex-1">
               <div className="container relative">
                 <section>
-                  <div className="overflow-hidden rounded-[0.5rem] border bg-background shadow">
+                  <div className="my-6 overflow-hidden rounded-[0.5rem] border bg-background shadow">
                     {children}
                   </div>
                 </section>
