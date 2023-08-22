@@ -9,10 +9,11 @@ export const authOptions: NextAuthOptions = {
   adapter: PrismaAdapter(db),
   session: {
     strategy: "jwt",
-    maxAge: 60, // * 60 * 24 * 1, // Set maxAge to 1 day (in seconds)
+    maxAge: 60 * 60 * 24 * 7, // Set maxAge to 7 days (in seconds)
   },
   pages: {
     signIn: "/sign-in",
+    newUser: "/new-user",
   },
   providers: [
     GoogleProvider({
