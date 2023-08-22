@@ -65,12 +65,17 @@ export default function RootLayout({
           inter.className
         )}
       >
-        <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
           <div className="relative flex min-h-screen flex-col">
             <SiteHeader />
 
             <div className="flex justify-center">
-              <div className="max-h-full max-w-full xl:max-w-screen-xl m-6 overflow-hidden rounded-[0.5rem] border bg-background shadow">
+              <div className="max-h-full max-w-full m-2 md:mx-6 xl:max-w-screen-xl overflow-hidden rounded-[0.5rem] border bg-background shadow">
                 {children}
               </div>
               {/* <SiteFooter />*/}
