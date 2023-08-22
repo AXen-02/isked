@@ -73,13 +73,9 @@ export default function RootLayout({
         >
           <div className="relative flex min-h-screen flex-col">
             <SiteHeader />
-            <div className="flex-1">
+            <div className="flex">
               <div className="container relative">
-                <section>
-                  <div className="mt-6 overflow-hidden rounded-[0.5rem] border bg-background shadow">
-                    {children}
-                  </div>
-                </section>
+                <section>{children}</section>
               </div>
             </div>
             {/* <SiteFooter />*/}
