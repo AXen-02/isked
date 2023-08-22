@@ -80,7 +80,7 @@ export function AppearanceForm() {
                 <ChevronDownIcon className="absolute right-3 top-2.5 h-4 w-4 opacity-50" />
               </div>
               <FormDescription>
-                Set the font you want to use in the dashboard.
+                Set the font you want to use in the dashboard
               </FormDescription>
               <FormMessage />
             </FormItem>
