@@ -70,7 +70,7 @@ export default function RootLayout({
             <SiteHeader />
 
             <div className="flex justify-center">
-              <div className="max-h-[900px] max-w-full xl:max-w-screen-xl m-6 overflow-hidden rounded-[0.5rem] border bg-background shadow">
+              <div className="max-h-full max-w-full xl:max-w-screen-xl m-6 overflow-hidden rounded-[0.5rem] border bg-background shadow">
                 {children}
               </div>
               {/* <SiteFooter />*/}
