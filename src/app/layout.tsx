@@ -73,13 +73,16 @@ export default function RootLayout({
         >
           <div className="relative flex min-h-screen flex-col">
             <SiteHeader />
-
-            <div className="flex justify-center">
-              <div className="max-h-full max-w-full m-2 md:mx-6 xl:max-w-screen-xl overflow-hidden rounded-[0.5rem] border bg-background shadow">
-                {children}
+            <div className="flex-1">
+              <div className="container relative">
+                <section>
+                  <div className="mt-6 overflow-hidden rounded-[0.5rem] border bg-background shadow">
+                    {children}
+                  </div>
+                </section>
               </div>
-              {/* <SiteFooter />*/}
             </div>
+            {/* <SiteFooter />*/}
           </div>
           <TailwindIndicator />
         </ThemeProvider>
