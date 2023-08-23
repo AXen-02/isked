@@ -92,7 +92,28 @@ model Account {
   @@unique([provider, providerAccountId])
 }
 
-model InstructorAccount {
+model AccountAdmin {
+  id        String    @id @default(cuid())
+  userId    String
+  role      AdminType @default(ADMINISTRATOR)
+  createdAt DateTime
+  updatedAt DateTime
+
+  createdSchools School[] @relation("CreatedBy")
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model AccountDev {
+  id        String   @id @default(cuid())
+  userId    String
+  createdAt DateTime
+  updatedAt DateTime
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model AccountInstructor {
   id        String   @id @default(cuid())
   userId    String
   expertise String?
@@ -104,24 +125,12 @@ model InstructorAccount {
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
 
-model StudentAccount {
+model AccountStudent {
   id        String   @id @default(cuid())
   userId    String
   major     String
   createdAt DateTime
   updatedAt DateTime
-
-  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
-}
-
-model AdminAccount {
-  id        String    @id @default(cuid())
-  userId    String
-  role      AdminType @default(ADMINISTRATOR)
-  createdAt DateTime
-  updatedAt DateTime
-
-  createdSchools School[] @relation("CreatedBy")
 
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
@@ -135,16 +144,7 @@ model School {
   updatedAt   DateTime
 
   creatorId String?
-  creator   AdminAccount? @relation("CreatedBy", fields: [creatorId], references: [id], onDelete: Cascade)
-}
-
-model DevAccount {
-  id        String   @id @default(cuid())
-  userId    String
-  createdAt DateTime
-  updatedAt DateTime
-
-  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  creator   AccountAdmin? @relation("CreatedBy", fields: [creatorId], references: [id], onDelete: Cascade)
 }
 
 model User {
@@ -161,10 +161,10 @@ model User {
   sessions          Session[]
   urls              UserURLs[]
   roles             UserRoles[]
-  InstructorAccount InstructorAccount[]
-  StudentAccount    StudentAccount[]
-  AdminAccount      AdminAccount[]
-  DevAccount        DevAccount[]
+  AccountInstructor AccountInstructor[]
+  AccountStudent    AccountStudent[]
+  AccountAdmin      AccountAdmin[]
+  AccountDev        AccountDev[]
 }
 
 model UserURLs {
