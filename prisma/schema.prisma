@@ -65,6 +65,14 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+model Session {
+  id           String   @id @default(cuid())
+  sessionToken String   @unique
+  userId       String
+  expires      DateTime
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
 model Account {
   id                String  @id @default(cuid())
   userId            String
@@ -84,12 +92,59 @@ model Account {
   @@unique([provider, providerAccountId])
 }
 
-model Session {
-  id           String   @id @default(cuid())
-  sessionToken String   @unique
-  userId       String
-  expires      DateTime
-  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+model InstructorAccount {
+  id        String   @id @default(cuid())
+  userId    String
+  expertise String?
+  title     String?
+  workdays  String
+  createdAt DateTime
+  updatedAt DateTime
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model StudentAccount {
+  id        String   @id @default(cuid())
+  userId    String
+  major     String
+  createdAt DateTime
+  updatedAt DateTime
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model AdminAccount {
+  id        String    @id @default(cuid())
+  userId    String
+  role      AdminType @default(ADMINISTRATOR)
+  createdAt DateTime
+  updatedAt DateTime
+
+  createdSchools School[] @relation("CreatedBy")
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model School {
+  id          String   @id @default(cuid())
+  name        String
+  location    String?
+  description String?
+  createdAt   DateTime
+  updatedAt   DateTime
+
+  creatorId String?
+  creator   AdminAccount? @relation("CreatedBy", fields: [creatorId], references: [id], onDelete: Cascade)
+}
+
+model DevAccount {
+  id        String   @id @default(cuid())
+  userId    String
+  createdAt DateTime
+  updatedAt DateTime
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
 
 model User {
@@ -101,11 +156,15 @@ model User {
   username String? @unique
   bio      String?
 
-  image    String?
-  accounts Account[]
-  sessions Session[]
-  urls     UserURLs[]
-  roles    UserRoles[]
+  image             String?
+  accounts          Account[]
+  sessions          Session[]
+  urls              UserURLs[]
+  roles             UserRoles[]
+  InstructorAccount InstructorAccount[]
+  StudentAccount    StudentAccount[]
+  AdminAccount      AdminAccount[]
+  DevAccount        DevAccount[]
 }
 
 model UserURLs {
@@ -118,15 +177,21 @@ model UserURLs {
 
 model UserRoles {
   id     String   @id @default(cuid())
-  role   RoleType @default(STUDENT)
-  userId String?
+  role   UserType @default(STUDENT)
+  userId String
 
   User User? @relation(fields: [userId], references: [id])
 }
 
-enum RoleType {
+enum UserType {
+  DEVELOPER
   ADMINISTRATOR
   SCHEDULER
   INSTRUCTOR
   STUDENT
+}
+
+enum AdminType {
+  ADMINISTRATOR
+  SCHEDULER
 }
