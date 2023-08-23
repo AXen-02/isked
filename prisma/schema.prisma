@@ -92,27 +92,20 @@ model Session {
   user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
 
-enum RoleType {
-  ADMIN
-  SCHEDULER
-  INSTRUCTOR
-  STUDENT
-}
-
 model User {
   id            String    @id @default(cuid())
   name          String?
   email         String?   @unique
   emailVerified DateTime?
 
-  role     RoleType @default(STUDENT)
-  username String?  @unique
+  username String? @unique
   bio      String?
 
   image    String?
   accounts Account[]
   sessions Session[]
   urls     UserURLs[]
+  roles    UserRoles[]
 }
 
 model UserURLs {
@@ -121,4 +114,19 @@ model UserURLs {
   userId String
 
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model UserRoles {
+  id     String   @id @default(cuid())
+  role   RoleType @default(STUDENT)
+  userId String?
+
+  User User? @relation(fields: [userId], references: [id])
+}
+
+enum RoleType {
+  ADMINISTRATOR
+  SCHEDULER
+  INSTRUCTOR
+  STUDENT
 }
