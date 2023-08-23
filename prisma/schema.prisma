@@ -104,11 +104,21 @@ model User {
   name          String?
   email         String?   @unique
   emailVerified DateTime?
-  role          RoleType  @default(STUDENT)
 
-  username String? @unique
+  role     RoleType @default(STUDENT)
+  username String?  @unique
+  bio      String?
 
   image    String?
   accounts Account[]
   sessions Session[]
+  urls     UserURLs[]
+}
+
+model UserURLs {
+  id     String @id @default(cuid())
+  url    String
+  userId String
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
