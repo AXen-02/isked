@@ -59,16 +59,17 @@ model AccountDev {
 }
 
 model AccountInstructor {
-  id         String   @id @default(cuid())
-  userId     String
-  expertise  String?
-  title      String?
-  createdAt  DateTime
-  updatedAt  DateTime
-  workdays   String
-  teachingAt School[]
+  id        String   @id @default(cuid())
+  userId    String
+  schooId   String
+  expertise String?
+  title     String?
+  createdAt DateTime
+  updatedAt DateTime
+  workdays  String
 
-  User User @relation(fields: [userId], references: [id])
+  School School @relation(fields: [schooId], references: [id])
+  User   User   @relation(fields: [userId], references: [id])
 }
 
 model AccountScheduler {
@@ -114,27 +115,25 @@ model Room {
   type         RoomType
   createdAt    DateTime
   updatedAt    DateTime
-  availability Json // add default JSON here
+  availability Json     @default("[]") // add default JSON here
 
   Building Building @relation(fields: [buildingId], references: [id])
 }
 
 model School {
-  id                  String   @id @default(cuid())
-  name                String
-  location            String?
-  description         String?
-  createdAt           DateTime
-  updatedAt           DateTime
-  creatorId           String?
-  accountInstructorId String?
+  id          String   @id @default(cuid())
+  name        String
+  location    String?
+  description String?
+  createdAt   DateTime
+  updatedAt   DateTime
+  creatorId   String?
 
-  Creator           AccountAdmin?      @relation("CreatedBy", fields: [creatorId], references: [id], onDelete: Cascade)
-  AccountInstructor AccountInstructor? @relation(fields: [accountInstructorId], references: [id])
-
-  AccountStudent   AccountStudent[]
-  AccountScheduler AccountScheduler[]
-  Building         Building[]
+  Creator           AccountAdmin?       @relation("CreatedBy", fields: [creatorId], references: [id], onDelete: Cascade)
+  AccountStudent    AccountStudent[]
+  AccountScheduler  AccountScheduler[]
+  Building          Building[]
+  AccountInstructor AccountInstructor[]
 }
 
 model User {
@@ -142,37 +141,19 @@ model User {
   name          String?
   email         String?   @unique
   emailVerified DateTime?
+  image         String?
   username      String?   @unique
   bio           String?
-  image         String?
+  urls          Json?
+  roles         Json      @default("[]")
 
   accounts          Account[]
   sessions          Session[]
-  urls              UserURLs[]
-  roles             UserRoles[]
   AccountInstructor AccountInstructor[]
   AccountStudent    AccountStudent[]
   AccountAdmin      AccountAdmin[]
   AccountDev        AccountDev[]
   AccountScheduler  AccountScheduler[]
-}
-
-model UserURLs {
-  url    String
-  userId String
-
-  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
-
-  @@id([url, userId])
-}
-
-model UserRoles {
-  role   UserType @default(STUDENT)
-  userId String
-
-  User User? @relation(fields: [userId], references: [id], onDelete: Cascade)
-
-  @@id([role, userId])
 }
 
 enum RoomType {
@@ -186,4 +167,14 @@ enum UserType {
   SCHEDULER
   INSTRUCTOR
   STUDENT
+}
+
+enum Days {
+  MONDAY
+  TUESDAY
+  WEDNESDAY
+  THURSDAY
+  FRIDAY
+  SATURDAY
+  SUNDAY
 }
