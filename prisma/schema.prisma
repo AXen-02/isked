@@ -15,7 +15,8 @@ model Session {
   sessionToken String   @unique
   userId       String
   expires      DateTime
-  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  User User @relation(fields: [userId], references: [id])
 }
 
 model Account {
@@ -32,7 +33,7 @@ model Account {
   id_token          String? @db.Text
   session_state     String?
 
-  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  User User @relation(fields: [userId], references: [id])
 
   @@unique([provider, providerAccountId])
 }
@@ -45,7 +46,7 @@ model AccountAdmin {
 
   createdSchools School[] @relation("CreatedBy")
 
-  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  User User @relation(fields: [userId], references: [id])
 }
 
 model AccountDev {
@@ -54,7 +55,7 @@ model AccountDev {
   createdAt DateTime
   updatedAt DateTime
 
-  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  User User @relation(fields: [userId], references: [id])
 }
 
 model AccountInstructor {
@@ -62,12 +63,23 @@ model AccountInstructor {
   userId     String
   expertise  String?
   title      String?
-  workdays   String
   createdAt  DateTime
   updatedAt  DateTime
+  workdays   String
   teachingAt School[]
 
-  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  User User @relation(fields: [userId], references: [id])
+}
+
+model AccountScheduler {
+  id        String   @id @default(cuid())
+  userId    String
+  schoolId  String
+  createdAt DateTime
+  updatedAt DateTime
+
+  School School @relation(fields: [schoolId], references: [id])
+  User   User   @relation(fields: [userId], references: [id])
 }
 
 model AccountStudent {
@@ -77,24 +89,52 @@ model AccountStudent {
   major     String
   createdAt DateTime
   updatedAt DateTime
-  school    School   @relation(fields: [schoolId], references: [id])
 
-  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  School School @relation(fields: [schoolId], references: [id])
+  User   User   @relation(fields: [userId], references: [id])
+}
+
+model Building {
+  id        String   @id @default(cuid())
+  schoolId  String
+  name      String
+  location  String?
+  createdAt DateTime
+  updatedAt DateTime
+
+  School School @relation(fields: [schoolId], references: [id])
+  Room   Room[]
+}
+
+model Room {
+  id           String   @id @default(cuid())
+  buildingId   String
+  name         String
+  capacity     Int
+  type         RoomType
+  createdAt    DateTime
+  updatedAt    DateTime
+  availability Json // add default JSON here
+
+  Building Building @relation(fields: [buildingId], references: [id])
 }
 
 model School {
-  id          String   @id @default(cuid())
-  name        String
-  location    String?
-  description String?
-  createdAt   DateTime
-  updatedAt   DateTime
-
-  creator             AccountAdmin?      @relation("CreatedBy", fields: [creatorId], references: [id], onDelete: Cascade)
+  id                  String   @id @default(cuid())
+  name                String
+  location            String?
+  description         String?
+  createdAt           DateTime
+  updatedAt           DateTime
   creatorId           String?
-  AccountInstructor   AccountInstructor? @relation(fields: [accountInstructorId], references: [id])
   accountInstructorId String?
-  AccountStudent      AccountStudent[]
+
+  Creator           AccountAdmin?      @relation("CreatedBy", fields: [creatorId], references: [id], onDelete: Cascade)
+  AccountInstructor AccountInstructor? @relation(fields: [accountInstructorId], references: [id])
+
+  AccountStudent   AccountStudent[]
+  AccountScheduler AccountScheduler[]
+  Building         Building[]
 }
 
 model User {
@@ -102,11 +142,10 @@ model User {
   name          String?
   email         String?   @unique
   emailVerified DateTime?
+  username      String?   @unique
+  bio           String?
+  image         String?
 
-  username String? @unique
-  bio      String?
-
-  image             String?
   accounts          Account[]
   sessions          Session[]
   urls              UserURLs[]
@@ -115,6 +154,7 @@ model User {
   AccountStudent    AccountStudent[]
   AccountAdmin      AccountAdmin[]
   AccountDev        AccountDev[]
+  AccountScheduler  AccountScheduler[]
 }
 
 model UserURLs {
@@ -133,6 +173,11 @@ model UserRoles {
   User User? @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@id([role, userId])
+}
+
+enum RoomType {
+  LECTURE
+  LABORATORY
 }
 
 enum UserType {
