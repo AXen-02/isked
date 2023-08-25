@@ -46,7 +46,8 @@ model AccountAdmin {
 
   createdSchools School[] @relation("CreatedBy")
 
-  User User @relation(fields: [userId], references: [id])
+  User  User    @relation(fields: [userId], references: [id])
+  Class Class[]
 }
 
 model AccountDev {
@@ -70,6 +71,8 @@ model AccountInstructor {
 
   School School @relation(fields: [schooId], references: [id])
   User   User   @relation(fields: [userId], references: [id])
+
+  subject Subject[]
 }
 
 model AccountScheduler {
@@ -79,8 +82,9 @@ model AccountScheduler {
   createdAt DateTime
   updatedAt DateTime
 
-  School School @relation(fields: [schoolId], references: [id])
-  User   User   @relation(fields: [userId], references: [id])
+  School        School          @relation(fields: [schoolId], references: [id])
+  User          User            @relation(fields: [userId], references: [id])
+  ClassSchedule ClassSchedule[]
 }
 
 model AccountStudent {
@@ -107,6 +111,35 @@ model Building {
   Room   Room[]
 }
 
+model Class {
+  id          String   @id @default(cuid())
+  name        String
+  description String
+  capacity    Int
+  creatorId   String
+  createdAt   DateTime
+  updatedAt   DateTime
+
+  AccountAdmin AccountAdmin? @relation(fields: [creatorId], references: [id])
+  subject      Subject[]
+}
+
+model ClassSchedule {
+  id        String   @id @default(cuid())
+  subjectId String
+  roomId    String
+  day       Day
+  startTime DateTime @db.Time()
+  endTime   DateTime @db.Time()
+  creatorId String
+  createdAt DateTime
+  updatedAt DateTime
+
+  subject          Subject?         @relation(fields: [subjectId], references: [id])
+  room             Room?            @relation(fields: [roomId], references: [id])
+  accountScheduler AccountScheduler @relation(fields: [creatorId], references: [id])
+}
+
 model Room {
   id           String   @id @default(cuid())
   buildingId   String
@@ -117,7 +150,8 @@ model Room {
   updatedAt    DateTime
   availability Json     @default("[]") // add default JSON here
 
-  Building Building @relation(fields: [buildingId], references: [id])
+  Building      Building        @relation(fields: [buildingId], references: [id])
+  ClassSchedule ClassSchedule[]
 }
 
 model School {
@@ -134,6 +168,22 @@ model School {
   AccountScheduler  AccountScheduler[]
   Building          Building[]
   AccountInstructor AccountInstructor[]
+}
+
+model Subject {
+  id             String  @id @default(cuid())
+  classId        String?
+  instructorId   String?
+  code           String
+  description    String
+  lecUnit        Int
+  labUnit        Int
+  contactHours   Float
+  remainingHours Float
+
+  AccountInstructor AccountInstructor? @relation(fields: [instructorId], references: [id])
+  Class             Class?             @relation(fields: [classId], references: [id])
+  ClassSchedule     ClassSchedule[]
 }
 
 model User {
@@ -169,7 +219,7 @@ enum UserType {
   STUDENT
 }
 
-enum Days {
+enum Day {
   MONDAY
   TUESDAY
   WEDNESDAY
