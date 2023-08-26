@@ -196,6 +196,7 @@ model User {
   bio           String?
   urls          Json?
   roles         Json?
+  dateJoined    DateTime  @default(now())
 
   accounts          Account[]
   sessions          Session[]

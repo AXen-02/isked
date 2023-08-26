@@ -4,6 +4,7 @@ import { db } from "./db";
 import GoogleProvider from "next-auth/providers/google";
 import GitHubProvider from "next-auth/providers/github";
 import { nanoid } from "nanoid";
+import { RoomType } from "@prisma/client";
 
 export const authOptions: NextAuthOptions = {
   adapter: PrismaAdapter(db),
@@ -57,12 +58,16 @@ export const authOptions: NextAuthOptions = {
       }
 
       if (!dbUser.username) {
+        const randUName = nanoid(10);
         await db.user.update({
           where: {
             id: dbUser.id,
           },
           data: {
-            username: nanoid(10),
+            // set default data of created fields here
+            username: randUName,
+            roles: ["STUDENT"],
+            urls: [`isked.vercel.app/${randUName}`],
           },
         });
       }
