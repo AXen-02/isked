@@ -6,7 +6,7 @@ generator client {
 }
 
 datasource db {
-  provider = "mysql"
+  provider = "postgresql"
   url      = env("DATABASE_URL")
 }
 
@@ -187,16 +187,16 @@ model Subject {
 }
 
 model User {
-  id            String    @id @default(cuid())
+  id            String     @id @default(cuid())
   name          String?
-  email         String?   @unique
+  email         String?    @unique
   emailVerified DateTime?
   image         String?
-  username      String?   @unique
+  username      String?    @unique
   bio           String?
-  urls          Json?
-  roles         Json?
-  dateJoined    DateTime  @default(now())
+  urls          String[]
+  roles         UserType[]
+  dateJoined    DateTime   @default(now())
 
   accounts          Account[]
   sessions          Session[]
