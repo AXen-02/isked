@@ -1,10 +1,10 @@
 "use client";
 
 import { zodResolver } from "@hookform/resolvers/zod";
-import Link from "next/link";
 import { useFieldArray, useForm } from "react-hook-form";
 import * as z from "zod";
 
+import { Icons } from "@/components/Icons";
 import { Button } from "@/components/ui/button";
 import {
   Form,
@@ -16,13 +16,6 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
 import { cn } from "@/lib/utils";
@@ -36,11 +29,15 @@ const profileFormSchema = z.object({
     .max(30, {
       message: "Username must not be longer than 30 characters.",
     }),
-  email: z
-    .string({
-      required_error: "Please select an email to display.",
+  name: z
+    .string()
+    .min(2, {
+      message: "Name must be at least 2 characters.",
     })
-    .email(),
+    .max(30, {
+      message: "Name must not be longer than 30 characters.",
+    }),
+  email: z.string().email().optional(),
   bio: z.string().max(160).min(4),
   urls: z
     .array(
@@ -96,12 +93,34 @@ export function ProfileForm() {
           render={({ field }) => (
             <FormItem>
               <FormLabel>Username</FormLabel>
+              <div className="relative">
+                <p className="absolute text-md px-3 w-auto inset-y-0 grid place-items-center text-muted-foreground bg-muted rounded-l-md">
+                  isked.vercel.app/
+                </p>
+                <FormControl className="pl-40">
+                  <Input placeholder="shadcn" {...field} />
+                </FormControl>
+              </div>
+              <FormDescription>
+                This is your public display name. It will be used as your URL
+                namespace within Isked.
+              </FormDescription>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        <FormField
+          control={form.control}
+          name="name"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Name</FormLabel>
               <FormControl>
-                <Input placeholder="shadcn" {...field} />
+                <Input placeholder="Your name" {...field}></Input>
               </FormControl>
               <FormDescription>
-                This is your public display name. It can be your real name or a
-                pseudonym. You can only change this once every 30 days.
+                This is the name that will be displayed on your profile and in
+                emails.
               </FormDescription>
               <FormMessage />
             </FormItem>
@@ -113,22 +132,13 @@ export function ProfileForm() {
           render={({ field }) => (
             <FormItem>
               <FormLabel>Email</FormLabel>
-              <Select onValueChange={field.onChange} defaultValue={field.value}>
-                <FormControl>
-                  <SelectTrigger>
-                    <SelectValue placeholder="Select a verified email to display" />
-                  </SelectTrigger>
+              <div className="relative">
+                <FormControl className="pl-10">
+                  <Input disabled value={"josuahallenmercado@gmail.com"} />
                 </FormControl>
-                <SelectContent>
-                  <SelectItem value="m@example.com">m@example.com</SelectItem>
-                  <SelectItem value="m@google.com">m@google.com</SelectItem>
-                  <SelectItem value="m@support.com">m@support.com</SelectItem>
-                </SelectContent>
-              </Select>
-              <FormDescription>
-                You can manage verified email addresses in your{" "}
-                <Link href="/examples/forms">email settings</Link>.
-              </FormDescription>
+                <Icons.gitHub className="w-5 h-5 absolute left-3 top-2 cursor-not-allowed" />
+              </div>
+              <FormDescription>Connected via Github provider.</FormDescription>
               <FormMessage />
             </FormItem>
           )}

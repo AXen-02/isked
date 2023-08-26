@@ -99,7 +99,7 @@ export function AccountForm() {
             <FormItem>
               <FormLabel>Name</FormLabel>
               <FormControl>
-                <Input placeholder="Your name" {...field} />
+                <Input placeholder="Your name" {...field}></Input>
               </FormControl>
               <FormDescription>
                 This is the name that will be displayed on your profile and in
