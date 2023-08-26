@@ -68,9 +68,7 @@ export const authOptions: NextAuthOptions = {
             username: randUName,
             roles: [UserType.DEVELOPER, UserType.ADMINISTRATOR],
             // TODO: Error when it comes to railway
-            urls: {
-              push: `'isked.vercel.app/${randUName}'`,
-            },
+            urls: [`'isked.vercel.app/${randUName}'`],
           },
         });
       }

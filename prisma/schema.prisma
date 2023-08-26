@@ -194,7 +194,7 @@ model User {
   image         String?
   username      String?    @unique
   bio           String?
-  urls          String[]
+  urls          String[]   @db.Text
   roles         UserType[]
   dateJoined    DateTime   @default(now())
 
