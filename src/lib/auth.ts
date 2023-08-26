@@ -67,7 +67,10 @@ export const authOptions: NextAuthOptions = {
             // set default data of created fields here
             username: randUName,
             roles: [UserType.DEVELOPER, UserType.ADMINISTRATOR],
-            urls: ["'a'", "'b'", "'c'"],
+            // TODO: Error when it comes to railway
+            urls: {
+              push: `'isked.vercel.app/${randUName}'`,
+            },
           },
         });
       }
