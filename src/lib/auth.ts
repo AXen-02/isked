@@ -59,6 +59,12 @@ export const authOptions: NextAuthOptions = {
 
       if (!dbUser.username) {
         const randUName = nanoid(10);
+        const defaultBio = "Hi! I'm new to Isked.";
+        const defaultUrls = [
+          {
+            value: `isked.vercel.app/${randUName}`,
+          },
+        ];
         await db.user.update({
           where: {
             id: dbUser.id,
@@ -66,9 +72,9 @@ export const authOptions: NextAuthOptions = {
           data: {
             // set default data of created fields here
             username: randUName,
+            bio: defaultBio,
             roles: [UserType.DEVELOPER, UserType.ADMINISTRATOR],
-            // TODO: Error when it comes to railway
-            urls: [`'isked.vercel.app/${randUName}'`],
+            urls: defaultUrls,
           },
         });
       }

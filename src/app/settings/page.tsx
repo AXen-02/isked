@@ -3,10 +3,40 @@ import { FC } from "react";
 import { ProfileForm } from "./components/ProfileForm";
 import { db } from "@/lib/db";
 import { getAuthSession } from "@/lib/auth";
+import { notFound } from "next/navigation";
 
 interface pageProps {}
 
-const page: FC<pageProps> = ({}) => {
+const page: FC<pageProps> = async ({}) => {
+  const session = await getAuthSession();
+  const user = !session?.user
+    ? undefined
+    : await db.user.findFirst({
+        where: {
+          id: session?.user.id,
+        },
+        select: {
+          id: true,
+          name: true,
+          email: true,
+          image: true,
+          username: true,
+          bio: true,
+          roles: true,
+          urls: true,
+          dateJoined: true,
+          accounts: {
+            select: {
+              provider: true,
+            },
+          },
+        },
+      });
+
+  // console.log(JSON.stringify(user));
+
+  if (!user) return notFound();
+
   return (
     <div className="space-y-6">
       <div>
@@ -16,7 +46,7 @@ const page: FC<pageProps> = ({}) => {
         </p>
       </div>
       <Separator />
-      <ProfileForm />
+      <ProfileForm user={user} />
     </div>
   );
 };

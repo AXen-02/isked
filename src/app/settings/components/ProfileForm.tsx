@@ -19,6 +19,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
 import { cn } from "@/lib/utils";
+import { UserType } from "@prisma/client";
 
 const profileFormSchema = z.object({
   name: z
@@ -40,18 +41,32 @@ const profileFormSchema = z.object({
 });
 
 type ProfileFormValues = z.infer<typeof profileFormSchema>;
+interface ProfileFormProps {
+  user: {
+    name: string;
+    username: string | null;
+    email: string | null;
+    image: string | null;
+    id: string;
+    bio: string | null;
+    urls: { value: string }[];
+    roles: UserType[];
+    dateJoined: Date;
+    accounts: {
+      provider: string | null;
+    }[];
+  };
+}
 
-// This can come from your database or API.
-const defaultValues: Partial<ProfileFormValues> = {
-  bio: "I own a computer.",
-  urls: [
-    { value: "https://shadcn.com" },
-    { value: "http://twitter.com/shadcn" },
-  ],
-};
-
-export function ProfileForm() {
+export function ProfileForm({ user }: ProfileFormProps) {
   const { toast } = useToast();
+
+  // This can come from your database or API.
+  const defaultValues: Partial<ProfileFormValues> = {
+    name: user.name!,
+    bio: user.bio!,
+    urls: user.urls!,
+  };
 
   const form = useForm<ProfileFormValues>({
     resolver: zodResolver(profileFormSchema),
@@ -68,9 +83,12 @@ export function ProfileForm() {
     toast({
       title: "You submitted the following values:",
       description: (
-        <pre className="mt-2 w-[340px] rounded-md bg-slate-950 p-4">
-          <code className="text-white">{JSON.stringify(data, null, 2)}</code>
-        </pre>
+        <>
+          <pre className="mt-2 w-[340px] rounded-md bg-slate-950 p-4">
+            <code className="text-white">{JSON.stringify(data, null, 2)}</code>
+          </pre>
+          <pre>{JSON.stringify(user, undefined, 2)}</pre>
+        </>
       ),
     });
   }
