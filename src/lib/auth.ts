@@ -73,12 +73,7 @@ export const authOptions: NextAuthOptions = {
             // set default data of created fields here
             username: randUName,
             bio: defaultBio,
-            roles: [
-              UserType.DEVELOPER,
-              UserType.ADMINISTRATOR,
-              UserType.SCHEDULER,
-              UserType.INSTRUCTOR,
-            ],
+            roles: [UserType.STUDENT],
             urls: defaultUrls,
           },
         });
