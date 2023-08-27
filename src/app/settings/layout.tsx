@@ -33,33 +33,9 @@ interface SettingsLayoutProps {
 export default async function SettingsLayout({
   children,
 }: SettingsLayoutProps) {
-  // const session = await getAuthSession();
-  // const user = !session?.user
-  //   ? undefined
-  //   : await db.user.findFirst({
-  //       where: {
-  //         id: session?.user.id,
-  //       },
-  //       select: {
-  //         id: true,
-  //         email: true,
-  //         image: true,
-  //         username: true,
-  //         bio: true,
-  //         roles: true,
-  //         urls: true,
-  //         dateJoined: true,
-  //         accounts: {
-  //           select: {
-  //             provider: true,
-  //           },
-  //         },
-  //       },
-  //     });
+  const session = await getAuthSession();
 
-  // // console.log(JSON.stringify(user));
-
-  // if (!user) return notFound();
+  if (!session?.user) return notFound(); // dont go if not signed-in
 
   return (
     <>

@@ -30,7 +30,7 @@ export default async function SettingsAccountPage() {
         },
       });
 
-  console.log(JSON.stringify(user));
+  // console.log(JSON.stringify(user));
 
   if (!user) return notFound();
 
