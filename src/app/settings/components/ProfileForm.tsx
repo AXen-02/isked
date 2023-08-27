@@ -3,7 +3,7 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useFieldArray, useForm } from "react-hook-form";
 import * as z from "zod";
-import axios from "axios";
+import axios, { AxiosError } from "axios";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -22,6 +22,10 @@ import { cn } from "@/lib/utils";
 import { UserType } from "@prisma/client";
 import { JsonValue } from "@prisma/client/runtime/library";
 import { CreateAccountProfilePayload } from "@/lib/validators/account";
+
+import { useMutation } from "@tanstack/react-query";
+import { useState } from "react";
+import { useCustomToast } from "@/hooks/use-custom-toast";
 
 const profileFormSchema = z.object({
   name: z
@@ -62,6 +66,59 @@ interface ProfileFormProps {
 
 export function ProfileForm({ user }: ProfileFormProps) {
   const { toast } = useToast();
+  const { loginToast } = useCustomToast();
+
+  const [enteredName, setEnteredName] = useState("");
+  const [enteredBio, setEnteredBio] = useState("");
+  const [enteredUrls, setEnteredUrls] = useState();
+
+  const { mutate: updateAccount, isLoading } = useMutation({
+    mutationFn: async () => {
+      const payload: CreateAccountProfilePayload = {
+        id: user.id,
+        name: enteredName,
+        bio: enteredBio,
+        urls: enteredUrls,
+      };
+
+      const { data } = await axios.put("/api/account", payload);
+      return data as string;
+    },
+    onError: (err) => {
+      // error handling
+      if (err instanceof AxiosError) {
+        if (err.response?.status === 401) {
+          return loginToast();
+        }
+
+        if (err.response?.status === 409) {
+          return toast({
+            title: "Subreddit already exists.",
+            description: "Please choose a different subreddit name.",
+            variant: "destructive",
+          });
+        }
+
+        if (err.response?.status === 422) {
+          return toast({
+            title: "Invalid subreddit name",
+            description: "Please choose a name between 3 and 21 characters.",
+            variant: "destructive",
+          });
+        }
+      }
+
+      toast({
+        title: "There was an error.",
+        description: "Could not create subreddit.",
+        variant: "destructive",
+      });
+    },
+    // onSuccess: (data) => {
+    //   // dynamic value of the created community
+    //   router.push(`r/${data}`);
+    // },
+  });
 
   // This can come from your database or API.
   const defaultValues: Partial<ProfileFormValues> = {
@@ -83,14 +140,12 @@ export function ProfileForm({ user }: ProfileFormProps) {
 
   async function onSubmit(formData: ProfileFormValues) {
     // call account update api here
-    const payload: CreateAccountProfilePayload = {
-      id: user.id,
-      name: formData.name,
-      bio: formData.bio,
-      urls: formData.urls,
-    };
 
-    const { data } = await axios.put("/api/account", payload);
+    setEnteredName(formData.name);
+    setEnteredBio(formData.bio);
+    setEnteredUrls(Object(formData.urls));
+
+    updateAccount();
 
     toast({
       title: "You submitted the following values:",
@@ -98,14 +153,14 @@ export function ProfileForm({ user }: ProfileFormProps) {
         <>
           Updated user.
           <pre className="mt-2 w-[340px] rounded-md bg-slate-950 p-4">
-            <code className="text-white">{JSON.stringify(data, null, 2)}</code>
+            <code className="text-white">
+              {JSON.stringify(formData, null, 2)}
+            </code>
           </pre>
           {/* <pre>{JSON.stringify(user, undefined, 2)}</pre> */}
         </>
       ),
     });
-
-    return data as string;
   }
 
   return (
@@ -182,7 +237,9 @@ export function ProfileForm({ user }: ProfileFormProps) {
             Add URL
           </Button>
         </div>
-        <Button type="submit">Update profile</Button>
+        <Button disabled={isLoading} type="submit">
+          Update profile
+        </Button>
       </form>
     </Form>
   );
