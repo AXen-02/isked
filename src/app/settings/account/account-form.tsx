@@ -32,6 +32,9 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover";
 import { useToast } from "@/hooks/use-toast";
+import { Icons } from "@/components/Icons";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
 const languages = [
   { label: "English", value: "en" },
@@ -46,20 +49,15 @@ const languages = [
 ] as const;
 
 const accountFormSchema = z.object({
-  name: z
+  username: z
     .string()
     .min(2, {
-      message: "Name must be at least 2 characters.",
+      message: "Username must be at least 2 characters.",
     })
     .max(30, {
-      message: "Name must not be longer than 30 characters.",
+      message: "Username must not be longer than 30 characters.",
     }),
-  dob: z.date({
-    required_error: "A date of birth is required.",
-  }),
-  language: z.string({
-    required_error: "Please select a language.",
-  }),
+  email: z.string().email().optional(),
 });
 
 type AccountFormValues = z.infer<typeof accountFormSchema>;
@@ -94,16 +92,21 @@ export function AccountForm() {
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
         <FormField
           control={form.control}
-          name="name"
+          name="username"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Name</FormLabel>
-              <FormControl>
-                <Input placeholder="Your name" {...field}></Input>
-              </FormControl>
+              <FormLabel>Username</FormLabel>
+              <div className="relative">
+                <p className="absolute text-md px-3 w-auto inset-y-0 grid place-items-center text-muted-foreground bg-muted rounded-l-md">
+                  isked.vercel.app/
+                </p>
+                <FormControl className="pl-40">
+                  <Input placeholder="shadcn" {...field} />
+                </FormControl>
+              </div>
               <FormDescription>
-                This is the name that will be displayed on your profile and in
-                emails.
+                This is your public display name. It will be used as your URL
+                namespace within Isked.
               </FormDescription>
               <FormMessage />
             </FormItem>
@@ -111,109 +114,22 @@ export function AccountForm() {
         />
         <FormField
           control={form.control}
-          name="dob"
+          name="email"
           render={({ field }) => (
-            <FormItem className="flex flex-col">
-              <FormLabel>Date of birth</FormLabel>
-              <Popover>
-                <PopoverTrigger asChild>
-                  <FormControl>
-                    <Button
-                      variant={"outline"}
-                      className={cn(
-                        "w-[240px] pl-3 text-left font-normal",
-                        !field.value && "text-muted-foreground"
-                      )}
-                    >
-                      {field.value ? (
-                        format(field.value, "PPP")
-                      ) : (
-                        <span>Pick a date</span>
-                      )}
-                      <CalendarIcon className="ml-auto h-4 w-4 opacity-50" />
-                    </Button>
-                  </FormControl>
-                </PopoverTrigger>
-                <PopoverContent className="w-auto p-0" align="start">
-                  <Calendar
-                    mode="single"
-                    selected={field.value}
-                    onSelect={field.onChange}
-                    disabled={(date) =>
-                      date > new Date() || date < new Date("1900-01-01")
-                    }
-                    initialFocus
-                  />
-                </PopoverContent>
-              </Popover>
-              <FormDescription>
-                Your date of birth is used to calculate your age.
-              </FormDescription>
+            <FormItem>
+              <FormLabel>Email</FormLabel>
+              <div className="relative">
+                <FormControl className="pl-10">
+                  <Input disabled value={"josuahallenmercado@gmail.com"} />
+                </FormControl>
+                <Icons.gitHub className="w-5 h-5 absolute left-3 top-2 cursor-not-allowed" />
+              </div>
+              <FormDescription>Connected via Github provider.</FormDescription>
               <FormMessage />
             </FormItem>
           )}
         />
-        <FormField
-          control={form.control}
-          name="language"
-          render={({ field }) => (
-            <FormItem className="flex flex-col">
-              <FormLabel>Language</FormLabel>
-              <Popover>
-                <PopoverTrigger asChild>
-                  <FormControl>
-                    <Button
-                      variant="outline"
-                      role="combobox"
-                      className={cn(
-                        "w-[200px] justify-between",
-                        !field.value && "text-muted-foreground"
-                      )}
-                    >
-                      {field.value
-                        ? languages.find(
-                            (language) => language.value === field.value
-                          )?.label
-                        : "Select language"}
-                      <CaretSortIcon className="ml-2 h-4 w-4 shrink-0 opacity-50" />
-                    </Button>
-                  </FormControl>
-                </PopoverTrigger>
-                <PopoverContent className="w-[200px] p-0">
-                  <Command>
-                    <CommandInput placeholder="Search language..." />
-                    <CommandEmpty>No language found.</CommandEmpty>
-                    <CommandGroup>
-                      {languages.map((language) => (
-                        <CommandItem
-                          value={language.label}
-                          key={language.value}
-                          onSelect={() => {
-                            form.setValue("language", language.value);
-                          }}
-                        >
-                          <CheckIcon
-                            className={cn(
-                              "mr-2 h-4 w-4",
-                              language.value === field.value
-                                ? "opacity-100"
-                                : "opacity-0"
-                            )}
-                          />
-                          {language.label}
-                        </CommandItem>
-                      ))}
-                    </CommandGroup>
-                  </Command>
-                </PopoverContent>
-              </Popover>
-              <FormDescription>
-                This is the language that will be used in the dashboard.
-              </FormDescription>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
+
         <Button type="submit">Update account</Button>
       </form>
     </Form>

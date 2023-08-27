@@ -21,14 +21,6 @@ import { useToast } from "@/hooks/use-toast";
 import { cn } from "@/lib/utils";
 
 const profileFormSchema = z.object({
-  username: z
-    .string()
-    .min(2, {
-      message: "Username must be at least 2 characters.",
-    })
-    .max(30, {
-      message: "Username must not be longer than 30 characters.",
-    }),
   name: z
     .string()
     .min(2, {
@@ -37,7 +29,6 @@ const profileFormSchema = z.object({
     .max(30, {
       message: "Name must not be longer than 30 characters.",
     }),
-  email: z.string().email().optional(),
   bio: z.string().max(160).min(4),
   urls: z
     .array(
@@ -89,28 +80,6 @@ export function ProfileForm() {
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
         <FormField
           control={form.control}
-          name="username"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Username</FormLabel>
-              <div className="relative">
-                <p className="absolute text-md px-3 w-auto inset-y-0 grid place-items-center text-muted-foreground bg-muted rounded-l-md">
-                  isked.vercel.app/
-                </p>
-                <FormControl className="pl-40">
-                  <Input placeholder="shadcn" {...field} />
-                </FormControl>
-              </div>
-              <FormDescription>
-                This is your public display name. It will be used as your URL
-                namespace within Isked.
-              </FormDescription>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-        <FormField
-          control={form.control}
           name="name"
           render={({ field }) => (
             <FormItem>
@@ -126,23 +95,7 @@ export function ProfileForm() {
             </FormItem>
           )}
         />
-        <FormField
-          control={form.control}
-          name="email"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Email</FormLabel>
-              <div className="relative">
-                <FormControl className="pl-10">
-                  <Input disabled value={"josuahallenmercado@gmail.com"} />
-                </FormControl>
-                <Icons.gitHub className="w-5 h-5 absolute left-3 top-2 cursor-not-allowed" />
-              </div>
-              <FormDescription>Connected via Github provider.</FormDescription>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
+
         <FormField
           control={form.control}
           name="bio"
