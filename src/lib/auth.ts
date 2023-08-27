@@ -62,7 +62,7 @@ export const authOptions: NextAuthOptions = {
         const defaultBio = "Hi! I'm new to Isked.";
         const defaultUrls = [
           {
-            value: `isked.vercel.app/${randUName}`,
+            value: `https://isked.vercel.app/${randUName}`,
           },
         ];
         await db.user.update({
@@ -73,7 +73,7 @@ export const authOptions: NextAuthOptions = {
             // set default data of created fields here
             username: randUName,
             bio: defaultBio,
-            roles: [UserType.DEVELOPER, UserType.ADMINISTRATOR],
+            roles: [UserType.STUDENT],
             urls: defaultUrls,
           },
         });

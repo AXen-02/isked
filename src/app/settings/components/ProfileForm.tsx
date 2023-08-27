@@ -3,6 +3,7 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useFieldArray, useForm } from "react-hook-form";
 import * as z from "zod";
+import axios from "axios";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -20,6 +21,7 @@ import { useToast } from "@/hooks/use-toast";
 import { cn } from "@/lib/utils";
 import { UserType } from "@prisma/client";
 import { JsonValue } from "@prisma/client/runtime/library";
+import { CreateAccountProfilePayload } from "@/lib/validators/account";
 
 const profileFormSchema = z.object({
   name: z
@@ -79,18 +81,31 @@ export function ProfileForm({ user }: ProfileFormProps) {
     control: form.control,
   });
 
-  function onSubmit(data: ProfileFormValues) {
+  async function onSubmit(formData: ProfileFormValues) {
+    // call account update api here
+    const payload: CreateAccountProfilePayload = {
+      id: user.id,
+      name: formData.name,
+      bio: formData.bio,
+      urls: formData.urls,
+    };
+
+    const { data } = await axios.put("/api/account", payload);
+
     toast({
       title: "You submitted the following values:",
       description: (
         <>
+          Updated user.
           <pre className="mt-2 w-[340px] rounded-md bg-slate-950 p-4">
             <code className="text-white">{JSON.stringify(data, null, 2)}</code>
           </pre>
-          <pre>{JSON.stringify(user, undefined, 2)}</pre>
+          {/* <pre>{JSON.stringify(user, undefined, 2)}</pre> */}
         </>
       ),
     });
+
+    return data as string;
   }
 
   return (
