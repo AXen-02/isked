@@ -57,11 +57,11 @@ const groups = [
     label: "Intructor Account(s)",
     teams: [
       {
-        label: "Cavite State University - Carmona",
+        label: "Instructor @ Cvsu-Carmona",
         value: "instructor_cvsu-carmona",
       },
       {
-        label: "Batangas State University - Alangilan",
+        label: "Instructor @ Batsu-Alangilan",
         value: "instructor_batsu-alangilan",
       },
     ],
@@ -70,7 +70,7 @@ const groups = [
     label: "Scheduler Account(s)",
     teams: [
       {
-        label: "Cavite State University - Carmona",
+        label: "Scheduler @ Cvsu-Carmona",
         value: "scheduler_cvsu-carmona",
       },
     ],
@@ -79,7 +79,7 @@ const groups = [
     label: "Administrator Account(s)",
     teams: [
       {
-        label: "Cavite State University - Carmona",
+        label: "Administrator @ Cvsu-Carmona",
         value: "administrator_cvsu-carmona",
       },
     ],
@@ -88,7 +88,7 @@ const groups = [
     label: "Developer Account(s)",
     teams: [
       {
-        label: "Isked",
+        label: "Developer @ Isked",
         value: "developer_isked",
       },
     ],
@@ -119,7 +119,7 @@ export default function TeamSwitcher({ className }: TeamSwitcherProps) {
             role="combobox"
             aria-expanded={open}
             aria-label="Select a team"
-            className={cn("w-[300px] justify-between", className)}
+            className={cn("w-full md:w-[400px] justify-between", className)}
           >
             <Avatar className="mr-2 h-5 w-5">
               <AvatarImage
@@ -132,7 +132,7 @@ export default function TeamSwitcher({ className }: TeamSwitcherProps) {
             <CaretSortIcon className="ml-auto h-4 w-4 shrink-0 opacity-50" />
           </Button>
         </PopoverTrigger>
-        <PopoverContent className="w-[300px] p-0">
+        <PopoverContent className="w-full md:w-[400px] p-0">
           <Command>
             <CommandList>
               <CommandInput placeholder="Search team..." />
