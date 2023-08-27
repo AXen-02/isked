@@ -58,11 +58,11 @@ const groups = [
     teams: [
       {
         label: "Cavite State University - Carmona",
-        value: "cvsu-carmona",
+        value: "instructor_cvsu-carmona",
       },
       {
         label: "Batangas State University - Alangilan",
-        value: "batsu-alangilan",
+        value: "instructor_batsu-alangilan",
       },
     ],
   },
@@ -71,7 +71,7 @@ const groups = [
     teams: [
       {
         label: "Cavite State University - Carmona",
-        value: "cvsu-carmona",
+        value: "scheduler_cvsu-carmona",
       },
     ],
   },
@@ -80,7 +80,7 @@ const groups = [
     teams: [
       {
         label: "Cavite State University - Carmona",
-        value: "cvsu-carmona",
+        value: "administrator_cvsu-carmona",
       },
     ],
   },
