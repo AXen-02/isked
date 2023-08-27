@@ -26,6 +26,7 @@ import { CreateAccountProfilePayload } from "@/lib/validators/account";
 import { useMutation } from "@tanstack/react-query";
 import { useState } from "react";
 import { useCustomToast } from "@/hooks/use-custom-toast";
+import { Icons } from "@/components/Icons";
 
 const profileFormSchema = z.object({
   name: z
@@ -147,20 +148,20 @@ export function ProfileForm({ user }: ProfileFormProps) {
 
     updateAccount();
 
-    toast({
-      title: "You submitted the following values:",
-      description: (
-        <>
-          Updated user.
-          <pre className="mt-2 w-[340px] rounded-md bg-slate-950 p-4">
-            <code className="text-white">
-              {JSON.stringify(formData, null, 2)}
-            </code>
-          </pre>
-          {/* <pre>{JSON.stringify(user, undefined, 2)}</pre> */}
-        </>
-      ),
-    });
+    // toast({
+    //   title: "You submitted the following values:",
+    //   description: (
+    //     <>
+    //       Updated user.
+    //       <pre className="mt-2 w-[340px] rounded-md bg-slate-950 p-4">
+    //         <code className="text-white">
+    //           {JSON.stringify(formData, null, 2)}
+    //         </code>
+    //       </pre>
+    //       {/* <pre>{JSON.stringify(user, undefined, 2)}</pre> */}
+    //     </>
+    //   ),
+    // });
   }
 
   return (
@@ -237,8 +238,12 @@ export function ProfileForm({ user }: ProfileFormProps) {
             Add URL
           </Button>
         </div>
-        <Button disabled={isLoading} type="submit">
-          Update profile
+        <Button disabled={isLoading} type="submit" className="w-full">
+          {isLoading ? (
+            <Icons.spinner className="w-4 h-4 animate-spin" />
+          ) : (
+            `Update profile`
+          )}
         </Button>
       </form>
     </Form>
