@@ -5,6 +5,8 @@ import { AccountsForm } from "./accounts-form";
 export default function SettingsAccountPage() {
   return (
     <div className="space-y-6">
+      <AccountsForm />
+
       <div>
         <h3 className="text-lg font-medium">Personal Account</h3>
         <p className="text-sm text-muted-foreground">
@@ -19,7 +21,6 @@ export default function SettingsAccountPage() {
           Choose an account to modify.
         </p>
       </div>
-      <AccountsForm />
     </div>
   );
 }
