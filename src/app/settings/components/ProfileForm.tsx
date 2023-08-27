@@ -4,7 +4,6 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useFieldArray, useForm } from "react-hook-form";
 import * as z from "zod";
 
-import { Icons } from "@/components/Icons";
 import { Button } from "@/components/ui/button";
 import {
   Form,
@@ -66,7 +65,7 @@ export function ProfileForm({ user }: ProfileFormProps) {
   const defaultValues: Partial<ProfileFormValues> = {
     name: user.name!,
     bio: user.bio!,
-    urls: user.urls!,
+    urls: Object(user.urls!),
   };
 
   const form = useForm<ProfileFormValues>({
