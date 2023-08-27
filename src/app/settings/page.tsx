@@ -1,6 +1,8 @@
 import { Separator } from "@/components/ui/separator";
 import { FC } from "react";
 import { ProfileForm } from "./components/ProfileForm";
+import { db } from "@/lib/db";
+import { getAuthSession } from "@/lib/auth";
 
 interface pageProps {}
 

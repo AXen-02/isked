@@ -1,21 +1,11 @@
 "use client";
 
 import { zodResolver } from "@hookform/resolvers/zod";
-import { CalendarIcon, CaretSortIcon, CheckIcon } from "@radix-ui/react-icons";
-import { format } from "date-fns";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
 
-import { cn } from "@/lib/utils";
+import { Icons } from "@/components/Icons";
 import { Button } from "@/components/ui/button";
-import { Calendar } from "@/components/ui/calendar";
-import {
-  Command,
-  CommandEmpty,
-  CommandGroup,
-  CommandInput,
-  CommandItem,
-} from "@/components/ui/command";
 import {
   Form,
   FormControl,
@@ -26,15 +16,8 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from "@/components/ui/popover";
 import { useToast } from "@/hooks/use-toast";
-import { Icons } from "@/components/Icons";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { UserType } from "@prisma/client";
 
 const languages = [
   { label: "English", value: "en" },
@@ -62,14 +45,30 @@ const accountFormSchema = z.object({
 
 type AccountFormValues = z.infer<typeof accountFormSchema>;
 
-// This can come from your database or API.
-const defaultValues: Partial<AccountFormValues> = {
-  // name: "Your name",
-  // dob: new Date("2023-01-23"),
-};
+interface AccountFormProps {
+  user: {
+    username: string | null;
+    email: string | null;
+    image: string | null;
+    id: string;
+    bio: string | null;
+    urls: string[];
+    roles: UserType[];
+    dateJoined: Date;
+    accounts: {
+      provider: string | null;
+    }[];
+  };
+}
 
-export function AccountForm() {
+export function AccountForm({ user }: AccountFormProps) {
   const { toast } = useToast();
+
+  // This can come from your database or API.
+  const defaultValues: Partial<AccountFormValues> = {
+    username: user.username!,
+    email: user.email!,
+  };
 
   const form = useForm<AccountFormValues>({
     resolver: zodResolver(accountFormSchema),
@@ -80,9 +79,13 @@ export function AccountForm() {
     toast({
       title: "You submitted the following values:",
       description: (
-        <pre className="mt-2 w-[340px] rounded-md bg-slate-950 p-4">
-          <code className="text-white">{JSON.stringify(data, null, 2)}</code>
-        </pre>
+        <>
+          <pre className="mt-2 w-[340px] rounded-md bg-slate-950 p-4">
+            <code className="text-white">{JSON.stringify(data, null, 2)}</code>
+          </pre>
+
+          <pre>{JSON.stringify(user, undefined, 2)}</pre>
+        </>
       ),
     });
   }
@@ -120,11 +123,18 @@ export function AccountForm() {
               <FormLabel>Email</FormLabel>
               <div className="relative">
                 <FormControl className="pl-10">
-                  <Input disabled value={"josuahallenmercado@gmail.com"} />
+                  <Input disabled {...field} />
                 </FormControl>
-                <Icons.gitHub className="w-5 h-5 absolute left-3 top-2 cursor-not-allowed" />
+                {user.accounts[0].provider === "github" ? (
+                  <Icons.gitHub className="w-5 h-5 absolute left-3 top-2 cursor-not-allowed" />
+                ) : (
+                  <Icons.google className="w-5 h-5 absolute left-3 top-2 cursor-not-allowed" />
+                )}
               </div>
-              <FormDescription>Connected via Github provider.</FormDescription>
+              <FormDescription>
+                Your account is connected via {user.accounts[0].provider}{" "}
+                provider.
+              </FormDescription>
               <FormMessage />
             </FormItem>
           )}

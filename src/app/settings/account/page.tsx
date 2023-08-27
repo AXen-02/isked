@@ -1,8 +1,39 @@
 import { Separator } from "@/components/ui/separator";
 import { AccountForm } from "./account-form";
 import TeamSwitcher from "@/components/TeamSwitcher";
+import { db } from "@/lib/db";
+import { getAuthSession } from "@/lib/auth";
+import { notFound } from "next/navigation";
 
-export default function SettingsAccountPage() {
+export default async function SettingsAccountPage() {
+  const session = await getAuthSession();
+  const user = !session?.user
+    ? undefined
+    : await db.user.findFirst({
+        where: {
+          id: session?.user.id,
+        },
+        select: {
+          id: true,
+          email: true,
+          image: true,
+          username: true,
+          bio: true,
+          roles: true,
+          urls: true,
+          dateJoined: true,
+          accounts: {
+            select: {
+              provider: true,
+            },
+          },
+        },
+      });
+
+  console.log(JSON.stringify(user));
+
+  if (!user) return notFound();
+
   return (
     <div className="space-y-6">
       <div>
@@ -13,7 +44,7 @@ export default function SettingsAccountPage() {
       </div>
       <TeamSwitcher />
       <Separator />
-      <AccountForm />
+      <AccountForm user={user} />
     </div>
   );
 }

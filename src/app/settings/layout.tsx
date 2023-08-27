@@ -1,6 +1,9 @@
 import { Metadata } from "next";
 
 import { Separator } from "@/components/ui/separator";
+import { getAuthSession } from "@/lib/auth";
+import { db } from "@/lib/db";
+import { notFound } from "next/navigation";
 import { SidebarNav } from "./components/SidebarNav";
 
 export const metadata: Metadata = {
@@ -27,7 +30,37 @@ interface SettingsLayoutProps {
   children: React.ReactNode;
 }
 
-export default function SettingsLayout({ children }: SettingsLayoutProps) {
+export default async function SettingsLayout({
+  children,
+}: SettingsLayoutProps) {
+  // const session = await getAuthSession();
+  // const user = !session?.user
+  //   ? undefined
+  //   : await db.user.findFirst({
+  //       where: {
+  //         id: session?.user.id,
+  //       },
+  //       select: {
+  //         id: true,
+  //         email: true,
+  //         image: true,
+  //         username: true,
+  //         bio: true,
+  //         roles: true,
+  //         urls: true,
+  //         dateJoined: true,
+  //         accounts: {
+  //           select: {
+  //             provider: true,
+  //           },
+  //         },
+  //       },
+  //     });
+
+  // // console.log(JSON.stringify(user));
+
+  // if (!user) return notFound();
+
   return (
     <>
       <div className="space-y-6 p-10 pb-16">
