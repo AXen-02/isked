@@ -52,7 +52,7 @@ interface AccountFormProps {
     image: string | null;
     id: string;
     bio: string | null;
-    urls: string[];
+    urls: JSON[];
     roles: UserType[];
     dateJoined: Date;
     accounts: {
