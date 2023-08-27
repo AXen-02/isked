@@ -15,6 +15,7 @@ export default async function SettingsAccountPage() {
         },
         select: {
           id: true,
+          name: true,
           email: true,
           image: true,
           username: true,

@@ -20,6 +20,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
 import { cn } from "@/lib/utils";
 import { UserType } from "@prisma/client";
+import { JsonValue } from "@prisma/client/runtime/library";
 
 const profileFormSchema = z.object({
   name: z
@@ -43,13 +44,13 @@ const profileFormSchema = z.object({
 type ProfileFormValues = z.infer<typeof profileFormSchema>;
 interface ProfileFormProps {
   user: {
-    name: string;
-    username: string | null;
-    email: string | null;
+    name: string | null;
+    bio: string | null;
+    urls: JsonValue[];
     image: string | null;
     id: string;
-    bio: string | null;
-    urls: { value: string }[];
+    email: string | null;
+    username: string | null;
     roles: UserType[];
     dateJoined: Date;
     accounts: {

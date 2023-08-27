@@ -18,6 +18,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { useToast } from "@/hooks/use-toast";
 import { UserType } from "@prisma/client";
+import { JsonValue } from "@prisma/client/runtime/library";
 
 const languages = [
   { label: "English", value: "en" },
@@ -47,18 +48,34 @@ type AccountFormValues = z.infer<typeof accountFormSchema>;
 
 interface AccountFormProps {
   user: {
-    username: string | null;
-    email: string | null;
+    name: string | null;
+    bio: string | null;
+    urls: JsonValue[];
     image: string | null;
     id: string;
-    bio: string | null;
-    urls: JSON[];
+    email: string | null;
+    username: string | null;
     roles: UserType[];
     dateJoined: Date;
     accounts: {
       provider: string | null;
     }[];
   };
+
+  // {
+  //   name: string | null;
+  //   username: string | null;
+  //   email: string | null;
+  //   image: string | null;
+  //   id: string;
+  //   bio: string | null;
+  //   urls: JSON[];
+  //   roles: UserType[];
+  //   dateJoined: Date;
+  //   accounts: {
+  //     provider: string | null;
+  //   }[];
+  // };
 }
 
 export function AccountForm({ user }: AccountFormProps) {
