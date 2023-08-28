@@ -1,6 +1,9 @@
 import { getAuthSession } from "@/lib/auth";
 import { db } from "@/lib/db";
-import { AccountProfileValidator } from "@/lib/validators/account";
+import {
+  AccountDeleteValidator,
+  AccountProfileValidator,
+} from "@/lib/validators/account";
 import { Prisma, PrismaClient } from "@prisma/client";
 import { z } from "zod";
 const prisma = new PrismaClient();
@@ -65,8 +68,10 @@ export async function DELETE(req: Request) {
       return new Response("Unauthorized", { status: 401 });
     }
 
+    // console.log(req);
+
     const body = await req.json();
-    const { id } = AccountProfileValidator.parse(body);
+    const { id } = AccountDeleteValidator.parse(body);
 
     const deletedAccount = await prisma.user.delete({
       where: {

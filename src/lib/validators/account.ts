@@ -20,6 +20,14 @@ export const AccountProfileValidator = z.object({
     .optional(),
 });
 
+export const AccountDeleteValidator = z.object({
+  id: z.string(),
+});
+
 export type CreateAccountProfilePayload = z.infer<
   typeof AccountProfileValidator
+>;
+
+export type DeleteAccountProfilePayload = z.infer<
+  typeof AccountDeleteValidator
 >;

@@ -1,10 +1,8 @@
 "use client";
 
-import { zodResolver } from "@hookform/resolvers/zod";
 import { ExclamationTriangleIcon } from "@radix-ui/react-icons";
-import { useForm } from "react-hook-form";
-import * as z from "zod";
 
+import { Icons } from "@/components/Icons";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { Button } from "@/components/ui/button";
 import {
@@ -20,6 +18,9 @@ import { Input } from "@/components/ui/input";
 import { useToast } from "@/hooks/use-toast";
 import { UserType } from "@prisma/client";
 import { JsonValue } from "@prisma/client/runtime/library";
+import { useMutation } from "@tanstack/react-query";
+import axios from "axios";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 
 // const dangerFormSchema = z.object({
@@ -48,8 +49,40 @@ interface DangerFormProps {
 }
 
 export function DangerForm({ user }: DangerFormProps) {
-  const [inputDeleteAccount, setInputDeleteAccount] = useState("");
   const { toast } = useToast();
+  const router = useRouter();
+
+  const [inputDeleteAccount, setInputDeleteAccount] = useState("");
+
+  const { mutate: deleteAccount, isLoading } = useMutation({
+    mutationFn: async () => {
+      const config = {
+        data: {
+          id: user.id,
+        },
+      };
+
+      const { data } = await axios.delete(`/api/account/`, config);
+      return data as string;
+    },
+    onError: (err: Error) => {
+      // error handling
+      toast({
+        title: "Could not delete account.",
+        description: err.message,
+        variant: "destructive",
+      });
+    },
+    onSuccess: (data) => {
+      toast({
+        title: "Account deleted",
+        description: data,
+      });
+
+      router.push(`/sign-in`);
+      router.refresh();
+    },
+  });
 
   // // This can come from your database or API.
   // const defaultValues: Partial<DangerFormValues> = {
@@ -73,8 +106,8 @@ export function DangerForm({ user }: DangerFormProps) {
   //   });
   // }
 
-  function onSubmit() {
-    console.log("agag");
+  async function onSubmit() {
+    deleteAccount();
   }
 
   function isInputUsernameMatch() {
@@ -120,6 +153,7 @@ export function DangerForm({ user }: DangerFormProps) {
                 value={inputDeleteAccount}
                 onChange={(e) => setInputDeleteAccount(e.target.value)}
                 className="col-span-3"
+                disabled={isLoading}
               />
             </div>
           </div>
@@ -130,72 +164,15 @@ export function DangerForm({ user }: DangerFormProps) {
               disabled={!isInputUsernameMatch()}
               onClick={onSubmit}
             >
-              Delete
+              {isLoading ? (
+                <Icons.spinner className="w-4 h-4 animate-spin" />
+              ) : (
+                `Delete`
+              )}
             </Button>
           </DialogFooter>
         </DialogContent>
       </Dialog>
     </div>
-    // <Form {...form}>
-    //   <form
-    //     onSubmit={form.handleSubmit(onSubmit)}
-    //     className="border border-destructive rounded-md p-8 space-y-8"
-    //   >
-    //     <FormField
-    //       control={form.control}
-    //       name="id"
-    //       render={({ field }) => (
-    //         <FormItem>
-    //           <FormLabel>Delete Personal Account</FormLabel>
-    //           <FormDescription>
-    //             <b>Permanently</b> remove your Personal Account and all of its
-    //             contents from the Isked platform.
-    //           </FormDescription>
-    //           <FormMessage />
-    //         </FormItem>
-
-    //       )}
-    //     />
-
-    // <Dialog>
-    //   <DialogTrigger asChild>
-    //     <div className="flex justify-end">
-    //       <Button variant={"destructive"} className="w-1/4">
-    //         Delete account
-    //       </Button>
-    //     </div>
-    //   </DialogTrigger>
-    //   <DialogContent className="sm:max-w-[425px]">
-    //     <DialogHeader>
-    //       <DialogTitle>Delete Personal Account</DialogTitle>
-    //       <DialogDescription>
-    //         This will <b>permanently</b> delete your account, including all
-    //         data and access.
-    //       </DialogDescription>
-    //       <DialogDescription>
-    //         This action is not reversible. Please proceed with caution.
-    //       </DialogDescription>
-    //     </DialogHeader>
-    //     <div className="grid gap-4 py-4">
-    //       <div className="grid grid-cols-4 items-center gap-4">
-    //         <Label htmlFor="name" className="text-right">
-    //           Name
-    //         </Label>
-    //         <Input id="name" value="Pedro Duarte" className="col-span-3" {...field}/>
-    //       </div>
-    //       <div className="grid grid-cols-4 items-center gap-4">
-    //         <Label htmlFor="username" className="text-right">
-    //           Username
-    //         </Label>
-    //         <Input id="username" value="@peduarte" className="col-span-3" />
-    //       </div>
-    //     </div>
-    //     <DialogFooter>
-    //       <Button type="submit">Save changes</Button>
-    //     </DialogFooter>
-    //   </DialogContent>
-    // </Dialog>
-    //   </form>
-    // </Form>
   );
 }
