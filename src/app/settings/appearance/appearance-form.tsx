@@ -158,7 +158,19 @@ export function AppearanceForm() {
           )}
         />
 
-        <Button type="submit">Update preferences</Button>
+        <div className="flex justify-end">
+          <Button
+            // disabled={isLoading}
+            type="submit"
+            className="w-full md:w-1/4"
+          >
+            {/* {isLoading ? ( */}
+            {/* <Icons.spinner className="w-4 h-4 animate-spin" /> */}
+            {/* ) : ( */}
+            `Update preferences`
+            {/* )} */}
+          </Button>
+        </div>
       </form>
     </Form>
   );
