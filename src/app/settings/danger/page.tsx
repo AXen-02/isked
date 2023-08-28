@@ -41,7 +41,7 @@ export default async function SettingsDangerPage() {
         <h3 className="text-lg font-medium">Danger Zone</h3>
         <p className="text-sm text-muted-foreground">
           Exercise caution: actions in this tab can lead to irreversible changes
-          or risks. Only proceed if you're fully aware of the consequences.
+          or risks. Only proceed if you&apos;re fully aware of the consequences.
         </p>
       </div>
       <Separator />
