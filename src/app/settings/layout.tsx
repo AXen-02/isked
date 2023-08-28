@@ -24,6 +24,10 @@ const sidebarNavItems = [
     title: "Appearance",
     href: "/settings/appearance",
   },
+  {
+    title: "Danger",
+    href: "/settings/danger",
+  },
 ];
 
 interface SettingsLayoutProps {

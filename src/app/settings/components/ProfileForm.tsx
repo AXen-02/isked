@@ -115,10 +115,15 @@ export function ProfileForm({ user }: ProfileFormProps) {
         variant: "destructive",
       });
     },
-    // onSuccess: (data) => {
-    //   // dynamic value of the created community
-    //   router.push(`r/${data}`);
-    // },
+    onSuccess: (data) => {
+      // dynamic value of the created community
+      // router.push(`r/${data}`);
+
+      toast({
+        title: "Account update",
+        description: data,
+      });
+    },
   });
 
   // This can come from your database or API.
@@ -147,21 +152,6 @@ export function ProfileForm({ user }: ProfileFormProps) {
     setEnteredUrls(Object(formData.urls));
 
     updateAccount();
-
-    // toast({
-    //   title: "You submitted the following values:",
-    //   description: (
-    //     <>
-    //       Updated user.
-    //       <pre className="mt-2 w-[340px] rounded-md bg-slate-950 p-4">
-    //         <code className="text-white">
-    //           {JSON.stringify(formData, null, 2)}
-    //         </code>
-    //       </pre>
-    //       {/* <pre>{JSON.stringify(user, undefined, 2)}</pre> */}
-    //     </>
-    //   ),
-    // });
   }
 
   return (
@@ -238,13 +228,15 @@ export function ProfileForm({ user }: ProfileFormProps) {
             Add URL
           </Button>
         </div>
-        <Button disabled={isLoading} type="submit" className="w-full">
-          {isLoading ? (
-            <Icons.spinner className="w-4 h-4 animate-spin" />
-          ) : (
-            `Update profile`
-          )}
-        </Button>
+        <div className="flex justify-end">
+          <Button disabled={isLoading} type="submit" className="w-1/4">
+            {isLoading ? (
+              <Icons.spinner className="w-4 h-4 animate-spin" />
+            ) : (
+              `Update profile`
+            )}
+          </Button>
+        </div>
       </form>
     </Form>
   );
