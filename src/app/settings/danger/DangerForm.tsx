@@ -130,7 +130,7 @@ export function DangerForm({ user }: DangerFormProps) {
       <Dialog>
         <DialogTrigger asChild>
           <div className="flex justify-end">
-            <Button variant={"destructive"} className="w-1/2">
+            <Button variant={"destructive"} className="w-full md:w-1/4">
               Delete account
             </Button>
           </div>
@@ -161,7 +161,7 @@ export function DangerForm({ user }: DangerFormProps) {
             <Button
               variant={"destructive"}
               type="submit"
-              disabled={!isInputUsernameMatch()}
+              disabled={!isInputUsernameMatch() || isLoading}
               onClick={onSubmit}
             >
               {isLoading ? (

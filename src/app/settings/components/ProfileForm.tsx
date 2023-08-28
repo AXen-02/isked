@@ -229,7 +229,11 @@ export function ProfileForm({ user }: ProfileFormProps) {
           </Button>
         </div>
         <div className="flex justify-end">
-          <Button disabled={isLoading} type="submit" className="w-1/4">
+          <Button
+            disabled={isLoading}
+            type="submit"
+            className="w-full md:w-1/4"
+          >
             {isLoading ? (
               <Icons.spinner className="w-4 h-4 animate-spin" />
             ) : (
