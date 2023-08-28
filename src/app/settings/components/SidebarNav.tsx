@@ -12,7 +12,7 @@ interface SidebarNavProps extends React.HTMLAttributes<HTMLElement> {
   items: {
     href: string;
     title: string;
-    icon: keyof typeof Icons;
+    icon: ReactNode;
   }[];
 }
 
