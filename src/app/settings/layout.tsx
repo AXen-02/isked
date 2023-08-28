@@ -5,6 +5,7 @@ import { getAuthSession } from "@/lib/auth";
 import { db } from "@/lib/db";
 import { notFound } from "next/navigation";
 import { SidebarNav } from "./components/SidebarNav";
+import { Icons } from "@/components/Icons";
 
 export const metadata: Metadata = {
   title: "Settings",
@@ -15,18 +16,22 @@ const sidebarNavItems = [
   {
     title: "Profile",
     href: "/settings",
+    icon: <Icons.user className="w-4 h-4" />,
   },
   {
     title: "Account",
     href: "/settings/account",
+    icon: <Icons.settings className="w-4 h-4" />,
   },
   {
     title: "Appearance",
     href: "/settings/appearance",
+    icon: <Icons.appearance className="w-4 h-4" />,
   },
   {
     title: "Danger",
     href: "/settings/danger",
+    icon: <Icons.danger className="w-4 h-4" />,
   },
 ];
 
