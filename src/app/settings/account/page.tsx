@@ -43,7 +43,7 @@ export default async function SettingsAccountPage() {
           Update your account settings. Choose an account to modify.
         </p>
       </div>
-      <TeamSwitcher />
+      {/* <TeamSwitcher /> */}
       <Separator />
       <AccountForm user={user} />
     </div>

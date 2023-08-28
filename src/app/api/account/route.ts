@@ -4,9 +4,7 @@ import {
   AccountDeleteValidator,
   AccountProfileValidator,
 } from "@/lib/validators/account";
-import { Prisma, PrismaClient } from "@prisma/client";
 import { z } from "zod";
-const prisma = new PrismaClient();
 
 // export async function GET(req: Request) {
 //   try {
@@ -37,7 +35,7 @@ export async function PUT(req: Request) {
     const body = await req.json();
     const { id, name, bio, urls } = AccountProfileValidator.parse(body);
 
-    const updatedAccount = await prisma.user.update({
+    const updatedAccount = await db.user.update({
       where: {
         id,
       },
@@ -73,7 +71,7 @@ export async function DELETE(req: Request) {
     const body = await req.json();
     const { id } = AccountDeleteValidator.parse(body);
 
-    const deletedAccount = await prisma.user.delete({
+    const deletedAccount = await db.user.delete({
       where: {
         id,
       },

@@ -112,28 +112,6 @@ export function AccountForm({ user }: AccountFormProps) {
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
         <FormField
           control={form.control}
-          name="username"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Username</FormLabel>
-              <div className="relative">
-                <p className="absolute text-md px-3 w-auto inset-y-0 grid place-items-center text-muted-foreground bg-muted rounded-l-md">
-                  isked.vercel.app/
-                </p>
-                <FormControl className="pl-40">
-                  <Input placeholder="shadcn" {...field} />
-                </FormControl>
-              </div>
-              <FormDescription>
-                This is your public display name. It will be used as your URL
-                namespace within Isked.
-              </FormDescription>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-        <FormField
-          control={form.control}
           name="email"
           render={({ field }) => (
             <FormItem>
@@ -151,6 +129,28 @@ export function AccountForm({ user }: AccountFormProps) {
               <FormDescription>
                 Your account is connected via {user.accounts[0].provider}{" "}
                 provider.
+              </FormDescription>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        <FormField
+          control={form.control}
+          name="username"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Username</FormLabel>
+              <div className="relative">
+                <p className="absolute text-md px-3 w-auto inset-y-0 grid place-items-center text-muted-foreground bg-muted rounded-l-md">
+                  isked.vercel.app/
+                </p>
+                <FormControl className="pl-40">
+                  <Input placeholder="shadcn" {...field} />
+                </FormControl>
+              </div>
+              <FormDescription>
+                This is your public display name. It will be used as your URL
+                namespace within Isked.
               </FormDescription>
               <FormMessage />
             </FormItem>

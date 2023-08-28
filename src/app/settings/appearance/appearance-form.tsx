@@ -18,46 +18,49 @@ import {
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { useToast } from "@/hooks/use-toast";
 import { cn } from "@/lib/utils";
+import { useTheme } from "next-themes";
 
 const appearanceFormSchema = z.object({
   theme: z.enum(["light", "dark"], {
     required_error: "Please select a theme.",
   }),
-  font: z.enum(["inter", "manrope", "system"], {
-    invalid_type_error: "Select a font",
-    required_error: "Please select a font.",
-  }),
+  // font: z.enum(["inter", "manrope", "system"], {
+  //   invalid_type_error: "Select a font",
+  //   required_error: "Please select a font.",
+  // }),
 });
 
 type AppearanceFormValues = z.infer<typeof appearanceFormSchema>;
 
-// This can come from your database or API.
-const defaultValues: Partial<AppearanceFormValues> = {
-  theme: "light",
-};
-
 export function AppearanceForm() {
   const { toast } = useToast();
+  const { setTheme, systemTheme } = useTheme();
+
+  // This can come from your database or API.
+  const defaultValues: Partial<AppearanceFormValues> = {
+    // TODO: set to systemTheme. use useEffect
+    theme: "light",
+  };
+
   const form = useForm<AppearanceFormValues>({
     resolver: zodResolver(appearanceFormSchema),
     defaultValues,
   });
 
   function onSubmit(data: AppearanceFormValues) {
+    setTheme(data.theme);
+
     toast({
-      title: "You submitted the following values:",
-      description: (
-        <pre className="mt-2 w-[340px] rounded-md bg-slate-950 p-4">
-          <code className="text-white">{JSON.stringify(data, null, 2)}</code>
-        </pre>
-      ),
+      title: "Appearance Updated",
+      description:
+        "Your chosen appearance settings have been successfully applied. Enjoy the refreshed look!",
     });
   }
 
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
-        <FormField
+        {/* <FormField
           control={form.control}
           name="font"
           render={({ field }) => (
@@ -85,7 +88,7 @@ export function AppearanceForm() {
               <FormMessage />
             </FormItem>
           )}
-        />
+        /> */}
         <FormField
           control={form.control}
           name="theme"
@@ -167,7 +170,7 @@ export function AppearanceForm() {
             {/* {isLoading ? ( */}
             {/* <Icons.spinner className="w-4 h-4 animate-spin" /> */}
             {/* ) : ( */}
-            `Update preferences`
+            Update preferences
             {/* )} */}
           </Button>
         </div>
