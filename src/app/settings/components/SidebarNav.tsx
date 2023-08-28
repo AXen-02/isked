@@ -22,7 +22,7 @@ export function SidebarNav({ className, items, ...props }: SidebarNavProps) {
   return (
     <nav
       className={cn(
-        "flex space-x-2 mx-4 lg:flex-col lg:space-x-0 lg:space-y-1 justify-end",
+        "flex space-x-2 mx-4 lg:flex-col lg:space-x-0 lg:space-y-1 justify-center",
         className
       )}
       {...props}
