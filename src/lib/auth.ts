@@ -74,6 +74,7 @@ export const authOptions: NextAuthOptions = {
             username: randUName,
             bio: defaultBio,
             roles: [UserType.STUDENT],
+            // roles: [UserType.DEVELOPER, UserType.ADMINISTRATOR, UserType.SCHEDULER, UserType.INSTRUCTOR],
             urls: defaultUrls,
           },
         });
