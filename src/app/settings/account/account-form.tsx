@@ -90,7 +90,7 @@ export function AccountForm({ user }: AccountFormProps) {
         if (err.response?.status === 409) {
           return toast({
             title: "Username already exists.",
-            description: "Please choose a different subreddit name.",
+            description: "Please choose a different username.",
             variant: "destructive",
           });
         }
