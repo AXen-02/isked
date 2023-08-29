@@ -36,7 +36,7 @@ export async function SiteHeader() {
               </div>
             </Link> */}
             <ModeToggle />
-            {/* TODO: INSERT ACCOUNT AVATAR OR LOGIN BUTTON HERE */}
+            
             {session?.user ? (
               <UserAccountNav user={session.user} />
             ) : (

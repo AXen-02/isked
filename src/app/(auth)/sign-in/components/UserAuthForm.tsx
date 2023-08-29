@@ -129,7 +129,6 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
         </div>
       </div>
       <div className="grid grid-cols-2 gap-6">
-        {/* TODO: add google auth */}
         <Button
           variant="outline"
           type="button"

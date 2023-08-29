@@ -10,17 +10,20 @@ import { z } from "zod";
 
 // export async function GET(req: Request) {
 //   try {
-//     const session = await getAuthSession();
-//     if (!session?.user) {
-//       return new Response("Unauthorized", { status: 401 });
-//     }
+//     const body = await req.json();
+//     const { id } = body;
 
-//     const user = await db.user.findFirst({
+//     // if (user) {
+//     //   return new Response("Unauthorized", { status: 401 });
+//     // }
+
+//     const userDB = await db.user.findFirst({
 //       where: {
-//         id: session?.user.id,
+//         id: id,
 //       },
 //     });
-//     return new Response(user?.email);
+
+//     return new Response(userDB?.email);
 //   } catch (error) {
 //     return new Response("error", { status: 500 });
 //   }

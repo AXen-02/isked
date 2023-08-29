@@ -17,17 +17,6 @@ const page: FC<pageProps> = ({}) => {
   return (
     <>
       <div className="container relative grid h-[85vh] flex-col items-center justify-center lg:max-w-none lg:grid-cols-2 lg:px-0">
-        {/* TODO: To be removed */}
-        {/*
-         <Link
-          href="/sign-up"
-          className={cn(
-            buttonVariants({ variant: "ghost" }),
-            "absolute right-4 top-4 md:right-8 md:top-8"
-          )}
-        >
-          Register
-        </Link> */}
         <div className="relative border hidden h-full flex-col text-slate-800 p-10 lg:flex">
           <div className="absolute inset-0">
             <div className="bg-white w-full h-full">
