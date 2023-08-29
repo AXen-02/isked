@@ -150,9 +150,9 @@ export const Icons = {
       viewBox="0 0 24 24"
       fill="none"
       stroke="currentColor"
-      stroke-width="2"
-      stroke-linecap="round"
-      stroke-linejoin="round"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
       className="lucide lucide-user"
       {...props}
     >
@@ -168,9 +168,9 @@ export const Icons = {
       viewBox="0 0 24 24"
       fill="none"
       stroke="currentColor"
-      stroke-width="2"
-      stroke-linecap="round"
-      stroke-linejoin="round"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
       className="lucide lucide-user-cog"
       {...props}
     >
@@ -195,9 +195,9 @@ export const Icons = {
       viewBox="0 0 24 24"
       fill="none"
       stroke="currentColor"
-      stroke-width="2"
-      stroke-linecap="round"
-      stroke-linejoin="round"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
       className="lucide lucide-palette"
       {...props}
     >
@@ -216,9 +216,9 @@ export const Icons = {
       viewBox="0 0 24 24"
       fill="none"
       stroke="currentColor"
-      stroke-width="2"
-      stroke-linecap="round"
-      stroke-linejoin="round"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
       className="lucide lucide-alert-octagon"
       {...props}
     >
@@ -296,8 +296,8 @@ export const Icons = {
       <path
         d="M0 236L18.8 228.8C37.7 221.7 75.3 207.3 112.8 217.7C150.3 228 187.7 263 225.2 285.8C262.7 308.7 300.3 319.3 337.8 307.3C375.3 295.3 412.7 260.7 450.2 231.5C487.7 202.3 525.3 178.7 562.8 163.5C600.3 148.3 637.7 141.7 656.3 138.3L675 135L675 0L656.3 0C637.7 0 600.3 0 562.8 0C525.3 0 487.7 0 450.2 0C412.7 0 375.3 0 337.8 0C300.3 0 262.7 0 225.2 0C187.7 0 150.3 0 112.8 0C75.3 0 37.7 0 18.8 0L0 0Z"
         fill="#1d2332"
-        stroke-linecap="round"
-        stroke-linejoin="miter"
+        strokeLinecap="round"
+        strokeLinejoin="miter"
       ></path>
     </svg>
   ),
@@ -312,7 +312,7 @@ export const Icons = {
       version="1.1"
       {...props}
     >
-      <g stroke-width="1" stroke-linejoin="bevel">
+      <g strokeWidth="1" strokeLinejoin="bevel">
         <path
           d="M309 447L285 513L360 472Z"
           fill="#ffffff"
