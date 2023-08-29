@@ -21,23 +21,33 @@ import { useToast } from "@/hooks/use-toast";
 import { cn } from "@/lib/utils";
 import { UserType } from "@prisma/client";
 import { JsonValue } from "@prisma/client/runtime/library";
-import { CreateAccountProfilePayload } from "@/lib/validators/account";
+import { CreateProfilePayload } from "@/lib/validators/account";
 
 import { useMutation } from "@tanstack/react-query";
 import { useState } from "react";
 import { useCustomToast } from "@/hooks/use-custom-toast";
 import { Icons } from "@/components/Icons";
+import { useRouter } from "next/navigation";
+import { Payload } from "@/lib/validators/payloads";
+import { Cross2Icon, TrashIcon } from "@radix-ui/react-icons";
 
 const profileFormSchema = z.object({
   name: z
     .string()
-    .min(2, {
-      message: "Name must be at least 2 characters.",
+    .min(3, {
+      message: "Name must be at least 3 characters.",
     })
     .max(30, {
       message: "Name must not be longer than 30 characters.",
     }),
-  bio: z.string().max(160).min(4),
+  bio: z
+    .string()
+    .min(4, {
+      message: "Bio must be at least 4 characters.",
+    })
+    .max(160, {
+      message: "Bio must not be longer than 160 characters.",
+    }),
   urls: z
     .array(
       z.object({
@@ -68,14 +78,16 @@ interface ProfileFormProps {
 export function ProfileForm({ user }: ProfileFormProps) {
   const { toast } = useToast();
   const { loginToast } = useCustomToast();
+  const router = useRouter();
 
   const [enteredName, setEnteredName] = useState("");
   const [enteredBio, setEnteredBio] = useState("");
   const [enteredUrls, setEnteredUrls] = useState();
 
-  const { mutate: updateAccount, isLoading } = useMutation({
+  const { mutate: updateProfile, isLoading } = useMutation({
     mutationFn: async () => {
-      const payload: CreateAccountProfilePayload = {
+      const payload: CreateProfilePayload = {
+        payloadName: Payload.UPDATEPROFILE,
         id: user.id,
         name: enteredName,
         bio: enteredBio,
@@ -85,33 +97,17 @@ export function ProfileForm({ user }: ProfileFormProps) {
       const { data } = await axios.put("/api/account", payload);
       return data as string;
     },
-    onError: (err) => {
+    onError: (err: Error) => {
       // error handling
       if (err instanceof AxiosError) {
         if (err.response?.status === 401) {
           return loginToast();
         }
-
-        if (err.response?.status === 409) {
-          return toast({
-            title: "Subreddit already exists.",
-            description: "Please choose a different subreddit name.",
-            variant: "destructive",
-          });
-        }
-
-        if (err.response?.status === 422) {
-          return toast({
-            title: "Invalid subreddit name",
-            description: "Please choose a name between 3 and 21 characters.",
-            variant: "destructive",
-          });
-        }
       }
 
       toast({
         title: "There was an error.",
-        description: "Could not create subreddit.",
+        description: err.message,
         variant: "destructive",
       });
     },
@@ -119,6 +115,7 @@ export function ProfileForm({ user }: ProfileFormProps) {
       // dynamic value of the created community
       // router.push(`r/${data}`);
 
+      router.refresh();
       toast({
         title: "Account update",
         description: data,
@@ -139,7 +136,7 @@ export function ProfileForm({ user }: ProfileFormProps) {
     mode: "onChange",
   });
 
-  const { fields, append } = useFieldArray({
+  const { fields, append, remove } = useFieldArray({
     name: "urls",
     control: form.control,
   });
@@ -151,7 +148,7 @@ export function ProfileForm({ user }: ProfileFormProps) {
     setEnteredBio(formData.bio);
     setEnteredUrls(Object(formData.urls));
 
-    updateAccount();
+    updateProfile();
   }
 
   return (
@@ -211,7 +208,18 @@ export function ProfileForm({ user }: ProfileFormProps) {
                     Add links to your website, blog, or social media profiles.
                   </FormDescription>
                   <FormControl>
-                    <Input {...field} />
+                    <div className="flex space-x-2">
+                      <Input {...field} />
+                      <Button
+                        type={"button"}
+                        variant={"outline"}
+                        onClick={() => {
+                          remove([index]);
+                        }}
+                      >
+                        <Cross2Icon className="w-4 h-4" />
+                      </Button>
+                    </div>
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -223,7 +231,7 @@ export function ProfileForm({ user }: ProfileFormProps) {
             variant="outline"
             size="sm"
             className="mt-2"
-            onClick={() => append({ value: "" })}
+            onClick={() => append({ value: "https://" })}
           >
             Add URL
           </Button>

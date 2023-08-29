@@ -1,9 +1,11 @@
 import { getAuthSession } from "@/lib/auth";
 import { db } from "@/lib/db";
 import {
-  AccountDeleteValidator,
-  AccountProfileValidator,
+  DeleteAccountValidator,
+  UpdateAccountValidator,
+  UpdateProfileValidator,
 } from "@/lib/validators/account";
+import { Payload } from "@/lib/validators/payloads";
 import { z } from "zod";
 
 // export async function GET(req: Request) {
@@ -33,22 +35,57 @@ export async function PUT(req: Request) {
     }
 
     const body = await req.json();
-    const { id, name, bio, urls } = AccountProfileValidator.parse(body);
+    const { payloadName } = body; // GETS THE PAYLOAD NAME
 
-    const updatedAccount = await db.user.update({
-      where: {
-        id,
-      },
-      data: {
-        name: name,
-        bio: bio,
-        urls: urls,
-      },
-    });
+    if (payloadName === Payload.UPDATEPROFILE) {
+      const { id, name, bio, urls } = UpdateProfileValidator.parse(body);
 
-    return new Response(
-      `Your account information has been successfully updated. Your changes have been saved and will reflect across your profile.`
-    );
+      const updatedProfile = await db.user.update({
+        where: {
+          id,
+        },
+        data: {
+          name: name,
+          bio: bio,
+          urls: urls,
+        },
+      });
+
+      return new Response(
+        `Your profile details have been updated successfully.`
+      );
+    }
+
+    if (payloadName === Payload.UPDATEACCOUNT) {
+      const { id, username } = UpdateAccountValidator.parse(body);
+
+      // Check if there's a username that matches the one in the database.
+      const isUserExists = await db.user.findUnique({
+        where: {
+          username: username,
+        },
+      });
+
+      if (isUserExists) {
+        return new Response(
+          `The chosen username is already in use. Please select a different one.`,
+          { status: 409 }
+        );
+      }
+
+      const updatedAccount = await db.user.update({
+        where: {
+          id,
+        },
+        data: {
+          username: username,
+        },
+      });
+
+      return new Response(
+        `Your account details have been updated successfully.`
+      );
+    }
   } catch (error) {
     if (error instanceof z.ZodError) {
       return new Response(error.message, { status: 422 });
@@ -69,7 +106,7 @@ export async function DELETE(req: Request) {
     // console.log(req);
 
     const body = await req.json();
-    const { id } = AccountDeleteValidator.parse(body);
+    const { id } = DeleteAccountValidator.parse(body);
 
     const deletedAccount = await db.user.delete({
       where: {
