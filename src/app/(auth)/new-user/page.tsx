@@ -26,11 +26,12 @@ const page: FC<pageProps> = ({}) => {
           your profile and start exploring. We&apos;re here to help if you need
           anything.
         </PageHeaderDescription>
-        <div>
+        <PageHeaderDescription>
           {/* TODO: Create a slider. swiper/splider */}
           <SwiperSample />
-        </div>
-        <div className="flex w-full items-center space-x-4 pb-8 pt-4 md:pb-10">
+        </PageHeaderDescription>
+
+        <div className="flex w-full items-center space-x-4 pb-8 md:pb-10">
           <Link href="/" className={cn(buttonVariants())}>
             Let&apos;s Get Started
           </Link>
