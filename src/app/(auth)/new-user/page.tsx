@@ -31,11 +31,11 @@ const page: FC<pageProps> = ({}) => {
           <SwiperSample />
         </PageHeaderDescription>
 
-        <div className="flex w-full items-center space-x-4 pb-8 md:pb-10">
+        {/* <div className="flex w-full items-center space-x-4 pb-8 md:pb-10">
           <Link href="/" className={cn(buttonVariants())}>
             Let&apos;s Get Started
           </Link>
-        </div>
+        </div> */}
       </PageHeader>
     </div>
   );
