@@ -28,7 +28,7 @@ const SwiperSample: FC<SwiperSampleProps> = ({}) => {
         }}
         navigation={true}
         a11y={{ enabled: true }} // for screen readers
-        className="border rounded-md w-[65vw] md:w-[80vw] h-96"
+        className="border rounded-md w-[65vw] md:w-[80vw] h-96 "
       >
         <SwiperSlide className="text-center items-center flex">
           Slide 1
