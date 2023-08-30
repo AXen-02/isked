@@ -19,11 +19,11 @@ const page: FC<pageProps> = ({}) => {
         <PageHeaderHeading>Welcome to Isked! 🎉</PageHeaderHeading>
         <PageHeaderDescription></PageHeaderDescription>
         <PageHeaderDescription>
-          We're excited to have you as part of our Isked community.
+          We&apos;re excited to have you as part of our Isked community.
         </PageHeaderDescription>
         <PageHeaderDescription>
           To get started, please take a moment to set up your account. Customize
-          your profile and start exploring. We're here to help if you need
+          your profile and start exploring. We&apos;re here to help if you need
           anything.
         </PageHeaderDescription>
         <div>
