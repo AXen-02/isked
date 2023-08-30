@@ -59,7 +59,7 @@ const SwiperSample: FC<SwiperSampleProps> = ({}) => {
         className="border rounded-md w-[65vw] md:w-auto"
       >
         <SwiperSlide className="text-center justify-center items-center">
-          <Card className="">
+          <Card className=" ">
             <CardHeader>
               <CardTitle>Card Title</CardTitle>
               <CardDescription>Card Description</CardDescription>
