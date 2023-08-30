@@ -36,7 +36,7 @@ const page: FC<pageProps> = ({}) => {
         </PageHeaderDescription>
         <div className="flex w-full items-center space-x-4 pb-8 pt-4 md:pb-10">
           <Link href="/" className={cn(buttonVariants())}>
-            Let's Get Started
+            Let&apos;s Get Started
           </Link>
         </div>
       </PageHeader>
