@@ -5,10 +5,9 @@ import {
 } from "@/components/PageHeader";
 import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-import { Separator } from "@radix-ui/react-dropdown-menu";
-import { ArrowRightIcon } from "@radix-ui/react-icons";
 import Link from "next/link";
 import { FC } from "react";
+import SwiperSample from "./components/SwiperSample";
 
 interface pageProps {}
 
@@ -17,23 +16,20 @@ const page: FC<pageProps> = ({}) => {
     // TODO: Update the UI
     <div className="container relative">
       <PageHeader className="pb-8">
-        <Link
-          href="/docs/changelog"
-          className="inline-flex items-center rounded-lg bg-muted px-3 py-1 text-sm font-medium"
-        >
-          <span className="sm:hidden">Welcome to Isked!</span>
-          <span className="hidden sm:inline">
-            Introducing Isked, your class scheduling assistant.
-          </span>
-          <ArrowRightIcon className="ml-1 h-4 w-4" />
-        </Link>
-        <PageHeaderHeading>
-          Streamline your class scheduling with Isked.
-        </PageHeaderHeading>
+        <PageHeaderHeading>Welcome to Isked! 🎉</PageHeaderHeading>
+        <PageHeaderDescription></PageHeaderDescription>
         <PageHeaderDescription>
-          Easily manage courses, schedules, and collaborations. Say hello to
-          effortless organization and an enriched academic experience.
+          We're excited to have you as part of our Isked community.
         </PageHeaderDescription>
+        <PageHeaderDescription>
+          To get started, please take a moment to set up your account. Customize
+          your profile and start exploring. We're here to help if you need
+          anything.
+        </PageHeaderDescription>
+        <div>
+          {/* TODO: Create a slider. swiper/splider */}
+          <SwiperSample />
+        </div>
         <div className="flex w-full items-center space-x-4 pb-8 pt-4 md:pb-10">
           <Link href="/" className={cn(buttonVariants())}>
             Let&apos;s Get Started
