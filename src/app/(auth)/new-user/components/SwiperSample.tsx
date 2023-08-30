@@ -27,7 +27,7 @@ const SwiperSample: FC<SwiperSampleProps> = ({}) => {
         }}
         navigation={true}
         modules={[Pagination, Navigation]}
-        className="border rounded-md w-96 h-96"
+        className="border rounded-md w-96 h-96 "
       >
         <SwiperSlide>Slide 1</SwiperSlide>
         <SwiperSlide>Slide 2</SwiperSlide>
