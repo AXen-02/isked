@@ -23,7 +23,7 @@ export const metadata: Metadata = {
   authors: [
     {
       name: "axen",
-      url: "https://imapp-web.vercel.app", // change this into my portfolio site
+      url: "https://jamercado.vercel.app", // change this into my portfolio site
     },
   ],
   creator: "axen",
@@ -74,9 +74,9 @@ export default function RootLayout({
           <div className="relative flex min-h-screen flex-col">
             <SiteHeader />
             <div className="flex-1">
-              <div className="container relative">
+              <div className="md:container relative">
                 <section>
-                  <div className="my-6 overflow-hidden rounded-[0.5rem] border bg-background shadow">
+                  <div className="my-6 overflow-hidden rounded-[0.5rem] bg-background md:border md:shadow">
                     {children}
                   </div>
                 </section>
