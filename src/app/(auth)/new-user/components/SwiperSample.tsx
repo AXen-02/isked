@@ -37,13 +37,15 @@ import {
 } from "@/components/ui/select";
 import { Badge } from "@/components/ui/badge";
 
-interface SwiperSampleProps {}
+interface SwiperSampleProps {
+  className?: String;
+}
 
-const SwiperSample: FC<SwiperSampleProps> = ({}) => {
+const SwiperSample: FC<SwiperSampleProps> = ({ className }) => {
   const [onReachEnd, setOnReachEnd] = useState(false);
 
   return (
-    <div className="space-y-4">
+    <div className={cn(className, "space-y-4")}>
       <Swiper
         modules={[Pagination, Navigation, A11y]}
         pagination={{
@@ -57,7 +59,7 @@ const SwiperSample: FC<SwiperSampleProps> = ({}) => {
           const isOnLastSlide = swiper.activeIndex === 3;
           setOnReachEnd(isOnLastSlide);
         }}
-        className="border rounded-xl w-[65vw] md:w-auto"
+        className="border rounded-xl w-full"
       >
         {/* Slide 1 */}
         <SwiperSlide className="text-center">

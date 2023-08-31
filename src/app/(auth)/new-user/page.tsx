@@ -28,7 +28,7 @@ const page: FC<pageProps> = ({}) => {
         </PageHeaderDescription>
         <PageHeaderDescription>
           {/* TODO: Create a slider. swiper/splider */}
-          <SwiperSample />
+          <SwiperSample className="w-[70vw] lg:w-auto" />
         </PageHeaderDescription>
 
         {/* <div className="flex w-full items-center space-x-4 pb-8 md:pb-10">
