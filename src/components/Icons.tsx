@@ -1,6 +1,15 @@
 type IconProps = React.HTMLAttributes<SVGElement>;
 
 import { AiFillGoogleCircle } from "react-icons/ai";
+import {
+  PiChalkboardTeacher,
+  PiDevToLogo,
+  PiGogglesBold,
+  PiKey,
+  PiStudent,
+  PiUserGear,
+} from "react-icons/pi";
+import { GrUserAdmin } from "react-icons/gr";
 
 export const Icons = {
   // svg
@@ -1235,5 +1244,17 @@ export const Icons = {
   // react-icon
   google2: (props: React.HTMLAttributes<SVGElement>) => {
     return <AiFillGoogleCircle {...props} />;
+  },
+  admin: (props: React.HTMLAttributes<SVGElement>) => {
+    return <PiKey {...props} />;
+  },
+  instructor: (props: React.HTMLAttributes<SVGElement>) => {
+    return <PiChalkboardTeacher {...props} />;
+  },
+  student: (props: React.HTMLAttributes<SVGElement>) => {
+    return <PiStudent {...props} />;
+  },
+  dev: (props: React.HTMLAttributes<SVGElement>) => {
+    return <PiDevToLogo {...props} />;
   },
 };
