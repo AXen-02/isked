@@ -219,7 +219,6 @@ const SwiperSample: FC<SwiperSampleProps> = ({ className }) => {
                     </Command>
                   </PopoverContent>
                 </Popover> */}
-                <CommandDialogDemo />
               </div>
               {/* <div className="grid grid-cols-3 gap-4">
                 <div className="grid gap-2">
