@@ -56,6 +56,7 @@ import {
   CommandList,
 } from "@/components/ui/command";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import CommandDialogDemo from "./CommandDialogDemo";
 
 interface SwiperSampleProps {
   className?: String;
@@ -176,10 +177,10 @@ const SwiperSample: FC<SwiperSampleProps> = ({ className }) => {
               {/* SCHOOL */}
               <div className="grid gap-2">
                 <Label htmlFor="name">Select your school</Label>
-                <Popover>
+                {/* <Popover>
                   <PopoverTrigger asChild>
                     <Button variant="outline" className="justify-between">
-                      Owner{" "}
+                      None selected..{" "}
                       <ChevronDownIcon className="ml-2 h-4 w-4 text-muted-foreground" />
                     </Button>
                   </PopoverTrigger>
@@ -217,7 +218,8 @@ const SwiperSample: FC<SwiperSampleProps> = ({ className }) => {
                       </CommandList>
                     </Command>
                   </PopoverContent>
-                </Popover>
+                </Popover> */}
+                <CommandDialogDemo />
               </div>
               {/* <div className="grid grid-cols-3 gap-4">
                 <div className="grid gap-2">
