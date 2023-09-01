@@ -33,7 +33,29 @@ import {
   ArrowLeftIcon,
   ArrowRightIcon,
   CheckIcon,
+  ChevronDownIcon,
 } from "@radix-ui/react-icons";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover";
+import {
+  Command,
+  CommandEmpty,
+  CommandGroup,
+  CommandInput,
+  CommandItem,
+  CommandList,
+} from "@/components/ui/command";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
 interface SwiperSampleProps {
   className?: String;
@@ -109,6 +131,7 @@ const SwiperSample: FC<SwiperSampleProps> = ({ className }) => {
               </CardDescription>
             </CardHeader>
             <CardContent className="grid gap-6">
+              {/* ROLE */}
               <RadioGroup
                 defaultValue="student"
                 className="grid grid-cols-3 gap-4"
@@ -150,6 +173,98 @@ const SwiperSample: FC<SwiperSampleProps> = ({ className }) => {
                   Admin
                 </Label>
               </RadioGroup>
+              {/* SCHOOL */}
+              <div className="grid gap-2">
+                <Label htmlFor="name">Select your school</Label>
+                <Popover>
+                  <PopoverTrigger asChild>
+                    <Button variant="outline" className="justify-between">
+                      Owner{" "}
+                      <ChevronDownIcon className="ml-2 h-4 w-4 text-muted-foreground" />
+                    </Button>
+                  </PopoverTrigger>
+                  <PopoverContent className="p-0" align="center">
+                    <Command>
+                      <CommandInput placeholder="Select your school..." />
+                      <CommandList>
+                        <CommandEmpty>No school found.</CommandEmpty>
+                        <CommandGroup>
+                          <CommandItem className="teamaspace-y-1 flex flex-col items-start px-4 py-2">
+                            <p>Cavite State University - Carmona</p>
+                            <p className="text-sm text-muted-foreground">
+                              Carmona, Cavite
+                            </p>
+                          </CommandItem>
+                          <CommandItem className="teamaspace-y-1 flex flex-col items-start px-4 py-2">
+                            <p>Developer</p>
+                            <p className="text-sm text-muted-foreground">
+                              Can view, comment and edit.
+                            </p>
+                          </CommandItem>
+                          <CommandItem className="teamaspace-y-1 flex flex-col items-start px-4 py-2">
+                            <p>Billing</p>
+                            <p className="text-sm text-muted-foreground">
+                              Can view, comment and manage billing.
+                            </p>
+                          </CommandItem>
+                          <CommandItem className="teamaspace-y-1 flex flex-col items-start px-4 py-2">
+                            <p>Owner</p>
+                            <p className="text-sm text-muted-foreground">
+                              Admin-level access to all resources.
+                            </p>
+                          </CommandItem>
+                        </CommandGroup>
+                      </CommandList>
+                    </Command>
+                  </PopoverContent>
+                </Popover>
+              </div>
+              {/* <div className="grid grid-cols-3 gap-4">
+                <div className="grid gap-2">
+                  <Label htmlFor="month">Expires</Label>
+                  <Select>
+                    <SelectTrigger id="month">
+                      <SelectValue placeholder="Month" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="1">January</SelectItem>
+                      <SelectItem value="2">February</SelectItem>
+                      <SelectItem value="3">March</SelectItem>
+                      <SelectItem value="4">April</SelectItem>
+                      <SelectItem value="5">May</SelectItem>
+                      <SelectItem value="6">June</SelectItem>
+                      <SelectItem value="7">July</SelectItem>
+                      <SelectItem value="8">August</SelectItem>
+                      <SelectItem value="9">September</SelectItem>
+                      <SelectItem value="10">October</SelectItem>
+                      <SelectItem value="11">November</SelectItem>
+                      <SelectItem value="12">December</SelectItem>
+                    </SelectContent>
+                  </Select>
+                </div>
+                <div className="grid gap-2">
+                  <Label htmlFor="year">Year</Label>
+                  <Select>
+                    <SelectTrigger id="year">
+                      <SelectValue placeholder="Year" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      {Array.from({ length: 10 }, (_, i) => (
+                        <SelectItem
+                          key={i}
+                          value={`${new Date().getFullYear() + i}`}
+                        >
+                          {new Date().getFullYear() + i}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                </div>
+                <div className="grid gap-2">
+                  <Label htmlFor="cvc">CVC</Label>
+                  <Input id="cvc" placeholder="CVC" />
+                </div>
+              </div> */}
             </CardContent>
           </Card>
         </SwiperSlide>
