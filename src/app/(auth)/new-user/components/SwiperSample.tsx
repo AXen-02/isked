@@ -122,7 +122,7 @@ const SwiperSample: FC<SwiperSampleProps> = ({ className }) => {
                     id="student"
                     className="sr-only"
                   />
-                  <Icons.student className="mb-3 h-6 w-6" />
+                  <Icons.student className="text-primary mb-3 h-6 w-6" />
                   Student
                 </Label>
                 <Label
@@ -134,7 +134,7 @@ const SwiperSample: FC<SwiperSampleProps> = ({ className }) => {
                     id="instructor"
                     className="sr-only"
                   />
-                  <Icons.instructor className="mb-3 h-6 w-6" />
+                  <Icons.instructor className="text-primary mb-3 h-6 w-6" />
                   Educator
                 </Label>
                 <Label
@@ -146,7 +146,7 @@ const SwiperSample: FC<SwiperSampleProps> = ({ className }) => {
                     id="admin"
                     className="sr-only"
                   />
-                  <Icons.admin className="mb-3 h-6 w-6" />
+                  <Icons.admin className="text-primary mb-3 h-6 w-6" />
                   Admin
                 </Label>
               </RadioGroup>
