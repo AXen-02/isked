@@ -49,21 +49,22 @@ const schools = [
   { id: "1", name: "Cvsu", location: "Carmona" },
   { id: "2", name: "Batsu", location: "Alangilan" },
   { id: "3", name: "Bsu", location: "Bacor" },
-  { id: "2", name: "X", location: "Alangilan" },
-  { id: "3", name: "Y", location: "Bacor" },
-  { id: "2", name: "Z", location: "Alangilan" },
-  { id: "3", name: "A", location: "Bacor" },
-  { id: "2", name: "B", location: "Alangilan" },
-  { id: "3", name: "C", location: "Bacor" },
-  { id: "2", name: "D", location: "Alangilan" },
-  { id: "3", name: "E", location: "Bacor" },
-  { id: "2", name: "F", location: "Alangilan" },
-  { id: "3", name: "G", location: "Bacor" },
+  { id: "4", name: "X", location: "Alangilan" },
+  { id: "5", name: "Y", location: "Bacor" },
+  { id: "6", name: "Z", location: "Alangilan" },
+  { id: "7", name: "A", location: "Bacor" },
+  { id: "8", name: "B", location: "Alangilan" },
+  { id: "9", name: "C", location: "Bacor" },
+  { id: "10", name: "D", location: "Alangilan" },
+  { id: "11", name: "E", location: "Bacor" },
+  { id: "12", name: "F", location: "Alangilan" },
+  { id: "13", name: "G", location: "Bacor" },
 ];
 
 const SwiperSample: FC<SwiperSampleProps> = ({ className }) => {
   const [swiperReachEnd, setSwiperReachEnd] = useState(false);
   const [swiperActiveIndex, setSwiperActiveIndex] = useState(1);
+  const [selectedSchool, setSelectedSchool] = useState(schools[0]);
 
   const navigationPrevRef = useRef(null);
   const navigationNextRef = useRef(null);
@@ -188,7 +189,7 @@ const SwiperSample: FC<SwiperSampleProps> = ({ className }) => {
             <CardContent className="grid gap-6">
               {/* SCHOOLS LIST */}
               <Command className="h-52 rounded-lg border shadow-md">
-                <CommandInput placeholder="Type a command or search..." />
+                <CommandInput placeholder="Search for school..." />
                 <CommandList>
                   <CommandEmpty>No school found.</CommandEmpty>
                   <CommandGroup>
@@ -201,8 +202,36 @@ const SwiperSample: FC<SwiperSampleProps> = ({ className }) => {
             </CardContent>
           </Card>
         </SwiperSlide>
-        <SwiperSlide className="text-center items-center flex">
-          Slide 4
+        {/* Slide 4 */}
+        <SwiperSlide className="text-center">
+          <Card className="border-none shadow-none">
+            <CardHeader>
+              <CardTitle>Choose Your School</CardTitle>
+              <CardDescription>
+                Select from the list of available schools in Isked below.
+              </CardDescription>
+            </CardHeader>
+            <CardContent className="grid gap-6">
+              {/* SCHOOLS LIST */}
+              <ScrollArea className="h-52 rounded-lg border">
+                {schools.map((school) => (
+                  <div className="">
+                    <div key={school.id} className="text-sm flex">
+                      <Button
+                        variant={"ghost"}
+                        className={`w-full rounded-none ${
+                          selectedSchool.id === school.id ? "bg-muted" : ""
+                        }`}
+                        onClick={() => setSelectedSchool(school)}
+                      >
+                        {school.name}
+                      </Button>
+                    </div>
+                  </div>
+                ))}
+              </ScrollArea>
+            </CardContent>
+          </Card>
         </SwiperSlide>
         <SwiperSlide className="text-center items-center flex">
           Slide 5
