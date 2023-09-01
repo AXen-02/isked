@@ -29,13 +29,19 @@ import { cn } from "@/lib/utils";
 import { A11y, Navigation, Pagination } from "swiper/modules";
 import { Textarea } from "@/components/ui/textarea";
 import { NavigationOptions } from "swiper/types";
+import {
+  ArrowLeftIcon,
+  ArrowRightIcon,
+  CheckIcon,
+} from "@radix-ui/react-icons";
 
 interface SwiperSampleProps {
   className?: String;
 }
 
 const SwiperSample: FC<SwiperSampleProps> = ({ className }) => {
-  const [onReachEnd, setOnReachEnd] = useState(false);
+  const [swiperReachEnd, setSwiperReachEnd] = useState(false);
+  const [swiperActiveIndex, setSwiperActiveIndex] = useState(1);
 
   const navigationPrevRef = useRef(null);
   const navigationNextRef = useRef(null);
@@ -48,10 +54,10 @@ const SwiperSample: FC<SwiperSampleProps> = ({ className }) => {
           type: "progressbar",
         }}
         a11y={{ enabled: true }} // for screen readers
-        // onSlideChange={(swiper) => {
-        //   const isOnLastSlide = swiper.activeIndex === 4;
-        //   setOnReachEnd(isOnLastSlide);
-        // }}
+        onSlideChange={(swiper) => {
+          setSwiperActiveIndex(swiper.activeIndex + 1);
+          setSwiperReachEnd(swiper.isEnd);
+        }}
         navigation={{
           prevEl: navigationPrevRef.current,
           nextEl: navigationNextRef.current,
@@ -65,9 +71,12 @@ const SwiperSample: FC<SwiperSampleProps> = ({ className }) => {
         allowTouchMove={false}
         className="border rounded-xl w-full"
       >
+        <Label className="absolute text-muted-foreground right-4 top-4 z-50">
+          {swiperActiveIndex}/5
+        </Label>
         {/* Slide 1 */}
         <SwiperSlide className="text-center">
-          <Card className="border-none">
+          <Card className="border-none shadow-none">
             <CardHeader>
               <CardTitle>Complete your profile</CardTitle>
               <CardDescription>
@@ -87,19 +96,12 @@ const SwiperSample: FC<SwiperSampleProps> = ({ className }) => {
                 />
               </div>
             </CardContent>
-            <CardFooter>
-              <Button ref={navigationNextRef} className="w-full">
-                Continue
-              </Button>
-            </CardFooter>
+            <CardFooter></CardFooter>
           </Card>
         </SwiperSlide>
         {/* Slide 2 */}
         <SwiperSlide className="text-center">
-          <Card className="border-none">
-            <Label className="absolute text-muted-foreground right-4 top-4">
-              2/4
-            </Label>
+          <Card className="border-none  shadow-none">
             <CardHeader>
               <CardTitle>Pick Your Role</CardTitle>
               <CardDescription>
@@ -149,9 +151,6 @@ const SwiperSample: FC<SwiperSampleProps> = ({ className }) => {
                 </Label>
               </RadioGroup>
             </CardContent>
-            <CardFooter>
-              <Button className="w-full">Continue</Button>
-            </CardFooter>
           </Card>
         </SwiperSlide>
         <SwiperSlide className="text-center items-center flex">
@@ -163,10 +162,35 @@ const SwiperSample: FC<SwiperSampleProps> = ({ className }) => {
         <SwiperSlide className="text-center items-center flex">
           Slide 5
         </SwiperSlide>
+        <div className="flex justify-between space-x-6 px-6 pb-6 pt-2">
+          <Button variant={"ghost"} ref={navigationPrevRef}>
+            <ArrowLeftIcon className="w-6 h-6 mr-2" />
+            Back
+          </Button>
+          <Button
+            variant={"ghost"}
+            ref={navigationNextRef}
+            className={`${swiperReachEnd ? "hidden" : ""}`}
+          >
+            Continue
+            <ArrowRightIcon className="w-6 h-6 ml-2" />
+          </Button>
+          {/* <Button
+            ref={navigationNextRef}
+            className={`w-full md:w-[50%] ${
+              swiperReachEnd ? "hidden" : "block"
+            }`}
+          >
+            Continue
+          </Button> */}
+          <Button
+            disabled={!swiperReachEnd}
+            className={`w-full md:w-[50%] ${!swiperReachEnd ? "hidden" : ""}`}
+          >
+            Finish
+          </Button>
+        </div>
       </Swiper>
-      <Button disabled={!onReachEnd} className="w-full md:w-[50%]">
-        Finish
-      </Button>
     </div>
   );
 };

@@ -22,13 +22,13 @@ const page: FC<pageProps> = ({}) => {
           We&apos;re excited to have you as part of our Isked community.
         </PageHeaderDescription>
         <PageHeaderDescription>
-          To get started, please take a moment to set up your account. Customize
-          your profile and start exploring. We&apos;re here to help if you need
-          anything.
+          To get started, please take a moment to set up your account.
+          {/* Customize your profile and start exploring.
+          We&apos;re here to help if you need anything. */}
         </PageHeaderDescription>
         <PageHeaderDescription>
           {/* TODO: Create a slider. swiper/splider */}
-          <SwiperSample className="w-[70vw] lg:w-auto" />
+          <SwiperSample className="w-[70vw] lg:w-auto pb-8 md:pb-10" />
         </PageHeaderDescription>
 
         {/* <div className="flex w-full items-center space-x-4 pb-8 md:pb-10">
