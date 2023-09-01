@@ -168,21 +168,13 @@ const SwiperSample: FC<SwiperSampleProps> = ({ className }) => {
             Back
           </Button>
           <Button
-            variant={"ghost"}
+            // variant={"ghost"}
             ref={navigationNextRef}
-            className={`${swiperReachEnd ? "hidden" : ""}`}
+            className={`w-full sm:w-auto ${swiperReachEnd ? "hidden" : ""}`}
           >
             Continue
             <ArrowRightIcon className="w-6 h-6 ml-2" />
           </Button>
-          {/* <Button
-            ref={navigationNextRef}
-            className={`w-full md:w-[50%] ${
-              swiperReachEnd ? "hidden" : "block"
-            }`}
-          >
-            Continue
-          </Button> */}
           <Button
             disabled={!swiperReachEnd}
             className={`w-full md:w-[50%] ${!swiperReachEnd ? "hidden" : ""}`}
