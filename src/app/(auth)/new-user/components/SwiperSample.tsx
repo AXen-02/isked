@@ -179,31 +179,6 @@ const SwiperSample: FC<SwiperSampleProps> = ({ className }) => {
         </SwiperSlide>
         {/* Slide 3 */}
         <SwiperSlide className="text-center">
-          <Card className="border-none  shadow-none">
-            <CardHeader>
-              <CardTitle>Choose Your School</CardTitle>
-              <CardDescription>
-                Select from the list of available schools in Isked below.
-              </CardDescription>
-            </CardHeader>
-            <CardContent className="grid gap-6">
-              {/* SCHOOLS LIST */}
-              <Command className="h-52 rounded-lg border shadow-md">
-                <CommandInput placeholder="Search for school..." />
-                <CommandList>
-                  <CommandEmpty>No school found.</CommandEmpty>
-                  <CommandGroup>
-                    {schools.map((school) => (
-                      <CommandItem>{school.name}</CommandItem>
-                    ))}
-                  </CommandGroup>
-                </CommandList>
-              </Command>
-            </CardContent>
-          </Card>
-        </SwiperSlide>
-        {/* Slide 4 */}
-        <SwiperSlide className="text-center">
           <Card className="border-none shadow-none">
             <CardHeader>
               <CardTitle>Choose Your School</CardTitle>
@@ -232,6 +207,9 @@ const SwiperSample: FC<SwiperSampleProps> = ({ className }) => {
               </ScrollArea>
             </CardContent>
           </Card>
+        </SwiperSlide>
+        <SwiperSlide className="text-center items-center flex">
+          Slide 4
         </SwiperSlide>
         <SwiperSlide className="text-center items-center flex">
           Slide 5
