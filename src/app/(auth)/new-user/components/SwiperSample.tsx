@@ -190,7 +190,7 @@ const SwiperSample: FC<SwiperSampleProps> = ({ className }) => {
               {/* SCHOOLS LIST */}
               <ScrollArea className="h-52 rounded-lg border">
                 {schools.map((school) => (
-                  <div key={school.id} className="text-sm flex">
+                  <div key={school.id} className="text-sm ">
                     <Button
                       variant={"ghost"}
                       className={`w-full rounded-none ${
@@ -198,7 +198,12 @@ const SwiperSample: FC<SwiperSampleProps> = ({ className }) => {
                       }`}
                       onClick={() => setSelectedSchool(school)}
                     >
-                      {school.name}
+                      <h4 className="text-sm font-medium leading-none">
+                        {school.name}
+                      </h4>
+                      <p className="text-sm text-muted-foreground">
+                        ({school.location})
+                      </p>
                     </Button>
                   </div>
                 ))}
