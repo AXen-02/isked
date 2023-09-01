@@ -173,7 +173,7 @@ const SwiperSample: FC<SwiperSampleProps> = ({ className }) => {
             className={`w-full sm:w-auto ${swiperReachEnd ? "hidden" : ""}`}
           >
             Continue
-            <ArrowRightIcon className="w-6 h-6 ml-2" />
+            {/* <ArrowRightIcon className="w-6 h-6 ml-2" /> */}
           </Button>
           <Button
             disabled={!swiperReachEnd}
