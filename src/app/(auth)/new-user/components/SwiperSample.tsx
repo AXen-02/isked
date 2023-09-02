@@ -202,7 +202,7 @@ const SwiperSample: FC<SwiperSampleProps> = ({ className }) => {
                       <CardTitle>Student Account</CardTitle>
                       <CardDescription>
                         Make changes to your account here. Click save when
-                        you're done.
+                        you&apos;re done.
                       </CardDescription>
                     </CardHeader>
                     <CardContent className="space-y-2">
@@ -225,7 +225,7 @@ const SwiperSample: FC<SwiperSampleProps> = ({ className }) => {
                     <CardHeader>
                       <CardTitle>Educator Account</CardTitle>
                       <CardDescription>
-                        Change your password here. After saving, you'll be
+                        Change your password here. After saving, you&apos;ll be
                         logged out.
                       </CardDescription>
                     </CardHeader>
@@ -249,7 +249,7 @@ const SwiperSample: FC<SwiperSampleProps> = ({ className }) => {
                     <CardHeader>
                       <CardTitle>Administrator Account</CardTitle>
                       <CardDescription>
-                        Change your password here. After saving, you'll be
+                        Change your password here. After saving, you&apos;ll be
                         logged out.
                       </CardDescription>
                     </CardHeader>
