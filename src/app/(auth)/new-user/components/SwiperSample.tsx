@@ -185,15 +185,15 @@ const SwiperSample: FC<SwiperSampleProps> = ({ className }) => {
                 <TabsList className="grid w-full grid-cols-3">
                   <TabsTrigger value={UserType.STUDENT}>
                     <Label className="hidden sm:flex">Student</Label>
-                    <Icons.student className="ml-2 h-4 w-4 sm:hidden" />
+                    <Icons.student className="h-4 w-4 sm:hidden" />
                   </TabsTrigger>
                   <TabsTrigger value={UserType.INSTRUCTOR}>
                     <Label className="hidden sm:flex">Educator</Label>
-                    <Icons.instructor className="ml-2 h-4 w-4 sm:hidden" />
+                    <Icons.instructor className="h-4 w-4 sm:hidden" />
                   </TabsTrigger>
                   <TabsTrigger value={UserType.ADMINISTRATOR}>
                     <Label className="hidden sm:flex">Administrator</Label>
-                    <Icons.admin className="ml-2 h-4 w-4 sm:hidden" />
+                    <Icons.admin className="h-4 w-4 sm:hidden" />
                   </TabsTrigger>
                 </TabsList>
                 <TabsContent value={UserType.STUDENT}>
