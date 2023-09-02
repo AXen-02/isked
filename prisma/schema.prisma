@@ -6,9 +6,9 @@ generator client {
 }
 
 datasource db {
-  provider  = "postgresql"
-  url       = env("DATABASE_URL")
-  directUrl = env("DIRECT_URL")
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+  // directUrl = env("DIRECT_URL")
 }
 
 model Session {
@@ -157,7 +157,8 @@ model Room {
 
 model School {
   id          String   @id @default(cuid())
-  name        String
+  name        String   @unique
+  image       String?
   location    String?
   description String?
   createdAt   DateTime
@@ -198,6 +199,7 @@ model User {
   urls          Json[]
   roles         UserType[]
   dateJoined    DateTime   @default(now())
+  isNewUser     Boolean    @default(true)
 
   accounts          Account[]
   sessions          Session[]
