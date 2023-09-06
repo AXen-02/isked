@@ -29,7 +29,7 @@ import { useCustomToast } from "@/hooks/use-custom-toast";
 import { Icons } from "@/components/Icons";
 import { useRouter } from "next/navigation";
 import { Payload } from "@/lib/validators/payloads";
-import { Cross2Icon, TrashIcon } from "@radix-ui/react-icons";
+import { Cross2Icon } from "@radix-ui/react-icons";
 
 const profileFormSchema = z.object({
   name: z

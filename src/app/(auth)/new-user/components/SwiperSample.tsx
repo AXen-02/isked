@@ -24,15 +24,14 @@ import {
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { ScrollArea } from "@/components/ui/scroll-area";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Textarea } from "@/components/ui/textarea";
 import { cn } from "@/lib/utils";
 import { UserType } from "@prisma/client";
 import { ArrowLeftIcon } from "@radix-ui/react-icons";
 import { A11y, Navigation, Pagination } from "swiper/modules";
 import { NavigationOptions } from "swiper/types";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 interface SwiperSampleProps {
   className?: String;
@@ -138,50 +137,13 @@ const SwiperSample: FC<SwiperSampleProps> = ({ className }) => {
                 Select the user role that suits you best.
               </CardDescription>
             </CardHeader>
-            <CardContent className="grid gap-6">
+            <CardContent className="text-left grid gap-6">
               {/* ROLE */}
-              {/* <RadioGroup
-                defaultValue="student"
-                className="grid grid-cols-3 gap-4"
+              <Tabs
+                defaultValue={UserType.STUDENT}
+                className=""
+                onValueChange={(v) => setRole(v as UserType)}
               >
-                <Label
-                  htmlFor="student"
-                  className="flex flex-col items-center justify-between rounded-md border-2 border-muted bg-popover p-4 hover:bg-accent hover:text-accent-foreground [&:has([data-state=checked])]:border-primary cursor-pointer"
-                >
-                  <RadioGroupItem
-                    value={UserType.STUDENT}
-                    id="student"
-                    className="sr-only"
-                  />
-                  <Icons.student className="text-primary mb-3 h-6 w-6" />
-                  Student
-                </Label>
-                <Label
-                  htmlFor="instructor"
-                  className="flex flex-col items-center justify-between rounded-md border-2 border-muted bg-popover p-4 hover:bg-accent hover:text-accent-foreground [&:has([data-state=checked])]:border-primary cursor-pointer"
-                >
-                  <RadioGroupItem
-                    value={UserType.INSTRUCTOR}
-                    id="instructor"
-                    className="sr-only"
-                  />
-                  <Icons.instructor className="text-primary mb-3 h-6 w-6" />
-                  Educator
-                </Label>
-                <Label
-                  htmlFor="admin"
-                  className="flex flex-col items-center justify-between rounded-md border-2 border-muted bg-popover p-4 hover:bg-accent hover:text-accent-foreground [&:has([data-state=checked])]:border-primary cursor-pointer"
-                >
-                  <RadioGroupItem
-                    value={UserType.ADMINISTRATOR}
-                    id="admin"
-                    className="sr-only"
-                  />
-                  <Icons.admin className="text-primary mb-3 h-6 w-6" />
-                  Admin
-                </Label>
-              </RadioGroup> */}
-              <Tabs defaultValue={UserType.STUDENT} className="">
                 <TabsList className="grid w-full grid-cols-3">
                   <TabsTrigger value={UserType.STUDENT}>
                     <Label className="hidden sm:flex">Student</Label>
@@ -199,20 +161,16 @@ const SwiperSample: FC<SwiperSampleProps> = ({ className }) => {
                 <TabsContent value={UserType.STUDENT}>
                   <Card>
                     <CardHeader>
-                      <CardTitle>Student Account</CardTitle>
+                      <CardTitle>Create a Student Account</CardTitle>
                       <CardDescription>
-                        Make changes to your account here. Click save when
-                        you&apos;re done.
+                        Get started with Isked as a student. Begin your
+                        educational adventure today.
                       </CardDescription>
                     </CardHeader>
                     <CardContent className="space-y-2">
                       <div className="space-y-1">
-                        <Label htmlFor="name">Name</Label>
+                        <Label htmlFor="name">Major</Label>
                         <Input id="name" defaultValue="Pedro Duarte" />
-                      </div>
-                      <div className="space-y-1">
-                        <Label htmlFor="username">Username</Label>
-                        <Input id="username" defaultValue="@peduarte" />
                       </div>
                     </CardContent>
                     <CardFooter>
@@ -223,20 +181,20 @@ const SwiperSample: FC<SwiperSampleProps> = ({ className }) => {
                 <TabsContent value={UserType.INSTRUCTOR}>
                   <Card>
                     <CardHeader>
-                      <CardTitle>Educator Account</CardTitle>
+                      <CardTitle>Create an Educator Account</CardTitle>
                       <CardDescription>
-                        Change your password here. After saving, you&apos;ll be
-                        logged out.
+                        Join Isked as an educator. Empower the future through
+                        education.
                       </CardDescription>
                     </CardHeader>
                     <CardContent className="space-y-2">
                       <div className="space-y-1">
-                        <Label htmlFor="current">Current password</Label>
-                        <Input id="current" type="password" />
+                        <Label htmlFor="current">Expertise</Label>
+                        <Input id="current" />
                       </div>
                       <div className="space-y-1">
-                        <Label htmlFor="new">New password</Label>
-                        <Input id="new" type="password" />
+                        <Label htmlFor="new">Title</Label>
+                        <Input id="new" />
                       </div>
                     </CardContent>
                     <CardFooter>
@@ -247,10 +205,10 @@ const SwiperSample: FC<SwiperSampleProps> = ({ className }) => {
                 <TabsContent value={UserType.ADMINISTRATOR}>
                   <Card>
                     <CardHeader>
-                      <CardTitle>Administrator Account</CardTitle>
+                      <CardTitle>Create an Administrator Account</CardTitle>
                       <CardDescription>
-                        Change your password here. After saving, you&apos;ll be
-                        logged out.
+                        Take control with an administrator account. Manage your
+                        institution effortlessly.
                       </CardDescription>
                     </CardHeader>
                     <CardContent className="space-y-2">
