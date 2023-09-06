@@ -13,10 +13,10 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { useCustomToast } from "@/hooks/use-custom-toast";
 import { useToast } from "@/hooks/use-toast";
+import { cn } from "@/lib/utils";
 import { CreateProfilePayload } from "@/lib/validators/account";
 import { Payload } from "@/lib/validators/payloads";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { CheckCircledIcon } from "@radix-ui/react-icons";
 import { useMutation } from "@tanstack/react-query";
 import axios, { AxiosError } from "axios";
 import { useRouter } from "next/navigation";
@@ -120,75 +120,71 @@ const Slider1Form: FC<Slider1FormProps> = ({ user }) => {
 
   return (
     <div className="flex justify-center items-center">
-      {completed ? (
-        <CheckCircledIcon className="w-12 h-12" />
-      ) : (
-        <FormProvider {...form}>
-          <form
-            onSubmit={form.handleSubmit(onSubmit)}
-            className="space-y-4 w-full"
-          >
-            <FormField
-              control={form.control}
-              name="name"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Name</FormLabel>
-                  <FormControl>
-                    <Input
-                      disabled={completed}
-                      placeholder="Your name"
-                      {...field}
-                    ></Input>
-                  </FormControl>
-                  {/* <FormDescription>
+      <FormProvider {...form}>
+        <form
+          onSubmit={form.handleSubmit(onSubmit)}
+          className="space-y-4 w-full"
+        >
+          <FormField
+            control={form.control}
+            name="name"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Name</FormLabel>
+                <FormControl>
+                  <Input
+                    disabled={completed}
+                    placeholder="Your name"
+                    {...field}
+                  ></Input>
+                </FormControl>
+                {/* <FormDescription>
                     This is the name that will be displayed on your profile and
                     in emails.
                   </FormDescription> */}
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
+                <FormMessage />
+              </FormItem>
+            )}
+          />
 
-            <FormField
-              control={form.control}
-              name="bio"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Bio</FormLabel>
-                  <FormControl>
-                    <Textarea
-                      disabled={completed}
-                      placeholder="Tell us a little bit about yourself"
-                      className="resize-none"
-                      {...field}
-                    />
-                  </FormControl>
-                  {/* <FormDescription>
+          <FormField
+            control={form.control}
+            name="bio"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Bio</FormLabel>
+                <FormControl>
+                  <Textarea
+                    disabled={completed}
+                    placeholder="Tell us a little bit about yourself"
+                    className="resize-none"
+                    {...field}
+                  />
+                </FormControl>
+                {/* <FormDescription>
                     You can <span>@mention</span> other users and organizations
                     to link to them.
                   </FormDescription> */}
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
+                <FormMessage />
+              </FormItem>
+            )}
+          />
 
-            <div className="flex justify-end pt-2">
-              <Button
-                disabled={isLoading}
-                type="submit"
-                className="w-full md:w-1/2"
-              >
-                {isLoading ? (
-                  <Icons.spinner className="w-4 h-4 animate-spin" />
-                ) : (
-                  `Update profile`
-                )}
-              </Button>
-            </div>
-          </form>
-        </FormProvider>
-      )}
+          <div className="flex justify-end pt-2">
+            <Button
+              disabled={isLoading}
+              type="submit"
+              className={cn("w-full md:w-1/2", `${!completed || "hidden"}`)}
+            >
+              {isLoading ? (
+                <Icons.spinner className="w-4 h-4 animate-spin" />
+              ) : (
+                `Update profile`
+              )}
+            </Button>
+          </div>
+        </form>
+      </FormProvider>
     </div>
   );
 };

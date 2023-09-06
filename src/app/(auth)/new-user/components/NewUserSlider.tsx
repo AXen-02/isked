@@ -117,15 +117,17 @@ const NewUserSlider: FC<NewUserSliderProps> = ({ className, user }) => {
         {/* Slide 4 */}
         <SwiperSlide className="text-center items-center flex"></SwiperSlide>
         {/* Nav Buttons */}
-        <div className="flex justify-end space-x-6 p-6">
-          {/* <Button variant={"ghost"} ref={navigationPrevRef}>
+        <div className="flex justify-between space-x-6 p-6">
+          <Button variant={"ghost"} ref={navigationPrevRef}>
             <ArrowLeftIcon className="w-6 h-6 mr-2" />
             Back
-          </Button> */}
+          </Button>
           <Button
             variant={"ghost"}
             ref={navigationNextRef}
-            className={`w-full sm:w-auto ${swiperReachEnd ? "hidden" : ""}`}
+            className={`w-full sm:w-auto justify-end ${
+              swiperReachEnd ? "hidden" : ""
+            }`}
           >
             Continue
             <ArrowRightIcon className="w-6 h-6 ml-2" />
