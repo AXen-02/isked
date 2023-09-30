@@ -1,49 +1,34 @@
 "use client";
 
-import { FC, useRef, useState } from "react";
 import { cn } from "@/lib/utils";
-import { UserType } from "@prisma/client";
+import { User, UserType } from "@prisma/client";
 import { JsonValue } from "@prisma/client/runtime/library";
+import { FC, useRef, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 
 // Import Swiper styles
-import "swiper/css";
-import "swiper/css/navigation";
-import "swiper/css/pagination";
-import { A11y, Navigation, Pagination } from "swiper/modules";
-import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
-import { ArrowLeftIcon, ArrowRightIcon } from "@radix-ui/react-icons";
-import { NavigationOptions } from "swiper/types";
 import {
   Card,
   CardContent,
   CardDescription,
-  CardFooter,
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
-import Slide1Form from "./Slide1Form";
+import { Label } from "@/components/ui/label";
 import { Separator } from "@/components/ui/separator";
+import { ArrowRightIcon } from "@radix-ui/react-icons";
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
+import { A11y, Navigation, Pagination } from "swiper/modules";
+import { NavigationOptions } from "swiper/types";
+import Slide1Form from "./Slide1Form";
+import Slide2Form from "./Slide2Form";
 
 interface NewUserSliderProps {
   className?: string;
-  user: {
-    name: string | null;
-    bio: string | null;
-    urls: JsonValue[];
-    image: string | null;
-    id: string;
-    email: string | null;
-    username: string | null;
-    roles: UserType[];
-    dateJoined: Date;
-    accounts: {
-      provider: string | null;
-    }[];
-  };
+  user: User;
 }
 
 const NewUserSlider: FC<NewUserSliderProps> = ({ className, user }) => {
@@ -108,8 +93,9 @@ const NewUserSlider: FC<NewUserSliderProps> = ({ className, user }) => {
               </CardDescription>
             </CardHeader>
             <CardContent className="text-left grid gap-6">
-              {/* <Slide2Form user={user} /> */}
+              <Slide2Form user={user} />
             </CardContent>
+            <Separator />
           </Card>
         </SwiperSlide>
         {/* Slide 3 */}
@@ -117,15 +103,15 @@ const NewUserSlider: FC<NewUserSliderProps> = ({ className, user }) => {
         {/* Slide 4 */}
         <SwiperSlide className="text-center items-center flex"></SwiperSlide>
         {/* Nav Buttons */}
-        <div className="flex justify-between space-x-6 p-6">
-          <Button variant={"ghost"} ref={navigationPrevRef}>
+        <div className="flex justify-end space-x-6 p-6">
+          {/* <Button variant={"ghost"} ref={navigationPrevRef}>
             <ArrowLeftIcon className="w-6 h-6 mr-2" />
             Back
-          </Button>
+          </Button> */}
           <Button
             variant={"ghost"}
             ref={navigationNextRef}
-            className={`w-full sm:w-auto justify-end ${
+            className={`w-full sm:w-auto md:justify-end ${
               swiperReachEnd ? "hidden" : ""
             }`}
           >

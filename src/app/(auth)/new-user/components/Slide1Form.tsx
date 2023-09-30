@@ -1,6 +1,7 @@
 "use client";
 
 import { Icons } from "@/components/Icons";
+import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { Button } from "@/components/ui/button";
 import {
   FormControl,
@@ -17,6 +18,8 @@ import { cn } from "@/lib/utils";
 import { CreateProfilePayload } from "@/lib/validators/account";
 import { Payload } from "@/lib/validators/payloads";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { User } from "@prisma/client";
+import { CheckCircledIcon } from "@radix-ui/react-icons";
 import { useMutation } from "@tanstack/react-query";
 import axios, { AxiosError } from "axios";
 import { useRouter } from "next/navigation";
@@ -46,11 +49,7 @@ const profileFormSchema = z.object({
 type ProfileFormValues = z.infer<typeof profileFormSchema>;
 
 interface Slider1FormProps {
-  user: {
-    name: string | null;
-    bio: string | null;
-    id: string;
-  };
+  user: User;
 }
 
 const Slider1Form: FC<Slider1FormProps> = ({ user }) => {
@@ -133,7 +132,7 @@ const Slider1Form: FC<Slider1FormProps> = ({ user }) => {
                 <FormLabel>Name</FormLabel>
                 <FormControl>
                   <Input
-                    disabled={completed}
+                    readOnly={completed}
                     placeholder="Your name"
                     {...field}
                   ></Input>
@@ -155,7 +154,7 @@ const Slider1Form: FC<Slider1FormProps> = ({ user }) => {
                 <FormLabel>Bio</FormLabel>
                 <FormControl>
                   <Textarea
-                    disabled={completed}
+                    readOnly={completed}
                     placeholder="Tell us a little bit about yourself"
                     className="resize-none"
                     {...field}
@@ -170,19 +169,32 @@ const Slider1Form: FC<Slider1FormProps> = ({ user }) => {
             )}
           />
 
-          <div className="flex justify-end pt-2">
-            <Button
-              disabled={isLoading}
-              type="submit"
-              className={cn("w-full md:w-1/2", `${!completed || "hidden"}`)}
-            >
-              {isLoading ? (
-                <Icons.spinner className="w-4 h-4 animate-spin" />
-              ) : (
-                `Update profile`
-              )}
-            </Button>
-          </div>
+          {completed ? (
+            <div className="flex justify-start items-center pt-2">
+              <Alert>
+                <CheckCircledIcon className="w-6 h-6" />
+
+                <AlertTitle>Completed</AlertTitle>
+                <AlertDescription>
+                  You can proceed to the next step.
+                </AlertDescription>
+              </Alert>
+            </div>
+          ) : (
+            <div className="justify-start pt-2">
+              <Button
+                disabled={isLoading}
+                type="submit"
+                className={cn("w-full md:w-auto", `${!completed || "hidden"}`)}
+              >
+                {isLoading ? (
+                  <Icons.spinner className="w-4 h-4 animate-spin" />
+                ) : (
+                  `Update profile`
+                )}
+              </Button>
+            </div>
+          )}
         </form>
       </FormProvider>
     </div>

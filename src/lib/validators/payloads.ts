@@ -1,4 +1,5 @@
 export enum Payload {
   UPDATEPROFILE,
   UPDATEACCOUNT,
+  CREATESTUDENTACCOUNT,
 }
