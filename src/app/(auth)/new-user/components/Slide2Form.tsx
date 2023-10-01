@@ -3,7 +3,7 @@ import { FC } from "react";
 import { availableSchools } from "../data/schools";
 import { SchoolCard } from "./school-card";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Pagination, Scrollbar } from "swiper/modules";
+import { Navigation, Pagination, Scrollbar } from "swiper/modules";
 
 interface Slide2FormProps {
   user: {
@@ -16,28 +16,30 @@ interface Slide2FormProps {
 const Slide2Form: FC<Slide2FormProps> = ({ user }) => {
   return (
     <div>
-      <div className="flex">
-        <Swiper
-          slidesPerView={3}
-          pagination={{
-            clickable: true,
-          }}
-          modules={[Scrollbar]}
-          className="flex w-80"
-        >
-          {availableSchools.map((school) => (
-            <SwiperSlide key={school.id}>
-              <SchoolCard
-                school={school}
-                className="w-[150px]"
-                aspectRatio="square"
-                width={150}
-                height={150}
-              />
-            </SwiperSlide>
-          ))}
-        </Swiper>
-      </div>
+      <Swiper
+        slidesPerView={3}
+        spaceBetween={5}
+        pagination={{
+          clickable: true,
+        }}
+        modules={[Scrollbar]}
+        className="relative space-x-4 pb-4 w-96"
+      >
+        {availableSchools.map((school) => (
+          <SwiperSlide
+            key={school.id}
+            className="text-center flex justify-center items-center"
+          >
+            <SchoolCard
+              school={school}
+              className="w-[80px]"
+              aspectRatio="square"
+              width={80}
+              height={80}
+            />
+          </SwiperSlide>
+        ))}
+      </Swiper>
     </div>
   );
 };
