@@ -1,7 +1,7 @@
 "use client";
 
 import { cn } from "@/lib/utils";
-import { User, UserType } from "@prisma/client";
+import { UserType } from "@prisma/client";
 import { JsonValue } from "@prisma/client/runtime/library";
 import { FC, useRef, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -28,7 +28,20 @@ import Slide2Form from "./Slide2Form";
 
 interface NewUserSliderProps {
   className?: string;
-  user: User;
+  user: {
+    name: string | null;
+    bio: string | null;
+    urls: JsonValue[];
+    image: string | null;
+    id: string;
+    email: string | null;
+    username: string | null;
+    roles: UserType[];
+    dateJoined: Date;
+    accounts: {
+      provider: string | null;
+    }[];
+  };
 }
 
 const NewUserSlider: FC<NewUserSliderProps> = ({ className, user }) => {

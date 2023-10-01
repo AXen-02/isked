@@ -18,7 +18,6 @@ import { cn } from "@/lib/utils";
 import { CreateProfilePayload } from "@/lib/validators/account";
 import { Payload } from "@/lib/validators/payloads";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { User } from "@prisma/client";
 import { CheckCircledIcon } from "@radix-ui/react-icons";
 import { useMutation } from "@tanstack/react-query";
 import axios, { AxiosError } from "axios";
@@ -49,7 +48,11 @@ const profileFormSchema = z.object({
 type ProfileFormValues = z.infer<typeof profileFormSchema>;
 
 interface Slider1FormProps {
-  user: User;
+  user: {
+    name: string | null;
+    bio: string | null;
+    id: string;
+  };
 }
 
 const Slider1Form: FC<Slider1FormProps> = ({ user }) => {

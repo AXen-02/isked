@@ -1,8 +1,11 @@
-import { User } from "@prisma/client";
 import { FC } from "react";
 
 interface Slide2FormProps {
-  user: User;
+  user: {
+    name: string | null;
+    bio: string | null;
+    id: string;
+  };
 }
 
 const Slide2Form: FC<Slide2FormProps> = ({ user }) => {
