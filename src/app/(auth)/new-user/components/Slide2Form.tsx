@@ -19,7 +19,7 @@ interface Slide2FormProps {
 
 const Slide2Form: FC<Slide2FormProps> = ({ user }) => {
   return (
-    <div className="w-[70vw] max-w-2xl pb-8 pt-2 md:pb-10 md:pt-4">
+    <div className="w-[70vw] max-w-2xl  ">
       <Swiper
         slidesPerView={3}
         spaceBetween={5}
