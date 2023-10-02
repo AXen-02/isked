@@ -5,6 +5,10 @@ import { SchoolCard } from "./school-card";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination, Scrollbar } from "swiper/modules";
 
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
+
 interface Slide2FormProps {
   user: {
     name: string | null;
@@ -15,7 +19,7 @@ interface Slide2FormProps {
 
 const Slide2Form: FC<Slide2FormProps> = ({ user }) => {
   return (
-    <div>
+    <div className="w-[70vw] max-w-2xl pb-8 pt-2 md:pb-10 md:pt-4">
       <Swiper
         slidesPerView={3}
         spaceBetween={5}
@@ -23,7 +27,7 @@ const Slide2Form: FC<Slide2FormProps> = ({ user }) => {
           clickable: true,
         }}
         modules={[Scrollbar]}
-        className="relative space-x-4 pb-4 w-96"
+        className="flex space-x-4 pb-4 w-full"
       >
         {availableSchools.map((school) => (
           <SwiperSlide
