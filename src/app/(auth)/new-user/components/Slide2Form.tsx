@@ -3,10 +3,11 @@ import { FC } from "react";
 import { availableSchools } from "../data/schools";
 import { SchoolCard } from "./school-card";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation, Pagination, Scrollbar } from "swiper/modules";
+import { FreeMode, Navigation, Pagination, Scrollbar } from "swiper/modules";
 
+// Import Swiper styles
 import "swiper/css";
-import "swiper/css/navigation";
+import "swiper/css/free-mode";
 import "swiper/css/pagination";
 
 interface Slide2FormProps {
@@ -19,24 +20,25 @@ interface Slide2FormProps {
 
 const Slide2Form: FC<Slide2FormProps> = ({ user }) => {
   return (
-    <div className="w-[70vw] max-w-2xl -ml-6  ">
+    <div className="w-[80vw] max-w-2xl -ml-14 md:-ml-8 bg-green-500">
       <Swiper
-        slidesPerView={4}
-        spaceBetween={5}
+        slidesPerView={7}
+        spaceBetween={50}
+        freeMode={true}
         pagination={{
           clickable: true,
         }}
-        modules={[Scrollbar]}
+        modules={[FreeMode, Navigation, Pagination]}
         className="flex space-x-4 pb-4 w-full"
       >
         {availableSchools.map((school) => (
           <SwiperSlide
             key={school.id}
-            className="text-center flex justify-center items-center"
+            className="text-center flex justify-center items-center  ml-6"
           >
             <SchoolCard
               school={school}
-              className="w-[80px]"
+              className="w-[80px] ml-6"
               aspectRatio="square"
               width={80}
               height={80}
@@ -49,3 +51,18 @@ const Slide2Form: FC<Slide2FormProps> = ({ user }) => {
 };
 
 export default Slide2Form;
+
+// {availableSchools.map((school) => (
+//   <SwiperSlide
+//     key={school.id}
+//     className="text-center flex justify-center items-center  ml-6"
+//   >
+//     <SchoolCard
+//       school={school}
+//       className="w-[80px] ml-6"
+//       aspectRatio="square"
+//       width={80}
+//       height={80}
+//     />
+//   </SwiperSlide>
+// ))}

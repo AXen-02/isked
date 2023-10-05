@@ -79,4 +79,14 @@ export const availableSchools: School[] = [
     image:
       "https://images.unsplash.com/photo-1528143358888-6d3c7f67bd5d?w=300&dpr=2&q=80",
   },
+  {
+    id: "8",
+    name: "Cavite State University - Carmona",
+    location: "Carmona Cavite",
+    description: "Carmona campus",
+    createdAt: Date.now().toLocaleString(),
+    updatedAt: Date.now().toLocaleString(),
+    image:
+      "https://images.unsplash.com/photo-1468817814611-b7edf94b5d60?w=300&dpr=2&q=80",
+  },
 ];
