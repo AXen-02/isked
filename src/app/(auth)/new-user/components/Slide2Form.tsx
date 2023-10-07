@@ -20,25 +20,25 @@ interface Slide2FormProps {
 
 const Slide2Form: FC<Slide2FormProps> = ({ user }) => {
   return (
-    <div className="w-[80vw] max-w-2xl -ml-14 md:-ml-8 bg-green-500">
+    <div className="w-[80vw] sm:max-w-md md:max-w-lg lg:max-w-xl ">
       <Swiper
-        slidesPerView={7}
+        slidesPerView={5}
         spaceBetween={50}
         freeMode={true}
         pagination={{
           clickable: true,
         }}
         modules={[FreeMode, Navigation, Pagination]}
-        className="flex space-x-4 pb-4 w-full"
+        className="flex space-x-4 pb-4"
       >
         {availableSchools.map((school) => (
           <SwiperSlide
             key={school.id}
-            className="text-center flex justify-center items-center  ml-6"
+            className="text-center flex justify-center items-center"
           >
             <SchoolCard
               school={school}
-              className="w-[80px] ml-6"
+              className="w-[80px]"
               aspectRatio="square"
               width={80}
               height={80}
