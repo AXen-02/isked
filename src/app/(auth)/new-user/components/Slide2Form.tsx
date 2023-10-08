@@ -9,6 +9,7 @@ import { FreeMode, Navigation, Pagination, Scrollbar } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/free-mode";
 import "swiper/css/pagination";
+import { Skeleton } from "@/components/ui/skeleton";
 
 interface Slide2FormProps {
   user: {
@@ -20,22 +21,19 @@ interface Slide2FormProps {
 
 const Slide2Form: FC<Slide2FormProps> = ({ user }) => {
   return (
-    <div className="w-[80vw] sm:max-w-md md:max-w-lg lg:max-w-xl ">
+    <div className="w-[80vw] sm:max-w-md md:max-w-lg lg:max-w-xl">
       <Swiper
-        slidesPerView={5}
+        slidesPerView={4}
         spaceBetween={50}
         freeMode={true}
         pagination={{
           clickable: true,
         }}
-        modules={[FreeMode, Navigation, Pagination]}
-        className="flex space-x-4 pb-4"
+        modules={[FreeMode]}
+        className="flex space-x-4 pb-4 cursor-grab active:cursor-grabbing"
       >
         {availableSchools.map((school) => (
-          <SwiperSlide
-            key={school.id}
-            className="text-center flex justify-center items-center"
-          >
+          <SwiperSlide key={school.id} className="text-center">
             <SchoolCard
               school={school}
               className="w-[80px]"
@@ -45,6 +43,11 @@ const Slide2Form: FC<Slide2FormProps> = ({ user }) => {
             />
           </SwiperSlide>
         ))}
+        <SwiperSlide className="space-y-2 cursor-wait">
+          <Skeleton className="w-[80px] h-[80px]" />
+          <Skeleton className="w-[80px] h-[20px]" />
+          <Skeleton className="w-[80px] h-[10px]" />
+        </SwiperSlide>
       </Swiper>
     </div>
   );

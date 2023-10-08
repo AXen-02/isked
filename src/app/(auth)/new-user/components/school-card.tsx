@@ -41,7 +41,7 @@ export function SchoolCard({
               width={width}
               height={height}
               className={cn(
-                "h-auto w-auto object-cover transition-all hover:scale-105",
+                "h-auto w-auto object-cover transition-all hover:scale-105 cursor-pointer",
                 aspectRatio === "portrait" ? "aspect-[3/4]" : "aspect-square"
               )}
             />
